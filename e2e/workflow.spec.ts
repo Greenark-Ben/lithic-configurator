@@ -1,12 +1,12 @@
 import {test,expect} from '@playwright/test';
 test('sample approval gates configurations and JSON handoff',async({page},testInfo)=>{
- await page.setViewportSize({width:1672,height:941});const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.setViewportSize({width:1672,height:941});const errors:string[]=[];page.on('pageerror',e=>{errors.push(e.message);console.log('PREVIEW ERROR:',e.message)});page.on('console',m=>{if(m.type()==='error')console.log('PREVIEW CONSOLE:',m.text())});
  await page.goto('/');await page.screenshot({path:testInfo.outputPath('create.png')});await page.getByRole('button',{name:'Explore sample definition'}).click();
  await expect(page.getByRole('button',{name:'Approve sample definition'})).toBeDisabled();
  await page.getByLabel(/^Frame depth/).fill('120');await page.getByLabel('Source of this dimension').fill('User confirmation for prototype');
  await page.screenshot({path:testInfo.outputPath('review.png')});await page.getByRole('button',{name:'Approve sample definition'}).click();await expect(page.locator('canvas')).toBeVisible();await page.waitForTimeout(1000);await page.screenshot({path:testInfo.outputPath('configure.png')});
  await expect(page.getByRole('button',{name:'Build Revit family'})).toBeDisabled();
- await page.getByLabel('Height',{exact:true}).fill('3000');
+ await page.getByLabel('Height',{exact:true}).fill('3000');console.log('PREVIEW STATE:',await page.locator('.scene').innerText());
  await expect(page.locator('.dimension-label:not(.vertical)')).toHaveText('1200 mm');
  await expect.poll(async()=>{const label=await page.locator('.dimension-label:not(.vertical)').boundingBox();const canvas=await page.locator('canvas').boundingBox();return !!label&&!!canvas&&label.y>=canvas.y&&label.y+label.height<=canvas.y+canvas.height&&label.x>=canvas.x&&label.x+label.width<=canvas.x+canvas.width;}).toBe(true);
  await page.screenshot({path:testInfo.outputPath('tall-window-dimensions.png')});
