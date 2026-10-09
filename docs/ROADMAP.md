@@ -4,7 +4,11 @@
 
 React/TypeScript/Vite interface; React Three Fiber preview; pure deterministic geometry functions; evidence-required sample approval; three bounded configurations; JSON handoff; meaningful engine tests. Uploaded references are session-only. No backend, credentials, live AI or Revit worker.
 
-## Next: source-grounded creation
+## Source-grounded creation integration
+
+Implemented: image/PDF/description API, structured proposal schema, runtime evidence checks, explicit unknowns, five-dimension review, revisioned session approval, approved-size-only geometry and server-only credentials. Automated tests use a mocked provider. Live connection and source acceptance testing are pending. See [details](INTERPRETATION.md).
+
+## Remaining product proof
 
 1. Retrieve and inspect the earlier AFKC definition, profiles, source drawings and saved-family results. Establish an evidence-backed baseline before carrying manufacturer geometry forward.
 2. Define a versioned product schema for profile polygons, component placement, relationships, units, hosting, supported choices, sources and explicit unknowns. Publish a JSON Schema and validate independently in browser/server/native adapters.

@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
-    "test": "vitest run src/engine.test.ts",
+    "test": "vitest run src/engine.test.ts src/proposal.test.ts server/interpret.test.ts",
     "preview": "vite preview --host 0.0.0.0",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "build:worker": "npm run build && vite build --config vite.server.config.ts",
+    "dev:api": "node --env-file-if-exists=.env server/dev.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.0",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.64.0",
+    "@types/node": "^22.20.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/three": "^0.180.0",

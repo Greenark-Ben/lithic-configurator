@@ -6,7 +6,7 @@ Governed product definitions, interactive 3D configuration and verified native B
 
 A functional browser prototype of the approved Create → Review → Configure design, using an **illustrative fixed-frame window definition**. This is not manufacturer-approved geometry and does not generate a native Revit family yet.
 
-- Add PNG/JPG/PDF references and describe a product. Files stay in memory in this browser session; they are not uploaded or interpreted. Reload clears session state.
+- Add PNG/JPG/PDF references and describe a product. Files stay in memory in this browser session until you choose to create a proposal. Live interpretation requires the server connection. Reload clears session state.
 - Explore the explicitly labelled sample definition.
 - Confirm frame depth (70–200 mm prototype range) and enter its source before approval.
 - Configure the supported 900 × 1200, 1200 × 1500 and 1500 × 1800 mm sizes.
@@ -36,6 +36,6 @@ Vite builds static browser files to `dist/`. Serve that folder with a static HTT
 
 Prototype components are rectangular: four timber members, four exterior aluminium caps, one glazing box. A 70 mm frame face and 36 mm glazing thickness are illustrative fixtures. Before approval, 120 mm depth is a labelled preview assumption only.
 
-The next integration must replace fixture preparation with source-grounded interpretation, versioned proposal review and a validated product definition. Native builders consume approved data through supported operations; AI output must never be executed as arbitrary code.
+The source-grounded interpretation integration is implemented with a separate proposal path, evidence review, revisioned session approvals, server-only credentials and a bounded fixed-window engine. Live interpretation awaits the secure OpenAI connection. See [interpretation setup and scope](docs/INTERPRETATION.md). Native builders consume approved data through supported operations; AI output must never be executed as arbitrary code.
 
 See [implementation roadmap](docs/ROADMAP.md).
