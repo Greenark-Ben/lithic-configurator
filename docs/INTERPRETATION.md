@@ -10,7 +10,7 @@ OpenAI Responses uses image/file inputs and strict Structured Outputs. The serve
 
 Review shows all five required dimensions and their source excerpts. A reviewer can resolve or correct a value and record a source; each edit increments the session revision and invalidates approval. An uncertain proposal shows no geometry. Approval checks numeric bounds and geometry relationships, then snapshots the proposal into the approved definition. JSON handoff includes the original description, source names and hashes, evidence, corrections and revision. Actual binary references remain in session memory and are not persisted in the app; reload loses the session.
 
-Live proposals enable only their approved overall size. Additional sizes need another approved proposal until manufacturer constraints are established. The sample retains its three presets. The nine box components remain illustrative, and native Revit generation stays disabled.
+Approval establishes the frame and glazing profile and records the reviewed starting size. Width and height can then vary independently from 300 to 3000 mm in Configure, provided the frame leaves a positive glazing opening. These limits are illustrative engine bounds, not manufacturer size certification. Resizing preserves the original source dimensions and evidence in the approval; the build request records the selected configuration separately and explicitly marks manufacturer size verification false. Presets are shortcuts rather than restrictions. The nine box components remain illustrative, and native Revit generation stays disabled.
 
 ## Connection and deployment
 

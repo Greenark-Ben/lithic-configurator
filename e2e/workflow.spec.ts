@@ -6,7 +6,11 @@ test('sample approval gates configurations and JSON handoff',async({page},testIn
  await page.getByLabel(/^Frame depth/).fill('120');await page.getByLabel('Source of this dimension').fill('User confirmation for prototype');
  await page.screenshot({path:testInfo.outputPath('review.png')});await page.getByRole('button',{name:'Approve sample definition'}).click();await expect(page.locator('canvas')).toBeVisible();await page.waitForTimeout(1000);await page.screenshot({path:testInfo.outputPath('configure.png')});
  await expect(page.getByRole('button',{name:'Build Revit family'})).toBeDisabled();
- await page.getByLabel('Width',{exact:true}).fill('1000');await expect(page.getByRole('alert')).toBeVisible();await expect(page.getByRole('button',{name:'Download build request'})).toBeDisabled();
+ await page.getByLabel('Height',{exact:true}).fill('3000');
+ await expect(page.locator('.dimension-label:not(.vertical)')).toHaveText('1200 mm');
+ await expect.poll(async()=>{const label=await page.locator('.dimension-label:not(.vertical)').boundingBox();const canvas=await page.locator('canvas').boundingBox();return !!label&&!!canvas&&label.y>=canvas.y&&label.y+label.height<=canvas.y+canvas.height&&label.x>=canvas.x&&label.x+label.width<=canvas.x+canvas.width;}).toBe(true);
+ await page.screenshot({path:testInfo.outputPath('tall-window-dimensions.png')});
+ await page.getByLabel('Width',{exact:true}).fill('299');await expect(page.getByRole('alert')).toBeVisible();await expect(page.getByRole('button',{name:'Download build request'})).toBeDisabled();
  await page.getByRole('button',{name:'1500 × 1800'}).click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download build request'}).click();expect((await pending).suggestedFilename()).toBe('lithic-window-build-request.json');
  await page.getByRole('button',{name:'View approved definition'}).click();await expect(page.getByRole('dialog')).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:testInfo.outputPath('mobile.png'),fullPage:true});expect(errors).toEqual([]);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
