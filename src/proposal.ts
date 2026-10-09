@@ -1,4 +1,4 @@
-import { type Definition, type Configuration, INITIAL } from './engine';
+import { type Definition, type Configuration, INITIAL, DIMENSION_RANGE } from './engine';
 
 export const FIELD_KEYS = ['width','height','frameFace','frameDepth','glazingThickness'] as const;
 export type FieldKey = typeof FIELD_KEYS[number];
@@ -33,5 +33,5 @@ export function proposalIssues(p:Proposal){
 export function proposalDefinition(p:Proposal):{definition:Definition;configuration:Configuration}{
  const issues=proposalIssues(p);if(issues.length)throw new Error(issues.join(' '));
  const f=p.fields;const evidence=(k:FieldKey)=>`${f[k].sourceId}: ${f[k].evidence}`;
- return {definition:{schemaVersion:'0.1',id:p.id,revision:p.revision,product:p.product,operation:'fixed',frameFace:f.frameFace.value!,frameDepth:f.frameDepth.value!,glazingThickness:f.glazingThickness.value!,provenance:{frameFace:evidence('frameFace'),frameDepth:evidence('frameDepth'),glazing:evidence('glazingThickness')},allowedSizes:[[f.width.value!,f.height.value!]],proposal:p},configuration:{...INITIAL,width:f.width.value!,height:f.height.value!}};
+ return {definition:{schemaVersion:'0.1',id:p.id,revision:p.revision,product:p.product,operation:'fixed',frameFace:f.frameFace.value!,frameDepth:f.frameDepth.value!,glazingThickness:f.glazingThickness.value!,provenance:{frameFace:evidence('frameFace'),frameDepth:evidence('frameDepth'),glazing:evidence('glazingThickness')},dimensionRange:DIMENSION_RANGE,proposal:p},configuration:{...INITIAL,width:f.width.value!,height:f.height.value!}};
 }
