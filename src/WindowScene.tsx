@@ -1,5 +1,5 @@
-import { Suspense,useMemo,useState,Component,type ReactNode } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Suspense,useEffect,useMemo,useState,Component,type ReactNode } from 'react';
+import { Canvas,useThree } from '@react-three/fiber';
 import { OrbitControls,ContactShadows,Html,Line } from '@react-three/drei';
 import * as THREE from 'three';
 import { calculateParts,type Definition,type Configuration } from './engine';
@@ -11,6 +11,18 @@ function Window({definition,config,section,dimensions}:{definition:Definition;co
  {dimensions&&<><Line points={[[-w/2,-0.1,0.13],[w/2,-0.1,0.13]]} color="#757d77" lineWidth={1}/><Line points={[[-w/2,-0.13,0.13],[-w/2,-0.06,0.13]]} color="#757d77"/><Line points={[[w/2,-0.13,0.13],[w/2,-0.06,0.13]]} color="#757d77"/><Html center position={[0,-0.18,0.13]}><span className="dimension-label">{config.width} mm</span></Html><Line points={[[-w/2-0.13,0,0.13],[-w/2-0.13,h,0.13]]} color="#757d77"/><Html center position={[-w/2-0.21,h/2,0.13]}><span className="dimension-label vertical">{config.height} mm</span></Html></>}
  <ContactShadows position={[0,-0.005,0]} opacity={0.35} scale={6} blur={2.8} far={2}/></group>
 }
+function DimensionFraming({config}:{config:Configuration}) {
+ const {camera,size}=useThree();
+ useEffect(()=>{
+  if(!(camera instanceof THREE.PerspectiveCamera))return;
+  // Reserve space for dimension lines and labels as the approved window flexes.
+  const halfFov=THREE.MathUtils.degToRad(camera.fov/2);
+  const distance=1.12*Math.max((config.height/1000+0.55)/(2*Math.tan(halfFov)),(config.width/1000+0.7)/(2*Math.tan(halfFov)*Math.max(size.width/size.height,0.1)))+0.2;
+  camera.position.copy(camera.position.clone().normalize().multiplyScalar(distance));
+  camera.updateProjectionMatrix();
+ },[camera,size.width,size.height,config.width,config.height]);
+ return null;
+}
 export default function WindowScene(props:{definition:Definition;config:Configuration;section:boolean;dimensions:boolean}) {
- const [lost,setLost]=useState(false);return <SceneBoundary>{lost?<div className="scene-fallback">Graphics context lost. Reload to restore the preview.</div>:<Canvas shadows dpr={[1,2]} camera={{position:[1.5,0.6,3.4],fov:34}} onCreated={({gl})=>gl.domElement.addEventListener('webglcontextlost',()=>setLost(true))}><color attach="background" args={['#eeede7']}/><ambientLight intensity={1.5}/><directionalLight position={[3,5,4]} intensity={3} castShadow/><directionalLight position={[-3,2,-2]} intensity={1}/><Suspense fallback={null}><Window {...props}/></Suspense><OrbitControls makeDefault minDistance={2} maxDistance={6} target={[0,0,0]} enablePan={false}/></Canvas>}</SceneBoundary>
+ const [lost,setLost]=useState(false);return <SceneBoundary>{lost?<div className="scene-fallback">Graphics context lost. Reload to restore the preview.</div>:<Canvas shadows dpr={[1,2]} camera={{position:[1.5,0.6,3.4],fov:34}} onCreated={({gl})=>gl.domElement.addEventListener('webglcontextlost',()=>setLost(true))}><color attach="background" args={['#eeede7']}/><ambientLight intensity={1.5}/><directionalLight position={[3,5,4]} intensity={3} castShadow/><directionalLight position={[-3,2,-2]} intensity={1}/><DimensionFraming config={props.config}/><Suspense fallback={null}><Window {...props}/></Suspense><OrbitControls makeDefault minDistance={2} maxDistance={20} target={[0,0,0]} enablePan={false}/></Canvas>}</SceneBoundary>
 }
