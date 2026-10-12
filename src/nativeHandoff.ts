@@ -31,6 +31,7 @@ export async function readNativeReport(value:unknown,a:Approval,c:Configuration)
  const sizes=[[c.width,c.height],...PRESETS.filter(([w,h])=>w!==c.width||h!==c.height)];
  if(r.cases.length!==sizes.length||sizes.some(([w,h])=>r.cases.filter((x:any)=>Array.isArray(x.sizeMm)&&x.sizeMm[0]===w&&x.sizeMm[1]===h).length!==1))throw new Error('The native report is missing required size checks.');
  for(const result of r.cases){
+  if(!Array.isArray(result.sizeMm)||result.sizeMm.length!==2||result.error!==undefined&&typeof result.error!=='string')throw new Error('The native report contains malformed case details.');
   if(!['passed','failed'].includes(result.status))throw new Error('A native check has no valid result.');
   if(result.status==='passed'){
    const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted'];

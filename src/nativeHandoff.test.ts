@@ -18,6 +18,7 @@ describe('native desktop boundary',()=>{
  it('accepts a failed desktop report for the exact request and rejects size changes',async()=>{
   const identity=await requestIdentity(approval,INITIAL),report={kind:'lithic-native-report',schemaVersion:'0.1',builder:NATIVE_BUILDER,requestSha256:identity.sha256,geometryMode:'fixed-size-snapshot',nativeParameterFlex:false,manufacturerApproved:false,revitVersion:'2026',status:'failed',cases:[[1200,1500],[900,1200],[1500,1800]].map(sizeMm=>({sizeMm,status:'failed',error:'Test report: no native runtime'}))};
   expect((await readNativeReport(report,approval,INITIAL)).status).toBe('failed');await expect(readNativeReport(report,approval,{...INITIAL,width:1300})).rejects.toThrow('does not match');
+  await expect(readNativeReport({...report,cases:report.cases.map(c=>({...c,error:{message:'invalid'}}))},approval,INITIAL)).rejects.toThrow('malformed');
   await expect(readNativeReport({...report,status:'passed'},approval,INITIAL)).rejects.toThrow('summary conflicts');
   await expect(readNativeReport({...report,cases:report.cases.slice(0,1)},approval,INITIAL)).rejects.toThrow('missing required');
   await expect(readNativeReport({...report,status:'passed',cases:report.cases.map(c=>({...c,status:'passed'}))},approval,INITIAL)).rejects.toThrow('lacks its native check evidence');
