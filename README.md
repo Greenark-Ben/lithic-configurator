@@ -1,41 +1,35 @@
 # LITHIC Configurator
 
-Governed product definitions, interactive 3D configuration and verified native BIM generation.
+Evidence-reviewed product definitions, interactive configuration and a staged native BIM handoff.
 
-## Prototype 0.1
+## Current proof
 
-A functional browser prototype of the approved Create → Review → Configure design, using an **illustrative fixed-frame window definition**. This is not manufacturer-approved geometry and does not generate a native Revit family yet.
+- Add images/PDFs and a description; the connected interpretation service proposes a bounded fixed timber window with exterior aluminium caps. Review dimensions and evidence before session approval.
+- Resize approved windows from 300–3000 mm in the browser. Original evidence remains separate from selected size; these limits are not manufacturer availability claims.
+- Review the separate AFKC source profile proof: stepped timber rebates, folded aluminium, 105 mm depth, 53.5 mm face and 48 mm unresolved glazing assembly. Profile polygons and drawing evidence remain unapproved manufacturer content.
+- Orbit, section, change finishes and export the same deterministic geometry as a build request.
+- AFKC can prepare a Revit desktop handoff ZIP, executed with pyRevit in Revit 2024+. The first builder makes fixed-size .rfa snapshots and isolated test .rvt files. It has not been run in Revit in this session. No live worker or native parameter-driven flex is claimed.
+- Import a matching unsigned desktop report. Size/finish/approval changes invalidate the displayed report. It is local execution evidence, not independent certification.
 
-- Add PNG/JPG/PDF references and describe a product. Files stay in memory in this browser session until you choose to create a proposal. Live interpretation requires the server connection. Reload clears session state.
-- Explore the explicitly labelled sample definition.
-- Confirm frame depth (70–200 mm prototype range) and enter its source before approval.
-- Configure the supported 900 × 1200, 1200 × 1500 and 1500 × 1800 mm sizes.
-- Orbit the calculated Three.js geometry, toggle dimensions and inspect an illustrative section (right members hidden).
-- Choose sample finishes and download the approved definition or a JSON build request.
-- The deterministic prototype helper accepts supported size pairs. No AI service is connected.
-- The Revit build control is disabled until a native worker is connected. No `.rfa` output or native verification is claimed.
+The approved off-white/forest-green interface uses React, TypeScript, Vite and React Three Fiber. Browser review and references are session-only; reload clears them.
 
 ## Development
 
-Node.js 22+ recommended. Dependencies are locked in `package-lock.json`.
+Node.js 22+ and Python 3 are used for checks. Dependencies are locked in package-lock.json.
 
 ```sh
 npm ci
 npm run dev
 npm test
-npm run build
-npx playwright install chromium
+npm run test:native-contract
+npm run build:worker
 npm run test:e2e
 ```
 
-Vite builds static browser files to `dist/`. Serve that folder with a static HTTPS host. The proposed production address is `configurator.lithiccore.com`; no hosting provider or DNS has been configured by this commit.
+Live image interpretation uses a server-only OPENAI_API_KEY. Do not put credentials in client code or commit local .env files. The deployed owner-only Site already has its runtime secret; no new key is needed for the desktop handoff.
 
-## Architecture
+## Boundaries
 
-`src/engine.ts` is the deterministic definition/configuration/geometry boundary. Geometry uses millimetres. The preview adapter converts to metres. JSON build requests carry the same nine calculated parts, definition, approval timestamp, configuration, units, engine version and explicit native status.
+AI interprets. The engine decides. The browser produces validated data; the native command is fixed reviewed code and never executes a prompt or code embedded in a request. Both adapters use millimetres and validate the same AFKC profiles independently.
 
-Prototype components are rectangular: four timber members, four exterior aluminium caps, one glazing box. A 70 mm frame face and 36 mm glazing thickness are illustrative fixtures. Before approval, 120 mm depth is a labelled preview assumption only.
-
-The source-grounded interpretation integration is implemented with a separate proposal path, evidence review, revisioned session approvals, server-only credentials and a bounded fixed-window engine. Live interpretation awaits the secure OpenAI connection. See [interpretation setup and scope](docs/INTERPRETATION.md). Native builders consume approved data through supported operations; AI output must never be executed as arbitrary code.
-
-See [implementation roadmap](docs/ROADMAP.md).
+See [source profiles](docs/SOURCE-PROFILES.md), [interpretation](docs/INTERPRETATION.md), [desktop handoff](docs/REVIT-HANDOFF.md) and [roadmap](docs/ROADMAP.md).

@@ -1,25 +1,25 @@
 # First complete product proof
 
-## Delivered in prototype 0.1
+## Delivered
 
-React/TypeScript/Vite interface; React Three Fiber preview; pure deterministic geometry functions; evidence-required sample approval; three bounded configurations; JSON handoff; meaningful engine tests. Uploaded references are session-only. No backend, credentials, live AI or Revit worker.
+- Approved Create → Review → Configure interface and deterministic browser geometry.
+- Connected source-grounded image/PDF/description interpretation; evidence review and immutable session approval snapshots.
+- Dynamic overall sizing with retained source dimensions and explicit illustrative size bounds.
+- Separate source-derived AFKC polygon profiles, drawing crops and declared prototype simplifications.
+- AFKC desktop handoff package: request digest, independently validated Python geometry contract, fixed native builder and report import. Software checks pass; live Revit execution is pending.
 
-## Source-grounded creation integration
+## Next acceptance boundary
 
-Implemented: image/PDF/description API, structured proposal schema, runtime evidence checks, explicit unknowns, five-dimension review, revisioned session approval, approved-size-only geometry and server-only credentials. Automated tests use a mocked provider. Live connection and source acceptance testing are pending. See [details](INTERPRETATION.md).
+Run the desktop handoff in Revit and inspect its selected-size family, isolated host model and native report. Resolve actual runtime/template defects from that run before making native acceptance claims. The first builder exports separate fixed-size snapshots; do not describe its multiple-size checks as geometry-driving parameter flex.
 
-## Remaining product proof
+## Remaining
 
-1. Retrieve and inspect the earlier AFKC definition, profiles, source drawings and saved-family results. Establish an evidence-backed baseline before carrying manufacturer geometry forward.
-2. Define a versioned product schema for profile polygons, component placement, relationships, units, hosting, supported choices, sources and explicit unknowns. Publish a JSON Schema and validate independently in browser/server/native adapters.
-3. Add server-side OpenAI interpretation, using image inputs and Structured Outputs. Proposals remain unapproved. Check units, geometry and constraints independently; schema compliance alone does not establish correctness.
-4. Implement revisions and immutable approval snapshots. Altering source evidence, profiles, relationships or supported rules invalidates approval; choosing an already permitted configuration does not.
-5. Add authenticated persistence and company isolation. Do not place service credentials in the frontend. Uploads must be permission-scoped and retain original evidence.
-6. Implement durable build jobs with pinned definition/configuration/engine/builder versions, content identity, retries, explicit failures and receipt records. Avoid running native jobs in browser HTTP requests.
-7. Connect the existing local Revit/MCP workflow using validated supported operations. Keep manufacturer profile authoring separate from this illustrative box geometry. Save, reopen and place outputs; verify dimensions, materials, opening/hosting, parameters and 2D representation.
-8. Replace/port native operations to a C# Revit API worker and evaluate APS Automation after local acceptance. Do not assume the pyRevit bridge can execute unchanged in APS.
-9. Deliver native `.rfa` only when the relevant checks have passed. Include definition identity, configuration, engine/builder versions and verification results in a receipt. Equivalent replay means equivalent governed results, not necessarily byte-identical RFA files.
+1. Native family parameter-driven sizing, opening flex, saved/reopened persistence and 2D representation in one family.
+2. Authenticated durable projects, permission-scoped source uploads, immutable approvals and company isolation.
+3. Durable native jobs with pinned inputs, engine/builder versions, retries and explicit failure receipts; trusted worker receipt authentication.
+4. Connected Windows/Revit API worker after local acceptance. Evaluate APS Automation as a separate port, not as an assumed replacement for pyRevit.
+5. Manufacturer-approved profiles and size/option rules; unresolved seals, glazing build-up, drainage and fabrication details need evidence.
 
 ## Hosting
 
-Proposed address: configurator.lithiccore.com. Web app and backend deploy separately from the local Windows/Revit worker. Select the hosting provider and configure previews, secrets, production DNS and rollback before a production launch. No hosting or DNS changes in this first commit.
+The existing owner-only LITHIC Configurator Site hosts the browser and interpretation Worker. The Revit desktop command is separate. configurator.lithiccore.com remains a proposed production domain; this change does not configure DNS or change sharing.
