@@ -1,6 +1,7 @@
+export const DIMENSION_RANGE = {min:300,max:3000,basis:'illustrative-engine'} as const;
 export const PRESETS = [[900,1200],[1200,1500],[1500,1800]] as const;
 export type Configuration = { width: number; height: number; interior: 'timber'|'white'; exterior: 'graphite'|'white' };
-export type Definition = { schemaVersion: '0.1'; id: string; revision: number; product: string; operation: 'fixed'; frameFace: number; frameDepth: number|null; glazingThickness: number; provenance: { frameFace:string; frameDepth:string|null; glazing:string }; allowedSizes?:number[][]; proposal?:import('./proposal').Proposal };
+export type Definition = { schemaVersion: '0.1'; id: string; revision: number; product: string; operation: 'fixed'; frameFace: number; frameDepth: number|null; glazingThickness: number; provenance: { frameFace:string; frameDepth:string|null; glazing:string }; dimensionRange?:typeof DIMENSION_RANGE; proposal?:import('./proposal').Proposal };
 export type Approval = { definition: Definition; approvedAt: string };
 export const SAMPLE: Definition = { schemaVersion:'0.1', id:'lithic-fixed-window-demo', revision:1, product:'Fixed-frame window', operation:'fixed', frameFace:70, frameDepth:null, glazingThickness:36, provenance:{frameFace:'Illustrative fixture, not manufacturer geometry',frameDepth:null,glazing:'Illustrative fixture, not a verified glazing specification'} };
 export const INITIAL: Configuration = {width:1200,height:1500,interior:'timber',exterior:'graphite'};
@@ -13,7 +14,10 @@ export function definitionIssues(d:Definition) {
  return issues;
 }
 export function configurationIssues(c:Configuration,d?:Definition) {
- return (d?.allowedSizes||PRESETS).some(([w,h])=>w===c.width&&h===c.height)&&Number.isFinite(c.width)&&Number.isFinite(c.height)&&c.width>=300&&c.height>=300&&c.width<=3000&&c.height<=3000 ? [] : [d?.allowedSizes?'Use the reviewed size. Additional sizes need a new approved proposal.':'Choose one of the three supported prototype sizes.'];
+ const issues:string[]=[];
+ if(!Number.isFinite(c.width)||!Number.isFinite(c.height)||c.width<DIMENSION_RANGE.min||c.height<DIMENSION_RANGE.min||c.width>DIMENSION_RANGE.max||c.height>DIMENSION_RANGE.max)issues.push('Width and height must each be 300–3000 mm.');
+ if(d&&2*d.frameFace>=Math.min(c.width,c.height))issues.push('Frame face leaves no glazing opening.');
+ return issues;
 }
 export type Part = { id:string; role:'timber'|'aluminium'|'glazing'; position:[number,number,number]; size:[number,number,number] };
 // Millimetres throughout the definition. Preview adapter alone converts to metres.
@@ -30,5 +34,5 @@ export function calculateParts(d:Definition,c:Configuration):Part[] {
 }
 export function createBuildRequest(a:Approval,c:Configuration) {
  const parts=calculateParts(a.definition,c);
- return {kind:'lithic-build-request',schemaVersion:'0.1',definition:a.definition,approvedAt:a.approvedAt,configuration:c,geometryEngine:'fixed-window-boxes/0.1',units:'mm',parts,nativeStatus:'not-built',limitations:['Illustrative rectangular profiles; not manufacturer-approved','No connected Revit worker','No native hosting, flexing or 2D verification yet']};
+ return {kind:'lithic-build-request',schemaVersion:'0.1',definition:a.definition,approvedAt:a.approvedAt,configuration:{...c},configurationBasis:{overallSize:'User-selected dimensions',profile:'Approved definition',manufacturerSizeVerified:false},dimensionRange:DIMENSION_RANGE,geometryEngine:'fixed-window-boxes/0.1',units:'mm',parts,nativeStatus:'not-built',limitations:['Illustrative rectangular profiles; not manufacturer-approved','No connected Revit worker','No native hosting, flexing or 2D verification yet']};
 }
