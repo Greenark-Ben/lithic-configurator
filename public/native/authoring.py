@@ -19,6 +19,36 @@ def category(document,name):
 
 def positive_solids(element):return [g for g in element.get_Geometry(DB.Options()) if isinstance(g,DB.Solid) and g.Volume>1e-10]
 
+def lock_plan_coordinates(document):
+    """Anchor orthogonal symbolic edges to independent, dimensioned datums."""
+    view=next(v for v in DB.FilteredElementCollector(document).OfClass(DB.ViewPlan) if not v.IsTemplate)
+    centers={}
+    for plane in DB.FilteredElementCollector(document).OfClass(DB.ReferencePlane):
+        if plane.Name=='Center (Left/Right)':centers['x']=plane
+        elif plane.Name=='Center (Front/Back)':centers['y']=plane
+    planes={};aligned=0
+    for element in DB.FilteredElementCollector(document).OfClass(DB.CurveElement):
+        if not isinstance(element,DB.SymbolicCurve):continue
+        curve=element.GeometryCurve;a,b=curve.GetEndPoint(0),curve.GetEndPoint(1)
+        axis='x' if abs(a.X-b.X)<1e-8 else 'y' if abs(a.Y-b.Y)<1e-8 else None
+        if axis is None:continue
+        value=a.X if axis=='x' else a.Y;key=(axis,round(value,8))
+        if key not in planes:
+            if abs(value)<1e-8:plane=centers[axis]
+            else:
+                start=DB.XYZ(value,-10,0) if axis=='x' else DB.XYZ(-10,value,0)
+                end=DB.XYZ(value,10,0) if axis=='x' else DB.XYZ(10,value,0)
+                plane=document.FamilyCreate.NewReferencePlane(start,end,DB.XYZ.BasisZ,view)
+                plane.Name='LITHIC plan '+axis+' '+str(round(value/MM,4))
+                document.Regenerate()
+                refs=DB.ReferenceArray();refs.Append(centers[axis].GetReference());refs.Append(plane.GetReference())
+                line=DB.Line.CreateBound(DB.XYZ(-20,0,0),DB.XYZ(20,0,0)) if axis=='x' else DB.Line.CreateBound(DB.XYZ(0,-20,0),DB.XYZ(0,20,0))
+                dimension=document.FamilyCreate.NewDimension(view,line,refs);dimension.IsLocked=True
+            planes[key]=plane
+        document.FamilyCreate.NewAlignment(view,planes[key].GetReference(),element.GeometryCurve.Reference);aligned+=1
+    document.Regenerate()
+    return {'referencePlanes':len(planes),'alignedSymbolicEdges':aligned}
+
 def lock_host_depth(document,host):
     """Replace wall-face auto dimensions with locked offsets from the family centre.
 
@@ -27,14 +57,18 @@ def lock_host_depth(document,host):
     complete placed geometry must independently pass every host thickness check.
     """
     center=next(e for e in DB.FilteredElementCollector(document).OfClass(DB.ReferencePlane) if e.Name=='Center (Front/Back)')
-    autos=[e for e in DB.FilteredElementCollector(document).OfClass(DB.Dimension) if e.Category and e.Category.Name=='Automatic Sketch Dimensions' and any(r.ElementId==host.Id for r in e.References)]
+    targets=set([host.Id.IntegerValue])
+    for plane in DB.FilteredElementCollector(document).OfClass(DB.ReferencePlane):
+        if abs(plane.Normal.Y)>.999 and abs(abs(plane.BubbleEnd.Y)-host.Width/2)<.001:
+            targets.add(plane.Id.IntegerValue)
+    autos=[e for e in DB.FilteredElementCollector(document).OfClass(DB.Dimension) if e.Category and e.Category.Name=='Automatic Sketch Dimensions' and any(r.ElementId.IntegerValue in targets for r in e.References)]
     added=[];unsupported=[]
     for dim in autos:
         if not dim.IsValidObject:continue
         old_id=dim.Id.IntegerValue;c=dim.Curve
         if abs(c.Direction.Y)<.999:continue
         refs=DB.ReferenceArray()
-        for reference in dim.References:refs.Append(center.GetReference() if reference.ElementId==host.Id else reference)
+        for reference in dim.References:refs.Append(center.GetReference() if reference.ElementId.IntegerValue in targets else reference)
         view=document.GetElement(dim.OwnerViewId)
         if view is None:view=next(v for v in DB.FilteredElementCollector(document).OfClass(DB.ViewPlan) if not v.IsTemplate)
         line=DB.Line.CreateBound(c.Origin-c.Direction*10,c.Origin+c.Direction*10)
@@ -46,7 +80,8 @@ def lock_host_depth(document,host):
             transaction.RollBack();unsupported.append({'automaticDimensionId':old_id,'reason':str(error)})
     document.Regenerate()
     if not added:raise ValueError('No explicit host-depth constraints were created.')
-    return {'method':'Locked offsets from Center (Front/Back), replacing host-face automatic dimensions','explicitDimensionIds':added,'unsupportedAutomaticDimensions':unsupported}
+    plan_constraints=lock_plan_coordinates(document)
+    return {'method':'Locked offsets from Center (Front/Back), replacing host-face automatic dimensions','explicitDimensionIds':added,'planCoordinateConstraints':plan_constraints,'unsupportedAutomaticDimensions':unsupported}
 
 def create_forms(document,source,width,height,exterior,materials):
     manager=document.FamilyManager

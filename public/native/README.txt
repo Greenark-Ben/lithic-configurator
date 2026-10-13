@@ -49,3 +49,7 @@ Explicit locked centre-plane offsets prevent automatic sketch dimensions from
 reshaping timber in different host walls. Every snapshot is checked in 100,
 200, 300 and 500 mm walls, including all 22 hosted solids and saved/reopened
 geometry and openings. Earlier 0.2 reports did not cover varying host depth.
+
+Plan coordinates are fixed with native reference planes and alignments.
+Every coarse/medium/fine line endpoint/style is checked before and after
+project reopening in all four host thicknesses.

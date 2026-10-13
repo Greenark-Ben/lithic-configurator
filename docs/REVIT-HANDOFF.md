@@ -45,3 +45,5 @@ Integration validation and native run results are recorded with the change; they
 ## Host-depth correction
 
 Builder 0.2.1 replaces wall-face automatic sketch dimensions with locked offsets from the family centre plane. Version 0.2 was checked in a 200 mm host only; a user placement in a 300 mm wall revealed that Revit reshaped the timber sketches. Every snapshot now requires all 22 component bounds/volumes and the wall opening to pass in 100, 200, 300 and 500 mm hosts, both initially and after project reopening. Reports from earlier builders cannot establish this pass. Unsupported automatic dimension references are recorded; they cannot bypass the complete hosted geometry checks.
+
+Plan graphics also require independent coordinate datums: orthogonal symbolic edges are aligned to dimensioned reference planes, so their coordinates cannot follow the host. Every coarse/medium/fine line endpoint and style is compared with the source family at each wall thickness, then compared again after reopening. Counts alone cannot establish stable graphics.

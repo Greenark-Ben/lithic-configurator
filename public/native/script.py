@@ -120,20 +120,57 @@ def hosted_geometry_checks(instance,specs,exterior):
         checks.append({'id':spec['id'],'boundsMm':actual,'volumeMm3':actual_volume,'passed':distance<=TOL_MM and minimum-tolerance<=actual_volume<=maximum+tolerance})
     return {'solidCount':len(shapes),'parts':checks,'passed':len(shapes)==22 and not unused and all(c['passed'] for c in checks)}
 
-def create_host_cases(project,symbol,level,width,height,specs,exterior):
+def plan_line_key(style,curve,transform):
+    points=[transform.OfPoint(curve.GetEndPoint(i)) for i in [0,1]]
+    return [style,sorted([[round(p.X/MM,3),round(p.Y/MM,3)] for p in points])]
+
+def family_plan_signatures(family):
+    result={lod:[] for lod in ['coarse','medium','fine']}
+    for element in DB.FilteredElementCollector(family).OfClass(DB.CurveElement):
+        if not isinstance(element,DB.SymbolicCurve):continue
+        visibility=element.GetVisibility()
+        for lod,shown in [('coarse',visibility.IsShownInCoarse),('medium',visibility.IsShownInMedium),('fine',visibility.IsShownInFine)]:
+            if shown:result[lod].append(plan_line_key(element.LineStyle.GraphicsStyleCategory.Name,element.GeometryCurve,DB.Transform.Identity))
+    for lines in result.values():lines.sort()
+    return result
+
+def hosted_plan_checks(instance,views,expected):
+    inverse=instance.GetTransform().Inverse;result={}
+    for lod,view in views.items():
+        actual=[];options=DB.Options();options.View=view
+        def collect(geometry):
+            for item in geometry:
+                if isinstance(item,DB.GeometryInstance):collect(item.GetInstanceGeometry())
+                elif isinstance(item,DB.Curve):
+                    style=instance.Document.GetElement(item.GraphicsStyleId)
+                    if style and style.GraphicsStyleCategory.Name.startswith('LITHIC Plan'):
+                        actual.append(plan_line_key(style.GraphicsStyleCategory.Name,item,inverse))
+        collect(instance.get_Geometry(options));actual.sort()
+        digest=lambda lines:hashlib.sha256(json.dumps(lines,separators=(',',':')).encode('utf-8')).hexdigest()
+        result[lod]={'curveCount':len(actual),'expectedCount':len(expected[lod]),'sha256':digest(actual),'expectedSha256':digest(expected[lod]),'passed':actual==expected[lod]}
+    return result
+
+def create_host_cases(project,symbol,level,width,height,specs,exterior,expected_plans):
     from System.Collections.Generic import List
     base=next(t for t in DB.FilteredElementCollector(project).OfClass(DB.WallType) if t.Kind==DB.WallKind.Basic and t.GetCompoundStructure() is not None)
-    cases=[]
+    cases=[];plan_views={}
+    plan_type=next(t for t in DB.FilteredElementCollector(project).OfClass(DB.ViewFamilyType) if t.ViewFamily==DB.ViewFamily.FloorPlan)
+    for lod,detail in [('coarse',DB.ViewDetailLevel.Coarse),('medium',DB.ViewDetailLevel.Medium),('fine',DB.ViewDetailLevel.Fine)]:
+        view=DB.ViewPlan.Create(project,plan_type.Id,level.Id);view.Name='LITHIC host symbol check '+lod;view.DetailLevel=detail
+        plan_views[lod]=view
     for n,thickness in enumerate([100,200,300,500]):
         typ=base.Duplicate('LITHIC proof host '+str(thickness)+' mm');structure=typ.GetCompoundStructure()
         layers=List[DB.CompoundStructureLayer]();layers.Add(DB.CompoundStructureLayer(thickness*MM,DB.MaterialFunctionAssignment.Structure,DB.ElementId.InvalidElementId));structure.SetLayers(layers);typ.SetCompoundStructure(structure)
         x=(n+1)*8000*MM;wall=DB.Wall.Create(project,DB.Line.CreateBound(DB.XYZ(x-3000*MM,0,0),DB.XYZ(x+3000*MM,0,0)),typ.Id,level.Id,5000*MM,0,False,False)
         project.Regenerate();uncut=volume(wall)
         instance=project.Create.NewFamilyInstance(DB.XYZ(x,0,900*MM),symbol,wall,level,DB.Structure.StructuralType.NonStructural);project.Regenerate()
+        for view in plan_views.values():
+            vr=view.GetViewRange();vr.SetOffset(DB.PlanViewPlane.TopClipPlane,instance.GetTransform().Origin.Z+(height+100)*MM-level.Elevation);vr.SetOffset(DB.PlanViewPlane.CutPlane,instance.GetTransform().Origin.Z+height/2*MM-level.Elevation);vr.SetOffset(DB.PlanViewPlane.BottomClipPlane,0);vr.SetOffset(DB.PlanViewPlane.ViewDepthPlane,0);view.SetViewRange(vr)
+        project.Regenerate();plans=hosted_plan_checks(instance,plan_views,expected_plans)
         geometry=hosted_geometry_checks(instance,specs,exterior);removed=uncut-volume(wall);expected=width*height*thickness
         opening=abs(removed-expected)<=max(1,expected*VOLUME_TOL)
-        cases.append({'wallThicknessMm':thickness,'instanceId':instance.UniqueId,'wallId':wall.UniqueId,'geometry':geometry,'openingPassed':opening,'uncutWallMm3':uncut,'expectedOpeningMm3':expected,'passed':geometry['passed'] and opening and instance.Host.Id==wall.Id})
-    return cases
+        cases.append({'wallThicknessMm':thickness,'instanceId':instance.UniqueId,'wallId':wall.UniqueId,'geometry':geometry,'planSymbols':plans,'openingPassed':opening,'uncutWallMm3':uncut,'expectedOpeningMm3':expected,'passed':geometry['passed'] and opening and instance.Host.Id==wall.Id and all(p['passed'] for p in plans.values())})
+    return cases,{lod:view.UniqueId for lod,view in plan_views.items()}
 
 def build_case(application, template, output, request, source, width, height, digest):
     family, project = None, None
@@ -231,7 +268,8 @@ def build_case(application, template, output, request, source, width, height, di
             result['exteriorPassed'] = exterior_world.DotProduct(wall.Orientation) > 0.999
             result['instanceId'] = instance.UniqueId
             result['wallId'] = wall.UniqueId
-            result['hostThicknessCases']=create_host_cases(project,symbol,level,width,height,parts,exterior)
+            expected_plans=family_plan_signatures(family)
+            result['hostThicknessCases'],result['hostSymbolViewIds']=create_host_cases(project,symbol,level,width,height,parts,exterior,expected_plans)
             views = create_review_views(project,instance,width,height,exterior)
             view_ids = [v.UniqueId for v in views]
             if tx.Commit() != DB.TransactionStatus.Committed:
@@ -255,8 +293,9 @@ def build_case(application, template, output, request, source, width, height, di
         for case in result['hostThicknessCases']:
             persisted=project.GetElement(case['instanceId']);persisted_host=project.GetElement(case['wallId'])
             case['reopenedGeometry']=hosted_geometry_checks(persisted,parts,exterior)
+            case['reopenedPlanSymbols']=hosted_plan_checks(persisted,{lod:project.GetElement(uid) for lod,uid in result['hostSymbolViewIds'].items()},expected_plans)
             case['reopenedOpeningPassed']=abs((case['uncutWallMm3']-volume(persisted_host))-case['expectedOpeningMm3'])<=max(1,case['expectedOpeningMm3']*VOLUME_TOL)
-            case['savedReopenedPassed']=case['reopenedGeometry']['passed'] and case['reopenedOpeningPassed'] and persisted.Host.Id==persisted_host.Id
+            case['savedReopenedPassed']=case['reopenedGeometry']['passed'] and case['reopenedOpeningPassed'] and persisted.Host.Id==persisted_host.Id and all(p['passed'] for p in case['reopenedPlanSymbols'].values())
         result['hostedGeometryStablePassed']=all(c['passed'] and c['savedReopenedPassed'] for c in result['hostThicknessCases'])
         result['reopenedWarnings'] = warning_text(family)+warning_text(project)
         result['familyFile'] = os.path.basename(family_path)
