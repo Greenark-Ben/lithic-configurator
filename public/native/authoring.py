@@ -19,6 +19,35 @@ def category(document,name):
 
 def positive_solids(element):return [g for g in element.get_Geometry(DB.Options()) if isinstance(g,DB.Solid) and g.Volume>1e-10]
 
+def lock_host_depth(document,host):
+    """Replace wall-face auto dimensions with locked offsets from the family centre.
+
+    Automatic sketch dimensions can distort timber when host thickness changes.
+    Sweep references that cannot form an explicit dimension are recorded; the
+    complete placed geometry must independently pass every host thickness check.
+    """
+    center=next(e for e in DB.FilteredElementCollector(document).OfClass(DB.ReferencePlane) if e.Name=='Center (Front/Back)')
+    autos=[e for e in DB.FilteredElementCollector(document).OfClass(DB.Dimension) if e.Category and e.Category.Name=='Automatic Sketch Dimensions' and any(r.ElementId==host.Id for r in e.References)]
+    added=[];unsupported=[]
+    for dim in autos:
+        if not dim.IsValidObject:continue
+        old_id=dim.Id.IntegerValue;c=dim.Curve
+        if abs(c.Direction.Y)<.999:continue
+        refs=DB.ReferenceArray()
+        for reference in dim.References:refs.Append(center.GetReference() if reference.ElementId==host.Id else reference)
+        view=document.GetElement(dim.OwnerViewId)
+        if view is None:view=next(v for v in DB.FilteredElementCollector(document).OfClass(DB.ViewPlan) if not v.IsTemplate)
+        line=DB.Line.CreateBound(c.Origin-c.Direction*10,c.Origin+c.Direction*10)
+        transaction=DB.SubTransaction(document);transaction.Start()
+        try:
+            explicit=document.FamilyCreate.NewDimension(view,line,refs);explicit.IsLocked=True
+            transaction.Commit();added.append(explicit.UniqueId)
+        except Exception as error:
+            transaction.RollBack();unsupported.append({'automaticDimensionId':old_id,'reason':str(error)})
+    document.Regenerate()
+    if not added:raise ValueError('No explicit host-depth constraints were created.')
+    return {'method':'Locked offsets from Center (Front/Back), replacing host-face automatic dimensions','explicitDimensionIds':added,'unsupportedAutomaticDimensions':unsupported}
+
 def create_forms(document,source,width,height,exterior,materials):
     manager=document.FamilyManager
     parameters={}

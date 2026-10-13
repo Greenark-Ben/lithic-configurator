@@ -1,4 +1,4 @@
-LITHIC AFKC Revit handoff — desktop builder 0.2
+LITHIC AFKC Revit handoff — desktop builder 0.2.1
 
 This package builds fixed-size snapshots of the reviewed AFKC prototype in
 Revit 2024 or later. Revit and pyRevit are required. It creates fresh family
@@ -43,3 +43,9 @@ chemistry and available manufactured sizes are not verified. The accepted
 visual baseline is the 1200x1500 prototype, not manufacturer approval.
 Imported desktop reports are unsigned local evidence. Builder/report 0.1
 packages are intentionally incompatible with this revised construction.
+
+Host-depth correction 0.2.1:
+Explicit locked centre-plane offsets prevent automatic sketch dimensions from
+reshaping timber in different host walls. Every snapshot is checked in 100,
+200, 300 and 500 mm walls, including all 22 hosted solids and saved/reopened
+geometry and openings. Earlier 0.2 reports did not cover varying host depth.

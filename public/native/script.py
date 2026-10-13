@@ -16,7 +16,7 @@ from pyrevit import DB, forms, revit
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from contract import BUILDER, validate, expected_parts, verification_sizes, native_specs
-from authoring import create_forms, create_plan_symbols, authoring_checks
+from authoring import create_forms, create_plan_symbols, authoring_checks, lock_host_depth
 from drawings import create_review_views, export_review_views
 
 MM = 1.0 / 304.8
@@ -102,6 +102,39 @@ def family_checks(document, specs, elements, exterior, materials, source):
         checks.append({'id':spec['id'],'boundsMm':actual,'expectedBoundsMm':expected,'volumeMm3':actual_volume,'expectedVolumeMm3':minimum,'maximumJoinedVolumeMm3':maximum,'volumeRule':'bounded native join of overlapping source returns' if maximum!=minimum else 'analytic polygon volume','nativeType':native_type,'material':document.GetElement(materials[spec['role']]).Name,'passed':passed})
     return checks
 
+def hosted_geometry_checks(instance,specs,exterior):
+    inverse=instance.GetTransform().Inverse
+    shapes=solids(instance);checks=[];unused=list(range(len(shapes)))
+    for spec in specs:
+        p,size=spec['position'],spec['size'];depth=sorted([(p[2]-size[2]/2)*exterior,(p[2]+size[2]/2)*exterior])
+        expected=[p[0]-size[0]/2,p[0]+size[0]/2,p[1]-size[1]/2,p[1]+size[1]/2,depth[0],depth[1]]
+        choices=[]
+        for index in unused:
+            solid=shapes[index];vertices=[inverse.OfPoint(edge.AsCurve().GetEndPoint(i)) for edge in solid.Edges for i in [0,1]]
+            actual=[min(v.X/MM for v in vertices),max(v.X/MM for v in vertices),min(v.Z/MM for v in vertices),max(v.Z/MM for v in vertices),min(v.Y/MM for v in vertices),max(v.Y/MM for v in vertices)]
+            choices.append((max(abs(a-b) for a,b in zip(actual,expected)),index,actual,solid.Volume*VOLUME))
+        if not choices:
+            checks.append({'id':spec['id'],'passed':False,'error':'Missing hosted solid'});continue
+        distance,index,actual,actual_volume=min(choices,key=lambda c:c[0]);unused.remove(index)
+        minimum=spec['expectedVolumeMm3'];maximum=spec.get('maximumJoinedVolumeMm3',minimum);tolerance=max(1,minimum*VOLUME_TOL)
+        checks.append({'id':spec['id'],'boundsMm':actual,'volumeMm3':actual_volume,'passed':distance<=TOL_MM and minimum-tolerance<=actual_volume<=maximum+tolerance})
+    return {'solidCount':len(shapes),'parts':checks,'passed':len(shapes)==22 and not unused and all(c['passed'] for c in checks)}
+
+def create_host_cases(project,symbol,level,width,height,specs,exterior):
+    from System.Collections.Generic import List
+    base=next(t for t in DB.FilteredElementCollector(project).OfClass(DB.WallType) if t.Kind==DB.WallKind.Basic and t.GetCompoundStructure() is not None)
+    cases=[]
+    for n,thickness in enumerate([100,200,300,500]):
+        typ=base.Duplicate('LITHIC proof host '+str(thickness)+' mm');structure=typ.GetCompoundStructure()
+        layers=List[DB.CompoundStructureLayer]();layers.Add(DB.CompoundStructureLayer(thickness*MM,DB.MaterialFunctionAssignment.Structure,DB.ElementId.InvalidElementId));structure.SetLayers(layers);typ.SetCompoundStructure(structure)
+        x=(n+1)*8000*MM;wall=DB.Wall.Create(project,DB.Line.CreateBound(DB.XYZ(x-3000*MM,0,0),DB.XYZ(x+3000*MM,0,0)),typ.Id,level.Id,5000*MM,0,False,False)
+        project.Regenerate();uncut=volume(wall)
+        instance=project.Create.NewFamilyInstance(DB.XYZ(x,0,900*MM),symbol,wall,level,DB.Structure.StructuralType.NonStructural);project.Regenerate()
+        geometry=hosted_geometry_checks(instance,specs,exterior);removed=uncut-volume(wall);expected=width*height*thickness
+        opening=abs(removed-expected)<=max(1,expected*VOLUME_TOL)
+        cases.append({'wallThicknessMm':thickness,'instanceId':instance.UniqueId,'wallId':wall.UniqueId,'geometry':geometry,'openingPassed':opening,'uncutWallMm3':uncut,'expectedOpeningMm3':expected,'passed':geometry['passed'] and opening and instance.Host.Id==wall.Id})
+    return cases
+
 def build_case(application, template, output, request, source, width, height, digest):
     family, project = None, None
     label = str(width).replace('.', '_')+'x'+str(height).replace('.', '_')
@@ -145,6 +178,7 @@ def build_case(application, template, output, request, source, width, height, di
             opening_profile = loop([DB.XYZ(x*MM, 0, z*MM) for x, z in [(-width/2, 0), (width/2, 0), (width/2, height), (-width/2, height)]])
             family.FamilyCreate.NewOpening(host, opening_profile)
             family.Regenerate()
+            result['hostDepthConstraints']=lock_host_depth(family,host)
             result['parts'] = family_checks(family, parts, elements, exterior, materials, source)
             if tx.Commit() != DB.TransactionStatus.Committed:
                 raise ValueError('Family transaction did not commit.')
@@ -197,6 +231,7 @@ def build_case(application, template, output, request, source, width, height, di
             result['exteriorPassed'] = exterior_world.DotProduct(wall.Orientation) > 0.999
             result['instanceId'] = instance.UniqueId
             result['wallId'] = wall.UniqueId
+            result['hostThicknessCases']=create_host_cases(project,symbol,level,width,height,parts,exterior)
             views = create_review_views(project,instance,width,height,exterior)
             view_ids = [v.UniqueId for v in views]
             if tx.Commit() != DB.TransactionStatus.Committed:
@@ -217,12 +252,18 @@ def build_case(application, template, output, request, source, width, height, di
         result['drawingViewsPersisted'] = all(project.GetElement(uid) is not None for uid in view_ids)
         result['visualReviewStatus'] = 'exported-views-await-visual-review'
         result['openingPersisted'] = abs((uncut-volume(persisted_wall))-expected_removed) <= max(1, expected_removed*VOLUME_TOL)
+        for case in result['hostThicknessCases']:
+            persisted=project.GetElement(case['instanceId']);persisted_host=project.GetElement(case['wallId'])
+            case['reopenedGeometry']=hosted_geometry_checks(persisted,parts,exterior)
+            case['reopenedOpeningPassed']=abs((case['uncutWallMm3']-volume(persisted_host))-case['expectedOpeningMm3'])<=max(1,case['expectedOpeningMm3']*VOLUME_TOL)
+            case['savedReopenedPassed']=case['reopenedGeometry']['passed'] and case['reopenedOpeningPassed'] and persisted.Host.Id==persisted_host.Id
+        result['hostedGeometryStablePassed']=all(c['passed'] and c['savedReopenedPassed'] for c in result['hostThicknessCases'])
         result['reopenedWarnings'] = warning_text(family)+warning_text(project)
         result['familyFile'] = os.path.basename(family_path)
         result['familySha256'] = file_hash(family_path)
         result['projectFile'] = os.path.basename(project_path)
         result['projectSha256'] = file_hash(project_path)
-        required = ['scheduleDimensionsPassed', 'provenancePassed', 'hostPassed', 'openingPassed', 'exteriorPassed', 'familyReopened', 'projectReopened', 'persistenceGeometryPassed', 'hostPersisted', 'openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted']
+        required = ['scheduleDimensionsPassed', 'provenancePassed', 'hostPassed', 'openingPassed', 'exteriorPassed', 'familyReopened', 'projectReopened', 'persistenceGeometryPassed', 'hostPersisted', 'openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed']
         result['status'] = 'passed' if all(result.get(k) is True for k in required) and all(p['passed'] for p in result['parts']) and not result['familyWarnings'] and not result['projectWarnings'] and not result['reopenedWarnings'] else 'failed'
     except Exception as error:
         result['error'] = str(error)

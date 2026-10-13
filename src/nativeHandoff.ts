@@ -1,5 +1,5 @@
 import {createBuildRequest,PRESETS,type Approval,type Configuration} from './engine';
-export const NATIVE_BUILDER='lithic-afkc-desktop/0.2';
+export const NATIVE_BUILDER='lithic-afkc-desktop/0.2.1';
 export async function requestIdentity(a:Approval,c:Configuration){
  const text=JSON.stringify(createBuildRequest(a,c),null,2);
  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
@@ -34,10 +34,12 @@ export async function readNativeReport(value:unknown,a:Approval,c:Configuration)
   if(!Array.isArray(result.sizeMm)||result.sizeMm.length!==2||result.error!==undefined&&typeof result.error!=='string')throw new Error('The native report contains malformed case details.');
   if(!['passed','failed'].includes(result.status))throw new Error('A native check has no valid result.');
   if(result.status==='passed'){
-   const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted'];
+   const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed'];
    if(required.some(k=>result[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(result[k])||result[k].length)||!Array.isArray(result.parts)||result.parts.length!==22||result.parts.some((p:any)=>p.passed!==true)||typeof result.familyFile!=='string'||!/^LITHIC-AFKC-[\d_x]+\.rfa$/.test(result.familyFile)||!/^[a-f0-9]{64}$/.test(result.familySha256))throw new Error('The claimed pass lacks its native check evidence.');
    const ids=[...createBuildRequest(a,{...c,width:result.sizeMm[0],height:result.sizeMm[1]}).parts.filter(p=>p.role!=='aluminium'&&p.role!=='seal').map(p=>p.id),'aluminium-head-jamb-return','aluminium-sill','seal-perimeter'];
    const counts=result.nativeFormCounts;
+   const hosts=result.hostThicknessCases;
+   if(!Array.isArray(hosts)||hosts.length!==4||[100,200,300,500].some(thickness=>hosts.filter((h:any)=>h.wallThicknessMm===thickness).length!==1)||hosts.some((h:any)=>h.passed!==true||h.savedReopenedPassed!==true||h.openingPassed!==true||h.reopenedOpeningPassed!==true||[h.geometry,h.reopenedGeometry].some(g=>!g||g.passed!==true||g.solidCount!==22||!Array.isArray(g.parts)||g.parts.length!==22||ids.some(id=>g.parts.filter((p:any)=>p.id===id&&p.passed===true).length!==1))))throw new Error('The claimed pass lacks stable hosted geometry across the required wall thicknesses.');
    const type=(id:string)=>id==='seal-perimeter'?'Sweep':id==='aluminium-sill'||id==='aluminium-head-jamb-return'?'GeomCombination':'Extrusion';
    if(!Array.isArray(result.reopenedParts)||result.reopenedParts.length!==22||ids.some(id=>result.reopenedParts.filter((p:any)=>p.id===id&&p.passed===true&&p.nativeType===type(id)).length!==1)||result.parts.some((p:any)=>p.nativeType!==type(p.id))||!Array.isArray(result.materialBindings)||result.materialBindings.length!==23||result.materialBindings.some((p:any)=>p.passed!==true)||['coarse','medium','fine'].some(lod=>!Number.isInteger(result.planSymbolCounts?.[lod])||result.planSymbolCounts[lod]<=0))throw new Error('The claimed pass lacks saved native geometry, material bindings or plan symbols.');
 

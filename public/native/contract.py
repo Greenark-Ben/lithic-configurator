@@ -5,7 +5,7 @@ import hashlib
 import json
 import math
 
-BUILDER = 'lithic-afkc-desktop/0.2'
+BUILDER = 'lithic-afkc-desktop/0.2.1'
 CASES = [(900, 1200), (1200, 1500), (1500, 1800)]
 
 def finite(value):

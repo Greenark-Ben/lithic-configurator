@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-13",
+  "builder": "lithic-afkc-desktop/0.2.1",
+  "revitVersion": "2024",
+  "requestSha256": "d28b140d0aba8d745b146dc359c6f8ad25c582e04be8063edccbc43e013457a4",
+  "packageHashes": {
+    "drawings.py": "b8ca3daac857462adc6237b513e3535d00e329184d5a078196837f64671efef5",
+    "request.json": "d28b140d0aba8d745b146dc359c6f8ad25c582e04be8063edccbc43e013457a4",
+    "script.py": "491e48fdde49f1638de40b28c4d7c66d7f30497389f24a4c414b7db1e1e098fb",
+    "afkc-source.json": "53212b877f173c1daea73a07d17db29fb896b06a5556f59cac8bb4ef5a63bfc9",
+    "contract.py": "1c7488e9742dae9dd7c2395feddd5911289903fb77885b3e6578b28be80f260a",
+    "authoring.py": "06d39df759668f632e1b61199ed7d6f4743b63f4c333e6eec488424c542f89f1"
+  },
+  "status": "passed",
+  "activeProjectUnchanged": true,
+  "nativeParameterFlex": false,
+  "manufacturerApproved": false,
+  "cases": [
+    {
+      "sizeMm": [
+        1200,
+        1300
+      ],
+      "status": "passed",
+      "familySha256": "433d344bac95299de4c6089ec5bb6fa8472b0ae01d01b2515b1fe8f1b31eb40a",
+      "projectSha256": "dccaa7ee16fb8ae4e56e830bdec61a4d896444135a7a11ee74c0a29abee5ad2c",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        }
+      ]
+    },
+    {
+      "sizeMm": [
+        900,
+        1200
+      ],
+      "status": "passed",
+      "familySha256": "a571b054b9e155b251db1aff3124639da59001b35c9f6e745b1899414e2ec4f9",
+      "projectSha256": "fa7c2aa36f647503920c56217a061555420266ad2afc540a656716956b4e3e3d",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        }
+      ]
+    },
+    {
+      "sizeMm": [
+        1200,
+        1500
+      ],
+      "status": "passed",
+      "familySha256": "e83fb7c714a7f1aa379a4ac6977f1c61731bba30d8709855e678818fed1f6d83",
+      "projectSha256": "615176f23c460d7eaced137b79d93d3b29f3b74ddfbb51fccc2a8c86df93c28d",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        }
+      ]
+    },
+    {
+      "sizeMm": [
+        1500,
+        1800
+      ],
+      "status": "passed",
+      "familySha256": "24f0446ccfd8bbd03620e3cb130ed9be156ef376bf06ec32f41a396136a1e4ab",
+      "projectSha256": "79f1a632c01be1e8bec79a5c5ce9dbe60b34178065fdf73c5d810cd03c2d68b0",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22
+        }
+      ]
+    }
+  ]
+}

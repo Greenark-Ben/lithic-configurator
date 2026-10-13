@@ -1,4 +1,4 @@
-# AFKC desktop handoff 0.2
+# AFKC desktop handoff 0.2.1
 
 The AFKC preview and desktop builder share a versioned reviewed construction definition. Prepare Revit handoff exports the exact browser request, SHA-256 manifest, source bundle, native authoring/drawing modules, pyRevit command and installer. The live Build Revit family action remains disabled; no remote worker is connected.
 
@@ -41,3 +41,7 @@ Report import requires builder/report 0.2, the exact current request digest, all
 Integration validation and native run results are recorded with the change; they must not be relabelled as native flex or manufacturer acceptance.
 
 [Revit 2024 proof run](AFKC-NATIVE-PROOF.md) records the three tested snapshots and drawing refinement provenance.
+
+## Host-depth correction
+
+Builder 0.2.1 replaces wall-face automatic sketch dimensions with locked offsets from the family centre plane. Version 0.2 was checked in a 200 mm host only; a user placement in a 300 mm wall revealed that Revit reshaped the timber sketches. Every snapshot now requires all 22 component bounds/volumes and the wall opening to pass in 100, 200, 300 and 500 mm hosts, both initially and after project reopening. Reports from earlier builders cannot establish this pass. Unsupported automatic dimension references are recorded; they cannot bypass the complete hosted geometry checks.
