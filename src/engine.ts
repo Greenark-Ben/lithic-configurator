@@ -2,7 +2,7 @@ import { profileParts, type ProfileSweep } from './profiles';
 export const DIMENSION_RANGE = {min:300,max:3000,basis:'illustrative-engine'} as const;
 export const PRESETS = [[900,1200],[1200,1500],[1500,1800]] as const;
 export type Configuration = { width: number; height: number; interior: 'timber'|'white'; exterior: 'graphite'|'white' };
-export type Definition = { schemaVersion: '0.1'; id: string; revision: number; product: string; operation: 'fixed'; frameFace: number; frameDepth: number|null; glazingThickness: number; provenance: { frameFace:string; frameDepth:string|null; glazing:string }; dimensionRange?:typeof DIMENSION_RANGE; profile?:{id:'afkc-polygon/0.1';source:typeof import('./afkc-source').AFKC_SOURCE;depthTransform:string;manufacturerApproved:false}; proposal?:import('./proposal').Proposal };
+export type Definition = { schemaVersion: '0.1'; id: string; revision: number; product: string; operation: 'fixed'; frameFace: number; frameDepth: number|null; glazingThickness: number; provenance: { frameFace:string; frameDepth:string|null; glazing:string }; dimensionRange?:typeof DIMENSION_RANGE; profile?:{id:'afkc-polygon/0.2';source:typeof import('./afkc-source').AFKC_SOURCE;depthTransform:string;manufacturerApproved:false}; proposal?:import('./proposal').Proposal };
 export type Approval = { definition: Definition; approvedAt: string };
 export const SAMPLE: Definition = { schemaVersion:'0.1', id:'lithic-fixed-window-demo', revision:1, product:'Fixed-frame window', operation:'fixed', frameFace:70, frameDepth:null, glazingThickness:36, provenance:{frameFace:'Illustrative fixture, not manufacturer geometry',frameDepth:null,glazing:'Illustrative fixture, not a verified glazing specification'} };
 export const INITIAL: Configuration = {width:1200,height:1500,interior:'timber',exterior:'graphite'};
@@ -21,7 +21,7 @@ export function configurationIssues(c:Configuration,d?:Definition) {
  if(d&&2*d.frameFace>=Math.min(c.width,c.height))issues.push('Frame face leaves no glazing opening.');
  return issues;
 }
-export type Part = { id:string; role:'timber'|'aluminium'|'glazing'; position:[number,number,number]; size:[number,number,number]; sweep?:ProfileSweep };
+export type Part = { id:string; role:'timber'|'aluminium'|'glazing'|'spacer'|'seal'; position:[number,number,number]; size:[number,number,number]; sweep?:ProfileSweep };
 // Millimetres throughout the definition. Preview adapter alone converts to metres.
 export function calculateParts(d:Definition,c:Configuration):Part[] {
  const issues=[...definitionIssues(d),...configurationIssues(c,d)];
@@ -37,5 +37,5 @@ export function calculateParts(d:Definition,c:Configuration):Part[] {
 }
 export function createBuildRequest(a:Approval,c:Configuration) {
  const parts=calculateParts(a.definition,c);
- return {kind:'lithic-build-request',schemaVersion:'0.1',definition:a.definition,approvedAt:a.approvedAt,configuration:{...c},configurationBasis:{overallSize:'User-selected dimensions',profile:'Approved definition',manufacturerSizeVerified:false},dimensionRange:DIMENSION_RANGE,geometryEngine:a.definition.profile?'fixed-window-profile-sweeps/0.1':'fixed-window-boxes/0.1',units:'mm',parts,nativeStatus:'not-built',limitations:[...(a.definition.profile?[a.definition.profile.source.junctionAssumption,...a.definition.profile.source.simplifications,...a.definition.profile.source.unresolved,'Source-derived prototype; not manufacturer-approved']:['Illustrative rectangular profiles; not manufacturer-approved']),'No connected Revit worker','No native hosting, flexing or 2D verification yet']};
+ return {kind:'lithic-build-request',schemaVersion:'0.1',definition:a.definition,approvedAt:a.approvedAt,configuration:{...c},configurationBasis:{overallSize:'User-selected dimensions',profile:'Approved definition',manufacturerSizeVerified:false},dimensionRange:DIMENSION_RANGE,geometryEngine:a.definition.profile?'fixed-window-profile-sweeps/0.2':'fixed-window-boxes/0.1',units:'mm',parts,nativeStatus:'not-built',limitations:[...(a.definition.profile?[a.definition.profile.source.junctionAssumption,...a.definition.profile.source.simplifications,...a.definition.profile.source.unresolved,'Source-derived prototype; not manufacturer-approved']:['Illustrative rectangular profiles; not manufacturer-approved']),'No connected Revit worker','Native checks and drawing review must accompany each desktop build']};
 }

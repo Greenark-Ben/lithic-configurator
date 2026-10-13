@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """LITHIC AFKC native snapshot builder, executed inside Revit by pyRevit.
 No HTTP listener, eval, external project edits or automatic warning suppression.
-This first builder makes fixed-size families; it does NOT claim native parameter flex.
+This builder makes fixed-size families; it does NOT claim native parameter flex.
 """
 from __future__ import division
 import datetime
@@ -15,7 +15,9 @@ from pyrevit import DB, forms, revit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from contract import BUILDER, validate, expected_parts, verification_sizes, volume_mm3
+from contract import BUILDER, validate, expected_parts, verification_sizes, native_specs
+from authoring import create_forms, create_plan_symbols, authoring_checks
+from drawings import create_review_views, export_review_views
 
 MM = 1.0 / 304.8
 VOLUME = 304.8 ** 3
@@ -84,42 +86,20 @@ def material(document, name, color, transparency=0):
     mat.Transparency = transparency
     return mid
 
-def create_form(document, part, exterior, material_id):
-    if 'sweep' in part:
-        sweep = part['sweep']
-        origin, inward = sweep['originMm'], sweep['inward']
-        vertices = [xyz([origin[i]+inward[i]*u+(z if i == 2 else 0) for i in range(3)], exterior) for u, z in sweep['pointsMm']]
-        normal = xyz(sweep['axis'], exterior).Normalize()
-        length = sweep['lengthMm']
-    else:
-        x, h, z = part['position']
-        w, height, depth = part['size']
-        start = z-depth/2
-        vertices = [xyz(v, exterior) for v in [[x-w/2, h-height/2, start], [x+w/2, h-height/2, start], [x+w/2, h+height/2, start], [x-w/2, h+height/2, start]]]
-        normal, length = DB.XYZ(0, exterior, 0), depth
-    plane = DB.SketchPlane.Create(document, DB.Plane.CreateByNormalAndOrigin(normal, vertices[0]))
-    loops = DB.CurveArrArray()
-    loops.Append(loop(vertices))
-    # A straight polygon sweep is exactly representable as a native extrusion.
-    element = document.FamilyCreate.NewExtrusion(True, loops, plane, length*MM)
-    element.get_Parameter(DB.BuiltInParameter.MATERIAL_ID_PARAM).Set(material_id)
-    category = document.Settings.Categories.NewSubcategory(document.OwnerFamily.FamilyCategory, 'LITHIC '+part['id'])
-    element.Subcategory = category
-    return element
-
-def family_checks(document, parts, elements, exterior, materials):
-    checks = []
-    for part, element in zip(parts, elements):
-        bbox = element.get_BoundingBox(None)
-        actual = [bbox.Min.X/MM, bbox.Max.X/MM, bbox.Min.Z/MM, bbox.Max.Z/MM, bbox.Min.Y/MM, bbox.Max.Y/MM]
-        p, size = part['position'], part['size']
-        z = sorted([(p[2]-size[2]/2)*exterior, (p[2]+size[2]/2)*exterior])
-        expected = [p[0]-size[0]/2, p[0]+size[0]/2, p[1]-size[1]/2, p[1]+size[1]/2, z[0], z[1]]
-        actual_volume, expected_volume = volume(element), volume_mm3(part)
-        shape_ok = max(abs(a-b) for a, b in zip(actual, expected)) <= TOL_MM and abs(actual_volume-expected_volume) <= max(1, expected_volume*VOLUME_TOL)
-        mat_id = element.get_Parameter(DB.BuiltInParameter.MATERIAL_ID_PARAM).AsElementId()
-        mat_ok = mat_id == materials[part['role']]
-        checks.append({'id': part['id'], 'boundsMm': actual, 'expectedBoundsMm': expected, 'volumeMm3': actual_volume, 'expectedVolumeMm3': expected_volume, 'material': document.GetElement(mat_id).Name, 'passed': shape_ok and mat_ok and len(solids(element)) == 1})
+def family_checks(document, specs, elements, exterior, materials, source):
+    checks=[]
+    for spec in specs:
+        element=elements[spec['id']];shape=solids(element)
+        vertices=[edge.AsCurve().GetEndPoint(i) for solid in shape for edge in solid.Edges for i in [0,1]]
+        actual=[min(v.X/MM for v in vertices),max(v.X/MM for v in vertices),min(v.Z/MM for v in vertices),max(v.Z/MM for v in vertices),min(v.Y/MM for v in vertices),max(v.Y/MM for v in vertices)]
+        p,size=spec['position'],spec['size'];depth=sorted([(p[2]-size[2]/2)*exterior,(p[2]+size[2]/2)*exterior])
+        expected=[p[0]-size[0]/2,p[0]+size[0]/2,p[1]-size[1]/2,p[1]+size[1]/2,depth[0],depth[1]]
+        actual_volume=volume(element);minimum=spec['expectedVolumeMm3'];maximum=spec.get('maximumJoinedVolumeMm3',minimum)
+        tolerance=max(1,minimum*VOLUME_TOL)
+        mat_ok=all(mid==materials[spec['role']] for mid in element.GetMaterialIds(False)) and len(element.GetMaterialIds(False))>0
+        native_type=element.GetType().Name
+        passed=len(shape)==1 and max(abs(a-b) for a,b in zip(actual,expected))<=TOL_MM and minimum-tolerance<=actual_volume<=maximum+tolerance and mat_ok and native_type==spec['nativeType']
+        checks.append({'id':spec['id'],'boundsMm':actual,'expectedBoundsMm':expected,'volumeMm3':actual_volume,'expectedVolumeMm3':minimum,'maximumJoinedVolumeMm3':maximum,'volumeRule':'bounded native join of overlapping source returns' if maximum!=minimum else 'analytic polygon volume','nativeType':native_type,'material':document.GetElement(materials[spec['role']]).Name,'passed':passed})
     return checks
 
 def build_case(application, template, output, request, source, width, height, digest):
@@ -139,7 +119,7 @@ def build_case(application, template, output, request, source, width, height, di
             raise ValueError('Template contains existing geometry. Use an empty Window template.')
         host = hosts[0]
         exterior = 1 if host.Orientation.Y > 0 else -1
-        parts = expected_parts(source, width, height)
+        parts = native_specs(source, width, height)
         tx = DB.Transaction(family, 'LITHIC source-derived fixed-size AFKC')
         tx.Start()
         try:
@@ -156,12 +136,16 @@ def build_case(application, template, output, request, source, width, height, di
             materials = {
                 'timber': material(family, 'LITHIC Timber '+finishes['interior'], (219, 195, 164) if finishes['interior'] == 'timber' else (231, 229, 222)),
                 'aluminium': material(family, 'LITHIC Aluminium '+finishes['exterior'], (60, 66, 64) if finishes['exterior'] == 'graphite' else (217, 220, 214)),
-                'glazing': material(family, 'LITHIC Glazing unresolved 48 mm assembly', (181, 197, 194), 72)}
-            elements = [create_form(family, part, exterior, materials[part['role']]) for part in parts]
+                'glazing': material(family, 'LITHIC Glass Panes', (181, 197, 194), 72),
+                'spacer': material(family, 'LITHIC Glazing Spacer Aluminium', (135,145,151)),
+                'seal': material(family, 'LITHIC Glazing Seal - prototype elastomer', (34,35,37))}
+            elements,input_checks = create_forms(family, source, width, height, exterior, materials)
+            result['planSymbolCounts'] = create_plan_symbols(family,source,width,height,exterior,elements['aluminium-head-jamb-return'])
+            element_ids = {name:element.UniqueId for name,element in elements.items()}
             opening_profile = loop([DB.XYZ(x*MM, 0, z*MM) for x, z in [(-width/2, 0), (width/2, 0), (width/2, height), (-width/2, height)]])
             family.FamilyCreate.NewOpening(host, opening_profile)
             family.Regenerate()
-            result['parts'] = family_checks(family, parts, elements, exterior, materials)
+            result['parts'] = family_checks(family, parts, elements, exterior, materials, source)
             if tx.Commit() != DB.TransactionStatus.Committed:
                 raise ValueError('Family transaction did not commit.')
         except Exception:
@@ -173,9 +157,10 @@ def build_case(application, template, output, request, source, width, height, di
         family.Close(False)
         family = application.OpenDocumentFile(family_path)
         result['familyReopened'] = True
-        reopened = {e.Subcategory.Name: e for e in DB.FilteredElementCollector(family).OfClass(DB.GenericForm) if e.Subcategory is not None}
-        result['reopenedParts'] = family_checks(family, parts, [reopened['LITHIC '+part['id']] for part in parts], exterior, materials)
-        result['persistenceGeometryPassed'] = len(reopened) == 9 and all(p['passed'] for p in result['reopenedParts'])
+        reopened = {name:family.GetElement(uid) for name,uid in element_ids.items()}
+        result['reopenedParts'] = family_checks(family, parts, reopened, exterior, materials, source)
+        result['persistenceGeometryPassed'] = len(reopened) == 22 and all(p['passed'] for p in result['reopenedParts'])
+        result.update(authoring_checks(family,source,width,height,exterior,reopened,input_checks))
         project = application.NewProjectDocument(DB.UnitSystem.Metric)
         loaded = family.LoadFamily(project)
         symbol_ids = list(loaded.GetFamilySymbolIds())
@@ -212,12 +197,15 @@ def build_case(application, template, output, request, source, width, height, di
             result['exteriorPassed'] = exterior_world.DotProduct(wall.Orientation) > 0.999
             result['instanceId'] = instance.UniqueId
             result['wallId'] = wall.UniqueId
+            views = create_review_views(project,instance,width,height,exterior)
+            view_ids = [v.UniqueId for v in views]
             if tx.Commit() != DB.TransactionStatus.Committed:
                 raise ValueError('Placement transaction did not commit.')
         except Exception:
             if tx.GetStatus() == DB.TransactionStatus.Started:
                 tx.RollBack()
             raise
+        result['drawingEvidence'] = export_review_views(project,views,output,label)
         result['projectWarnings'] = warning_text(project)
         save(project, project_path)
         project.Close(False)
@@ -226,20 +214,22 @@ def build_case(application, template, output, request, source, width, height, di
         persisted_wall = project.GetElement(result['wallId'])
         result['projectReopened'] = True
         result['hostPersisted'] = persisted_instance.Host.Id == persisted_wall.Id
+        result['drawingViewsPersisted'] = all(project.GetElement(uid) is not None for uid in view_ids)
+        result['visualReviewStatus'] = 'exported-views-await-visual-review'
         result['openingPersisted'] = abs((uncut-volume(persisted_wall))-expected_removed) <= max(1, expected_removed*VOLUME_TOL)
         result['reopenedWarnings'] = warning_text(family)+warning_text(project)
         result['familyFile'] = os.path.basename(family_path)
         result['familySha256'] = file_hash(family_path)
         result['projectFile'] = os.path.basename(project_path)
         result['projectSha256'] = file_hash(project_path)
-        required = ['scheduleDimensionsPassed', 'provenancePassed', 'hostPassed', 'openingPassed', 'exteriorPassed', 'familyReopened', 'projectReopened', 'persistenceGeometryPassed', 'hostPersisted', 'openingPersisted']
+        required = ['scheduleDimensionsPassed', 'provenancePassed', 'hostPassed', 'openingPassed', 'exteriorPassed', 'familyReopened', 'projectReopened', 'persistenceGeometryPassed', 'hostPersisted', 'openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted']
         result['status'] = 'passed' if all(result.get(k) is True for k in required) and all(p['passed'] for p in result['parts']) and not result['familyWarnings'] and not result['projectWarnings'] and not result['reopenedWarnings'] else 'failed'
     except Exception as error:
         result['error'] = str(error)
         result['traceback'] = traceback.format_exc()
     finally:
         for document in [project, family]:
-            if document is not None and document.IsValidObject:
+            if document is not None and document.IsValidObject and document.PathName != revit.uidoc.Document.PathName:
                 document.Close(False)
     return result
 
@@ -267,7 +257,7 @@ def main():
         raise ValueError('This handoff requires Revit 2024 or later.')
     output = os.path.join(folder, 'LITHIC-AFKC-'+datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')+'-'+digest[:8])
     os.mkdir(output)
-    report = {'kind': 'lithic-native-report', 'schemaVersion': '0.1', 'builder': BUILDER, 'requestSha256': digest, 'createdAt': datetime.datetime.utcnow().isoformat()+'Z', 'revitVersion': application.VersionNumber, 'geometryMode': 'fixed-size-snapshot', 'nativeParameterFlex': False, 'manufacturerApproved': False, 'templateSha256': file_hash(template), 'cases': []}
+    report = {'kind': 'lithic-native-report', 'schemaVersion': '0.2', 'builder': BUILDER, 'requestSha256': digest, 'createdAt': datetime.datetime.utcnow().isoformat()+'Z', 'revitVersion': application.VersionNumber, 'geometryMode': 'fixed-size-snapshot', 'nativeParameterFlex': False, 'manufacturerApproved': False, 'templateSha256': file_hash(template), 'cases': []}
     for width, height in verification_sizes(request):
         report['cases'].append(build_case(application, template, output, request, source, width, height, digest))
     report['status'] = 'passed' if all(case['status'] == 'passed' for case in report['cases']) else 'failed'

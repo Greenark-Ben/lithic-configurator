@@ -6,9 +6,9 @@ Evidence-reviewed product definitions, interactive configuration and a staged na
 
 - Add images/PDFs and a description; the connected interpretation service proposes a bounded fixed timber window with exterior aluminium caps. Review dimensions and evidence before session approval.
 - Resize approved windows from 300–3000 mm in the browser. Original evidence remains separate from selected size; these limits are not manufacturer availability claims.
-- Review the separate AFKC source profile proof: stepped timber rebates, folded aluminium, 105 mm depth, 53.5 mm face and 48 mm unresolved glazing assembly. Profile polygons and drawing evidence remain unapproved manufacturer content.
+- Review the separate AFKC source profile proof: stepped timber rebates, folded aluminium, 105 mm depth, 53.5 mm face and reviewed 4 / 18 / 4 / 18 / 4 mm glazing assembly. Profile polygons and drawing evidence remain unapproved manufacturer content.
 - Orbit, section, change finishes and export the same deterministic geometry as a build request.
-- AFKC can prepare a Revit desktop handoff ZIP, executed with pyRevit in Revit 2024+. The first builder makes fixed-size .rfa snapshots and isolated test .rvt files. It has not been run in Revit in this session. No live worker or native parameter-driven flex is claimed.
+- AFKC can prepare a Revit desktop handoff ZIP, executed with pyRevit in Revit 2024+. Builder 0.2 makes native sweep/void cladding, separate panes/spacers/beads/seals, material parameters and LOD plan graphics as fixed-size .rfa snapshots, with isolated test .rvt files and drawing exports. No live worker or native parameter-driven flex is claimed.
 - Import a matching unsigned desktop report. Size/finish/approval changes invalidate the displayed report. It is local execution evidence, not independent certification.
 
 The approved off-white/forest-green interface uses React, TypeScript, Vite and React Three Fiber. Browser review and references are session-only; reload clears them.
@@ -32,4 +32,4 @@ Live image interpretation uses a server-only OPENAI_API_KEY. Do not put credenti
 
 AI interprets. The engine decides. The browser produces validated data; the native command is fixed reviewed code and never executes a prompt or code embedded in a request. Both adapters use millimetres and validate the same AFKC profiles independently.
 
-See [source profiles](docs/SOURCE-PROFILES.md), [interpretation](docs/INTERPRETATION.md), [desktop handoff](docs/REVIT-HANDOFF.md) and [roadmap](docs/ROADMAP.md).
+See [AFKC authoring rules](docs/AFKC-AUTHORING.md), [source profiles](docs/SOURCE-PROFILES.md), [interpretation](docs/INTERPRETATION.md), [desktop handoff](docs/REVIT-HANDOFF.md) and [roadmap](docs/ROADMAP.md).

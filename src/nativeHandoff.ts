@@ -1,5 +1,5 @@
 import {createBuildRequest,PRESETS,type Approval,type Configuration} from './engine';
-export const NATIVE_BUILDER='lithic-afkc-desktop/0.1';
+export const NATIVE_BUILDER='lithic-afkc-desktop/0.2';
 export async function requestIdentity(a:Approval,c:Configuration){
  const text=JSON.stringify(createBuildRequest(a,c),null,2);
  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
@@ -18,7 +18,7 @@ export function zipFiles(files:{name:string;data:Uint8Array}[]):Uint8Array{
 }
 export async function prepareNativeHandoff(a:Approval,c:Configuration){
  if(!a.definition.profile)throw new Error('The desktop builder currently supports the AFKC source profile proof.');
- const identity=await requestIdentity(a,c),names=['script.py','contract.py','afkc-source.json','Install.ps1','bundle.yaml','README.txt'];
+ const identity=await requestIdentity(a,c),names=['script.py','contract.py','authoring.py','drawings.py','afkc-source.json','Install.ps1','bundle.yaml','README.txt'];
  const files=await Promise.all(names.map(async name=>{const response=await fetch('/native/'+name);if(!response.ok)throw new Error('The Revit handoff files are unavailable. Please retry.');return {name,data:new Uint8Array(await response.arrayBuffer())}}));
  const encoder=new TextEncoder();files.push({name:'request.json',data:encoder.encode(identity.text)},{name:'manifest.json',data:encoder.encode(JSON.stringify({builder:NATIVE_BUILDER,requestSha256:identity.sha256,geometryMode:'fixed-size-snapshot',nativeParameterFlex:false},null,2))});
  return zipFiles(files);
@@ -26,7 +26,7 @@ export async function prepareNativeHandoff(a:Approval,c:Configuration){
 export type NativeReport={kind:'lithic-native-report';builder:string;requestSha256:string;status:'passed'|'failed';revitVersion:string;cases:{sizeMm:[number,number];status:'passed'|'failed';familyFile?:string;error?:string}[]};
 export async function readNativeReport(value:unknown,a:Approval,c:Configuration):Promise<NativeReport>{
  const r=value as Record<string,any>,identity=await requestIdentity(a,c);
- if(!r||r.kind!=='lithic-native-report'||r.schemaVersion!=='0.1'||r.builder!==NATIVE_BUILDER||r.requestSha256!==identity.sha256)throw new Error('This report does not match the current approved configuration. Return to the exported size and finishes, or prepare a fresh handoff.');
+ if(!r||r.kind!=='lithic-native-report'||r.schemaVersion!=='0.2'||r.builder!==NATIVE_BUILDER||r.requestSha256!==identity.sha256)throw new Error('This report does not match the current approved configuration. Return to the exported size and finishes, or prepare a fresh handoff.');
  if(r.nativeParameterFlex!==false||r.manufacturerApproved!==false||r.geometryMode!=='fixed-size-snapshot'||!/^20\d\d$/.test(r.revitVersion)||Number(r.revitVersion)<2024||!['passed','failed'].includes(r.status)||!Array.isArray(r.cases))throw new Error('Unsupported or incomplete native report.');
  const sizes=[[c.width,c.height],...PRESETS.filter(([w,h])=>w!==c.width||h!==c.height)];
  if(r.cases.length!==sizes.length||sizes.some(([w,h])=>r.cases.filter((x:any)=>Array.isArray(x.sizeMm)&&x.sizeMm[0]===w&&x.sizeMm[1]===h).length!==1))throw new Error('The native report is missing required size checks.');
@@ -34,8 +34,15 @@ export async function readNativeReport(value:unknown,a:Approval,c:Configuration)
   if(!Array.isArray(result.sizeMm)||result.sizeMm.length!==2||result.error!==undefined&&typeof result.error!=='string')throw new Error('The native report contains malformed case details.');
   if(!['passed','failed'].includes(result.status))throw new Error('A native check has no valid result.');
   if(result.status==='passed'){
-   const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted'];
-   if(required.some(k=>result[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(result[k])||result[k].length)||!Array.isArray(result.parts)||result.parts.length!==9||result.parts.some((p:any)=>p.passed!==true)||typeof result.familyFile!=='string'||!/^LITHIC-AFKC-[\d_x]+\.rfa$/.test(result.familyFile)||!/^[a-f0-9]{64}$/.test(result.familySha256))throw new Error('The claimed pass lacks its native check evidence.');
+   const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted'];
+   if(required.some(k=>result[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(result[k])||result[k].length)||!Array.isArray(result.parts)||result.parts.length!==22||result.parts.some((p:any)=>p.passed!==true)||typeof result.familyFile!=='string'||!/^LITHIC-AFKC-[\d_x]+\.rfa$/.test(result.familyFile)||!/^[a-f0-9]{64}$/.test(result.familySha256))throw new Error('The claimed pass lacks its native check evidence.');
+   const ids=[...createBuildRequest(a,{...c,width:result.sizeMm[0],height:result.sizeMm[1]}).parts.filter(p=>p.role!=='aluminium'&&p.role!=='seal').map(p=>p.id),'aluminium-head-jamb-return','aluminium-sill','seal-perimeter'];
+   const counts=result.nativeFormCounts;
+   const type=(id:string)=>id==='seal-perimeter'?'Sweep':id==='aluminium-sill'||id==='aluminium-head-jamb-return'?'GeomCombination':'Extrusion';
+   if(!Array.isArray(result.reopenedParts)||result.reopenedParts.length!==22||ids.some(id=>result.reopenedParts.filter((p:any)=>p.id===id&&p.passed===true&&p.nativeType===type(id)).length!==1)||result.parts.some((p:any)=>p.nativeType!==type(p.id))||!Array.isArray(result.materialBindings)||result.materialBindings.length!==23||result.materialBindings.some((p:any)=>p.passed!==true)||['coarse','medium','fine'].some(lod=>!Number.isInteger(result.planSymbolCounts?.[lod])||result.planSymbolCounts[lod]<=0))throw new Error('The claimed pass lacks saved native geometry, material bindings or plan symbols.');
+
+   if(ids.some(id=>result.parts.filter((p:any)=>p.id===id).length!==1)||!counts||counts.sweeps!==4||counts.solidExtrusions!==19||counts.voidExtrusions!==4||counts.freeForms!==0||counts.directShapes!==0||!Array.isArray(result.sweepInputChecks)||result.sweepInputChecks.length!==4||result.sweepInputChecks.some((p:any)=>p.nativeType!=='Sweep'||p.passed!==true)||!Array.isArray(result.drawingEvidence)||result.drawingEvidence.length!==9||result.drawingEvidence.some((e:any)=>typeof e.file!=='string'||!e.file.endsWith('.png')))throw new Error('The claimed pass lacks the reviewed native authoring and drawing evidence.');
+
   }
  }
  if((r.cases.every((x:any)=>x.status==='passed')?'passed':'failed')!==r.status)throw new Error('The report summary conflicts with its case results.');

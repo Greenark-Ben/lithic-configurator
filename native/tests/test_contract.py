@@ -5,13 +5,13 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'public/native'))
-from contract import BUILDER, expected_parts, validate, verification_sizes, volume_mm3
+from contract import BUILDER, expected_parts, validate, verification_sizes, volume_mm3, native_specs
 
 class ContractTests(unittest.TestCase):
     def setUp(self):
         self.source = json.loads((Path(__file__).resolve().parents[2] / 'public/native/afkc-source.json').read_text())
-        self.request = {'kind':'lithic-build-request','schemaVersion':'0.1','units':'mm','geometryEngine':'fixed-window-profile-sweeps/0.1','approvedAt':'2026-10-12',
-                        'definition':{'id':'elitfonster-afkc-profile-proof','operation':'fixed','frameFace':53.5,'frameDepth':105,'glazingThickness':48,'profile':{'id':'afkc-polygon/0.1','manufacturerApproved':False,'source':self.source}},
+        self.request = {'kind':'lithic-build-request','schemaVersion':'0.1','units':'mm','geometryEngine':'fixed-window-profile-sweeps/0.2','approvedAt':'2026-10-12',
+                        'definition':{'id':'elitfonster-afkc-profile-proof','operation':'fixed','frameFace':53.5,'frameDepth':105,'glazingThickness':48,'profile':{'id':'afkc-polygon/0.2','manufacturerApproved':False,'source':self.source}},
                         'configuration':{'width':1200,'height':1500,'interior':'timber','exterior':'graphite'},'parts':expected_parts(self.source,1200,1500)}
     def check(self, request):
         raw = json.dumps(request).encode()
@@ -33,9 +33,19 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(len(verification_sizes(self.request)), 3)
         self.request['configuration']['width'] = 1275
         self.assertEqual(len(verification_sizes(self.request)), 4)
-    def test_reproduces_prior_native_proof_volumes(self):
-        parts = self.request['parts']
-        self.assertAlmostEqual(sum(volume_mm3(p) for p in parts if p['role']=='timber'),25646267.25)
-        self.assertAlmostEqual(sum(volume_mm3(p) for p in parts if p['role']=='aluminium'),647988.25)
+    def test_reviewed_glazing_and_native_join_envelope(self):
+        parts=self.request['parts']
+        panes=[p for p in parts if p['role']=='glazing']
+        self.assertEqual([p['size'][2] for p in panes],[4,4,4])
+        self.assertEqual([p['position'][2] for p in panes],[-8.5,13.5,35.5])
+        self.assertEqual(len([p for p in parts if p['role']=='spacer']),8)
+        self.assertEqual(len([p for p in parts if p['role']=='seal']),4)
+        native=native_specs(self.source,1200,1500)
+        self.assertEqual(len(native),22)
+        joined=next(p for p in native if p['id']=='aluminium-head-jamb-return')
+        self.assertLess(joined['expectedVolumeMm3'],512075.05824298417)
+        self.assertGreater(joined['maximumJoinedVolumeMm3'],512075.05824298417)
+        self.assertAlmostEqual(next(p['expectedVolumeMm3'] for p in native if p['id']=='aluminium-sill'),119783.11438723429)
+        self.assertAlmostEqual(next(p['expectedVolumeMm3'] for p in native if p['id']=='seal-perimeter'),28512.8)
 
 if __name__ == '__main__': unittest.main()

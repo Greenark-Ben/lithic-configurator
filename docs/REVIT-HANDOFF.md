@@ -1,28 +1,43 @@
-# AFKC desktop handoff 0.1
+# AFKC desktop handoff 0.2
 
-This slice prepares an executable desktop handoff; it has not been executed in Revit in this session. There is no connected native worker. The disabled live Build Revit family action remains disabled.
+The AFKC preview and desktop builder share a versioned reviewed construction definition. Prepare Revit handoff exports the exact browser request, SHA-256 manifest, source bundle, native authoring/drawing modules, pyRevit command and installer. The live Build Revit family action remains disabled; no remote worker is connected.
 
-For an approved AFKC configuration, Prepare Revit handoff downloads one ZIP containing the exact request, a SHA-256 manifest, source profile bundle, pyRevit command, installer and instructions. It runs in Revit 2024+ on the user's desktop using an empty wall-hosted Window template. It uses fresh family and project documents; the active project is never modified.
+## Reviewed construction
 
-## Current native scope
+The 1200 × 1500 mm visual baseline was accepted by the user on 13 October 2026. This is prototype visual acceptance, not manufacturer approval. The definition records the source drawing 61-37-F221 rev A and its original PDF/DWG digests, while distinguishing reviewed coverage additions from source profiles.
 
-The builder creates separate **fixed-size snapshots** for the selected configuration and the three proof sizes, deduplicated. Width/Height formulas are fixed deliberately: editable metadata must not imply geometry flex. Resizing occurs in LITHIC followed by a new handoff. Native parameter-driven flex and 2D detailing are not implemented or verified.
+- Native U-shaped head/jamb cladding sweep, separate sill sweep and supplemental coverage-return sweep, with four native void extrusions for the lower mitres.
+- Native closed seal sweep; no FreeFormElement or DirectShape fallback.
+- Source-derived timber extrusions and separate beads.
+- Three 4 mm glass panes, two empty 18 mm cavities, and eight hollow aluminium spacer extrusions.
+- Five family material parameters, preserving finish choices for timber and cladding.
+- Coarse/medium/fine plan symbols; fine cladding outlines come from the actual joined native section. Three plan, two section and four corner views are exported per size.
 
-Eight native polygon extrusions reproduce straight source-profile sweeps exactly, plus one glazing extrusion. The template must be Windows category, OneLevelBasedHosted, have one axis-aligned host wall, built-in Width/Height type parameters and no existing forms. The selected finishes become native materials; evidence status, source drawing, builder and request hash become type metadata. An actual family opening is created in the template's host wall.
+[AFKC authoring specification](AFKC-AUTHORING.md) records the modelling rules, naming and simplification boundaries. `afkc-source.json` embeds the same versioned rules used by the browser definition. A rule change must version the source, engine and builder together and receive fresh native evidence.
 
-## Evidence and failure behavior
+## Fixed-size scope
 
-The pure Python contract rejects unsupported products, changed profiles, fixed section changes, invalid finishes, mismatched geometry and mismatched request bytes. Tests compare this implementation against actual browser build requests at six sizes and against the prior AFKC proof's recorded timber/aluminium volumes. These are software checks, not a live Revit acceptance result.
+Each run builds the selected size and the 900 × 1200, 1200 × 1500 and 1500 × 1800 proof sizes, deduplicated. Width/Height formulas deliberately remain fixed. Resizing occurs in LITHIC followed by a new handoff. These are separate snapshots; no native parameter flex is claimed. The 300–3000 mm browser range is illustrative, not manufacturer availability.
 
-For each case the native command compares all nine forms' bounds, solid counts, volumes and material assignments. It checks schedule dimensions, provenance, wall placement, exterior orientation and wall volume removed by the opening. It saves/reopens both family and isolated project, checks persistence and collects warnings without suppression. Any exception, missing evidence or warning prevents a pass. Failed output files are not verified deliverables.
+## Evidence and failure behaviour
 
-Import Revit report accepts only the exact current request digest and the complete required size set. A claimed pass must include individual native check results, zero warnings and the saved family's SHA-256. The UI labels this **unsigned desktop evidence**, not trusted remote-worker certification. A report import does not import .rfa bytes, cryptographically attest execution, or establish manufacturer approval. Changes to approval, width, height or finishes clear the report.
+The independent Python contract rejects unsupported products, old builder/profile versions, changed source sections or source data, invalid finishes, altered browser geometry and changed request bytes. Browser and Python parts must match exactly.
+
+Native checks compare 22 rendered components/assemblies. Sweep inputs are checked before joining. Most volumes use exact polygon formulae; the joined overlapping head/jamb coverage return uses a documented range from ideal boolean union to the sum of its mitred inputs, because Revit's native join extends the adjoining folded return. This is explicit native join behaviour, not a widened tolerance applied to every component.
+
+The builder also checks four sweep/19 solid extrusion/four void extrusion counts, absence of FreeForm/DirectShape, material associations, plan visibility, empty cavity probes, zero cladding overlap and matching lower outer mitre endpoints. It verifies schedule dimensions, request/source metadata, hosting, exterior orientation, wall opening removal, warnings and saved/reopened family/project persistence. All work occurs in fresh documents; the active project is not edited or saved. Any missing check, exception or warning prevents a technical pass.
+
+Native PNG exports support visual review. Exporting an image or having zero warnings does not establish drawing quality or manufacturer verification. Native parameter flex, manufacturer corner/drainage details and seal chemistry remain unresolved.
+
+Report import requires builder/report 0.2, the exact current request digest, all required cases, authoring counts, drawing records, zero warnings and family digests. Configuration changes clear the displayed report. Imported reports remain **unsigned local evidence**; importing a report does not import its RFA or attest execution cryptographically. Version 0.1 reports cannot establish acceptance of the revised construction.
 
 ## Run
 
-1. Review and approve AFKC, select size/finishes, then Prepare Revit handoff.
-2. Extract it, install the pyRevit command with the included installer and reload pyRevit.
-3. In Revit, LITHIC > Native > AFKC Handoff asks for request.json, the Window .rft and an output folder.
-4. Import the output native-report.json in LITHIC. Retain the report and .rfa/.rvt outputs together. Inspect the selected family in Revit before project use.
+1. Review AFKC, select size/finishes and choose Prepare Revit handoff.
+2. Extract the ZIP and run Install.ps1; reload pyRevit.
+3. In LITHIC > Native > AFKC Handoff, choose request.json, an empty wall-hosted Window RFT and a results folder.
+4. Inspect the native plan, section and corner exports, then import native-report.json into the unchanged configuration. Retain the native files and evidence together.
 
-First live acceptance is pending. The next native slice must establish geometry-driving parameters, host-opening flex and persistence inside one family, using a live Revit run. Do not relabel the current snapshot checks as family flex.
+Integration validation and native run results are recorded with the change; they must not be relabelled as native flex or manufacturer acceptance.
+
+[Revit 2024 proof run](AFKC-NATIVE-PROOF.md) records the three tested snapshots and drawing refinement provenance.
