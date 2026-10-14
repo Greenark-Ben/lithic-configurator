@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-13",
+  "revitVersion": "2024",
+  "builder": "lithic-afkc-desktop/0.2",
+  "requestSha256": "0080caa48d473d6b84c2891fc8985d82ea5ec743d3988a040e9857faca401a75",
+  "packageHashes": {
+    "drawings.py": "17e9bf5fa2bf49a4890efce50ddbd40257d980007e7e91168d0db411c0335399",
+    "request.json": "0080caa48d473d6b84c2891fc8985d82ea5ec743d3988a040e9857faca401a75",
+    "script.py": "784edd5b7ccd18e0746ad42f4787661a95c0ed9f50e093b7e94d506ca6fbb106",
+    "afkc-source.json": "53212b877f173c1daea73a07d17db29fb896b06a5556f59cac8bb4ef5a63bfc9",
+    "contract.py": "e9734431f537a1013bbbdf6ca4f4f322ecd32fd06511bf52daa801de4ad252ba",
+    "authoring.py": "2a3c8f0dfaae9f8d12a925c925d072148ee197956b211e6271204809915cb3b5"
+  },
+  "drawingRefinement": {
+    "activeProjectUnchanged": true,
+    "savedReopenedPassed": true,
+    "sourceSha256": "b8ca3daac857462adc6237b513e3535d00e329184d5a078196837f64671efef5",
+    "method": "Production create_review_views uses transformed physical frame bounds; all nine views regenerated per isolated project, exported and saved/reopened. Original build package hashes retained."
+  },
+  "status": "passed",
+  "activeProjectBaselineUnchanged": true,
+  "nativeParameterFlex": false,
+  "manufacturerApproved": false,
+  "cases": [
+    {
+      "sizeMm": [
+        1200,
+        1500
+      ],
+      "status": "passed",
+      "familySha256": "995f3bc6b7688d012d57f80cc15633d9ae7484e21d76d08f0e8375848af0379b",
+      "projectSha256": "38d6d164e4ab0be785f1d685d89225d9c1d057594ccc8225ffaa307c1c686a90",
+      "nativeFormCounts": {
+        "directShapes": 0,
+        "voidExtrusions": 4,
+        "freeForms": 0,
+        "sweeps": 4,
+        "solidExtrusions": 19
+      },
+      "planSymbolCounts": {
+        "coarse": 10,
+        "medium": 14,
+        "fine": 144
+      },
+      "claddingOverlapMm3": 0.0,
+      "visualReviewStatus": "assistant-reviewed-exported-plans-sections-and-four-corners"
+    },
+    {
+      "sizeMm": [
+        900,
+        1200
+      ],
+      "status": "passed",
+      "familySha256": "1b3bbe337829ee6a301e99a7066df6e141ccb7b29791726fdfa8098dd788c6ce",
+      "projectSha256": "5c8b44b6d2e0b18f8dbe045cbf5bb09af5141ca071d00bc121ecac2270d9cf3f",
+      "nativeFormCounts": {
+        "directShapes": 0,
+        "voidExtrusions": 4,
+        "freeForms": 0,
+        "sweeps": 4,
+        "solidExtrusions": 19
+      },
+      "planSymbolCounts": {
+        "coarse": 10,
+        "medium": 14,
+        "fine": 144
+      },
+      "claddingOverlapMm3": 0.0,
+      "visualReviewStatus": "assistant-reviewed-exported-plans-sections-and-four-corners"
+    },
+    {
+      "sizeMm": [
+        1500,
+        1800
+      ],
+      "status": "passed",
+      "familySha256": "b458559cf1ed2ac85b2f6796f9fb6d9b0c0954f419c555187ffc2ff32eb56674",
+      "projectSha256": "71c2a8a83469ca5112aaffdf2da59dceac6924969a4bc3ee9ffdfcd96e06a7cb",
+      "nativeFormCounts": {
+        "directShapes": 0,
+        "voidExtrusions": 4,
+        "freeForms": 0,
+        "sweeps": 4,
+        "solidExtrusions": 19
+      },
+      "planSymbolCounts": {
+        "coarse": 10,
+        "medium": 14,
+        "fine": 144
+      },
+      "claddingOverlapMm3": 0.0,
+      "visualReviewStatus": "assistant-reviewed-exported-plans-sections-and-four-corners"
+    }
+  ]
+}

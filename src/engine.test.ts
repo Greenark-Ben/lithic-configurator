@@ -13,16 +13,16 @@ describe('governed prototype',()=>{
 describe('source-derived AFKC profiles',()=>{
  it.each([[900,1200],[1200,1500],[1500,1800],[300,300],[3000,3000]])('keeps fixed sections and seated glazing at %s × %s',(width,height)=>{
   const parts=calculateParts(AFKC,{...INITIAL,width,height});
-  expect(parts).toHaveLength(9);expect(parts.filter(p=>p.sweep)).toHaveLength(8);
-  const glass=parts.find(p=>p.role==='glazing')!;expect(glass.size).toEqual([width-81,height-81,48]);expect(glass.position[2]).toBe(13.5);
+  expect(parts).toHaveLength(30);expect(parts.filter(p=>p.sweep)).toHaveLength(27);
+  const glass=parts.filter(p=>p.role==='glazing');expect(glass.map(p=>p.size)).toEqual(Array(3).fill([width-81,height-81,4]));expect(glass.map(p=>p.position[2])).toEqual([-8.5,13.5,35.5]);expect(parts.filter(p=>p.role==='spacer')).toHaveLength(8);expect(parts.filter(p=>p.role==='seal')).toHaveLength(4);
   for(const p of parts){const geometry=partGeometry(p);geometry.computeBoundingBox();const box=geometry.boundingBox!;for(let i=0;i<3;i++){expect(box.min.getComponent(i)*1000+p.position[i]).toBeCloseTo(p.position[i]-p.size[i]/2,3);expect(box.max.getComponent(i)*1000+p.position[i]).toBeCloseTo(p.position[i]+p.size[i]/2,3)}
    if(p.role==='aluminium')expect(p.position[2]+p.size[2]/2).toBe(62.5);
-   if(p.role==='timber')expect(p.size[2]).toBe(105);
+   if(p.id.startsWith('timber-'))expect(p.size[2]).toBe(105);
    const a=geometry.getAttribute('position');let volume=0;for(let i=0;i<a.count;i+=3){const [x,y,z]=[i,i+1,i+2].map(k=>[a.getX(k),a.getY(k),a.getZ(k)]);volume+=(x[0]*(y[1]*z[2]-y[2]*z[1])+x[1]*(y[2]*z[0]-y[0]*z[2])+x[2]*(y[0]*z[1]-y[1]*z[0]))/6}expect(volume).toBeGreaterThan(0);geometry.dispose();
   }
  });
  it('blocks changed fixed sections and exports traceable sweeps without native claims',()=>{
   expect(()=>calculateParts({...AFKC,frameDepth:120},INITIAL)).toThrow('Source profiles require');
-  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-09'},INITIAL);expect(request.geometryEngine).toBe('fixed-window-profile-sweeps/0.1');expect(request.definition.profile?.manufacturerApproved).toBe(false);expect(request.nativeStatus).toBe('not-built');expect(request.limitations).toContain(AFKC.profile!.source.junctionAssumption);
+  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-09'},INITIAL);expect(request.geometryEngine).toBe('fixed-window-profile-sweeps/0.2');expect(request.definition.profile?.manufacturerApproved).toBe(false);expect(request.nativeStatus).toBe('not-built');expect(request.limitations).toContain(AFKC.profile!.source.junctionAssumption);
  });
 });

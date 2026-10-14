@@ -1,0 +1,212 @@
+{
+  "date": "2026-10-13",
+  "builder": "lithic-afkc-desktop/0.2.1",
+  "revitVersion": "2024",
+  "requestSha256": "d28b140d0aba8d745b146dc359c6f8ad25c582e04be8063edccbc43e013457a4",
+  "packageHashes": {
+    "drawings.py": "b8ca3daac857462adc6237b513e3535d00e329184d5a078196837f64671efef5",
+    "request.json": "d28b140d0aba8d745b146dc359c6f8ad25c582e04be8063edccbc43e013457a4",
+    "script.py": "bd97fbd59eca0e8110aa80515dd75d04e94eb50da16e09c57833e33bda9e296f",
+    "afkc-source.json": "53212b877f173c1daea73a07d17db29fb896b06a5556f59cac8bb4ef5a63bfc9",
+    "contract.py": "1c7488e9742dae9dd7c2395feddd5911289903fb77885b3e6578b28be80f260a",
+    "authoring.py": "458159c78a52024697d08d21ab19b8f47b520618b37f228561a769df061cc145"
+  },
+  "status": "passed",
+  "activeProjectUnchanged": true,
+  "nativeParameterFlex": false,
+  "manufacturerApproved": false,
+  "cases": [
+    {
+      "sizeMm": [
+        1200,
+        1300
+      ],
+      "status": "passed",
+      "familySha256": "c23ca18bb619271d97d264df23bfed23b8d8ae13ad4348552a59a90571765dbf",
+      "projectSha256": "c7a73a8df346fc71ec3f1bc8ea5c7beb949d9e6fa83569c6654f5de69778dafa",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        }
+      ],
+      "planCoordinateConstraints": {
+        "referencePlanes": 53,
+        "alignedSymbolicEdges": 124
+      }
+    },
+    {
+      "sizeMm": [
+        900,
+        1200
+      ],
+      "status": "passed",
+      "familySha256": "0d4a26a8cdf0fa193d2767a5465be73d7ce7c71b1b497b761eb688c152dd2e1b",
+      "projectSha256": "1419b82d731a72f0052c3004bcd7f54f84463a584a5a79608614b2ada0695cb3",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        }
+      ],
+      "planCoordinateConstraints": {
+        "referencePlanes": 53,
+        "alignedSymbolicEdges": 124
+      }
+    },
+    {
+      "sizeMm": [
+        1200,
+        1500
+      ],
+      "status": "passed",
+      "familySha256": "bd26a2dff520a7765d767c7d61fe7cb2090712b6cb01a2ba550c2a862d326b65",
+      "projectSha256": "a1d54f9de071e9a71f37f3b8efdaf7a144664b1f654e36b9121ab93e18789d99",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        }
+      ],
+      "planCoordinateConstraints": {
+        "referencePlanes": 53,
+        "alignedSymbolicEdges": 124
+      }
+    },
+    {
+      "sizeMm": [
+        1500,
+        1800
+      ],
+      "status": "passed",
+      "familySha256": "3416ef86280f9f602316ebb3f9eb87b57860393b1689cf28aef1aa90cf4c1490",
+      "projectSha256": "8332f4e9146b3cfdd9c58f2b83a6bb1d20e01de1489811615e02b57122405791",
+      "explicitDepthConstraints": 37,
+      "hostThicknessChecks": [
+        {
+          "wallThicknessMm": 100,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 200,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 300,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        },
+        {
+          "wallThicknessMm": 500,
+          "initialPassed": true,
+          "savedReopenedPassed": true,
+          "solids": 22,
+          "planSymbolsPassed": true,
+          "reopenedPlanSymbolsPassed": true
+        }
+      ],
+      "planCoordinateConstraints": {
+        "referencePlanes": 53,
+        "alignedSymbolicEdges": 124
+      }
+    }
+  ]
+}

@@ -1,11 +1,13 @@
-# AFKC source profile proof
+# AFKC reviewed source profile prototype 0.2
 
-The separate AFKC review path uses the earlier LITHIC-WINDOW-004 source-derived prototype for Elitfönster Original Alu 100 fixed frame, drawing 61-37-F221 revision A. It never attaches AFKC geometry to an unrelated AI proposal.
+AFKC remains a separate review path for Elitfönster Original Alu 100 fixed frame, drawing 61-37-F221 revision A. It is not attached automatically to an unrelated interpreted product proposal.
 
-`src/afkc-source.ts` retains the prior definition, PDF/DWG hashes, section polygons, measurement status and assumptions. The drawing crops in `public/evidence` let the reviewer inspect head/sill and jambs. The original PDF and DWG have not been remeasured in this change; the earlier derived polygons remain an unapproved source prototype.
+`src/afkc-source.ts` and `public/native/afkc-source.json` contain the same definition: original source digests, section polygons, coordinate mapping, reviewed glazing build-up and versioned authoring rules. The 1200 × 1500 visual baseline was accepted by the user on 13 October 2026. Manufacturer content remains unapproved.
 
-The source says positive depth is exterior, but its aluminium polygons occupy negative depth. The preview explicitly maps view Z = minus source depth, putting aluminium on positive Z. This also maps the original glazing centre -13.5 mm to +13.5 mm. No section is stretched in depth or face width. Frame face 53.5 mm, timber depth 105 mm and glazing assembly 48 mm are fixed for this bundle.
+Exterior depth is negative source depth in both adapters. Timber depth 105 mm, sightline 53.5 mm and glazing assembly depth 48 mm stay fixed. Timber rebates, the sloped sill and separate beads retain reviewed source-derived sections. Distinct head/jamb and sill aluminium profiles have native swept corners and lower mitre cuts; the thin coverage return and extended sill return are explicitly prototype additions.
 
-Eight polygon sweeps replace the box frame: head, sill and two jambs in timber and aluminium. Full-height jambs and shortened head/sill follow the original prototype butt-joint assumption. Glass overlaps the sightline by 13 mm, making its overall dimensions width/height minus 81 mm. Panes and cavities remain one assembly solid. Rounded edges, minor grooves, seals, drainage and actual fabrication joints are unresolved.
+The glazing comprises three 4 mm panes and two empty 18 mm cavities. Pane dimensions remain overall width/height minus 81 mm. Eight hollow aluminium spacer members have a simplified 7 mm radial section, 3.75 mm inset and 1 mm skin. Visible seals have their own material parameter and native closed sweep; chemistry, smaller gasket bulbs, drainage and manufacturer corner fabrication remain unresolved.
 
-Approval is a session review of this prototype, not manufacturer certification. The 300–3000 mm configuration bounds remain illustrative and do not establish available manufactured sizes. The build request includes exact sweep polygons, transforms, source evidence and limitations; no current native family is claimed or built.
+The preview exports 30 deterministic components. The native builder uses four sweeps, 19 solid extrusions and four void extrusions, validating 22 rendered components/assemblies after joining. No FreeFormElement or DirectShape fallback is permitted. Exact source polygons, transformations and limitations accompany the request. Browser/Python parity checks protect this boundary.
+
+Session review is not manufacturer certification. The 300–3000 mm bounds are illustrative; each desktop result is a fixed-size snapshot. A new size requires a new handoff. See [authoring rules](AFKC-AUTHORING.md) and [desktop validation](REVIT-HANDOFF.md).
