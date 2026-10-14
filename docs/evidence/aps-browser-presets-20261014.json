@@ -1,0 +1,77 @@
+[
+  {
+    "sizeMm": [
+      1200,
+      1500
+    ],
+    "geometryChecksPassed": true,
+    "partsPassed": 22,
+    "hostThicknessesMm": [
+      100,
+      200,
+      300,
+      500
+    ],
+    "nativeFormCounts": {
+      "voidExtrusions": 4,
+      "freeForms": 0,
+      "directShapes": 0,
+      "sweeps": 4,
+      "solidExtrusions": 19
+    },
+    "maxDesktopVolumeDifferenceMm3": 0.0,
+    "familyHashMatched": true,
+    "visualReviewPassed": false,
+    "nativeParameterFlex": false
+  },
+  {
+    "sizeMm": [
+      900,
+      1200
+    ],
+    "geometryChecksPassed": true,
+    "partsPassed": 22,
+    "hostThicknessesMm": [
+      100,
+      200,
+      300,
+      500
+    ],
+    "nativeFormCounts": {
+      "voidExtrusions": 4,
+      "freeForms": 0,
+      "directShapes": 0,
+      "sweeps": 4,
+      "solidExtrusions": 19
+    },
+    "maxDesktopVolumeDifferenceMm3": 0.0,
+    "familyHashMatched": true,
+    "visualReviewPassed": false,
+    "nativeParameterFlex": false
+  },
+  {
+    "sizeMm": [
+      1500,
+      1800
+    ],
+    "geometryChecksPassed": true,
+    "partsPassed": 22,
+    "hostThicknessesMm": [
+      100,
+      200,
+      300,
+      500
+    ],
+    "nativeFormCounts": {
+      "voidExtrusions": 4,
+      "freeForms": 0,
+      "directShapes": 0,
+      "sweeps": 4,
+      "solidExtrusions": 19
+    },
+    "maxDesktopVolumeDifferenceMm3": 0.0,
+    "familyHashMatched": true,
+    "visualReviewPassed": false,
+    "nativeParameterFlex": false
+  }
+]

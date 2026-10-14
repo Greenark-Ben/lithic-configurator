@@ -23,3 +23,9 @@ Build the adapter with `dotnet build cloud/Lithic.Afkc.Cloud.csproj -c Release`,
 The adapter retains the desktop geometry and checking functions, replaces pyRevit DB imports, omits desktop dialogs and does not export PNGs headlessly. It creates native review views in the returned verification RVT. Geometry changes require new native evidence; a successful image-free job is not visual certification.
 
 The server uses Fetch, Web Crypto and a small object-store interface. It does not depend on Lovable or Core's database and can be moved during the planned backend cutover.
+
+## Browser build evidence
+
+On 14 October 2026, the published browser workflow generated and downloaded the 900 × 1200, 1200 × 1500 and 1500 × 1800 timber/graphite presets. All three reports passed their 22 component and four hosted-wall cases, including reopening and plan signatures. Downloaded RFA hashes matched the reports. Measured component volumes matched the accepted desktop baselines exactly. This confirms these tested presets; the wider illustrative range and manufacturer approval remain separate.
+
+CI builds without licensed private payloads retain the desktop workflow and report cloud generation unavailable. Set `LITHIC_REQUIRE_CLOUD_PAYLOAD=1` for deployments that must fail rather than omit private generation inputs. Browser QA uses one worker because SwiftShader contexts competing in parallel caused local timeouts; six sequential browser tests passed.

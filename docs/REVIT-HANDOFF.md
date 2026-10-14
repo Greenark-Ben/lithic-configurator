@@ -1,6 +1,6 @@
 # AFKC desktop handoff 0.2.1
 
-The AFKC preview and desktop builder share a versioned reviewed construction definition. Prepare Revit handoff exports the exact browser request, SHA-256 manifest, source bundle, native authoring/drawing modules, pyRevit command and installer. The live Build Revit family action remains disabled; no remote worker is connected.
+The AFKC preview and desktop builder share a versioned reviewed construction definition. Prepare Revit handoff exports the exact browser request, SHA-256 manifest, source bundle, native authoring/drawing modules, pyRevit command and installer. The Build Revit family action now connects AFKC to APS Revit 2024 generation. The desktop handoff remains available. See [APS browser generation](APS-BROWSER.md).
 
 ## Reviewed construction
 
