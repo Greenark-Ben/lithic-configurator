@@ -8,6 +8,20 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'public/native'))
 from contract import BUILDER, expected_parts, validate, verification_sizes, volume_mm3, native_specs
 
 class ContractTests(unittest.TestCase):
+    def test_accepted_native_source_is_unchanged(self):
+        root = Path(__file__).resolve().parents[2]
+        evidence = json.loads((root / 'docs/evidence/afkc-host-depth-0.2.1.json').read_text())
+        self.assertEqual(evidence['builder'], BUILDER)
+        self.assertFalse(evidence['nativeParameterFlex'])
+        self.assertFalse(evidence['manufacturerApproved'])
+        for name in ['script.py', 'authoring.py', 'contract.py', 'drawings.py', 'afkc-source.json']:
+            with self.subTest(name=name):
+                raw = (root / 'public/native' / name).read_bytes().replace(b'\r\n', b'\n')
+                # The accepted Windows package contains both LF and CRLF files.
+                # Allow checkout line-ending conversion, but no source edits.
+                hashes = [hashlib.sha256(raw).hexdigest(), hashlib.sha256(raw.replace(b'\n', b'\r\n')).hexdigest()]
+                self.assertIn(evidence['packageHashes'][name], hashes,
+                                 'Native source changed: require new Revit evidence before updating the accepted baseline')
     def setUp(self):
         self.source = json.loads((Path(__file__).resolve().parents[2] / 'public/native/afkc-source.json').read_text())
         self.request = {'kind':'lithic-build-request','schemaVersion':'0.1','units':'mm','geometryEngine':'fixed-window-profile-sweeps/0.2','approvedAt':'2026-10-12',

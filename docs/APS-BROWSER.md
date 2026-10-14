@@ -29,3 +29,13 @@ The server uses Fetch, Web Crypto and a small object-store interface. It does no
 On 14 October 2026, the published browser workflow generated and downloaded the 900 × 1200, 1200 × 1500 and 1500 × 1800 timber/graphite presets. All three reports passed their 22 component and four hosted-wall cases, including reopening and plan signatures. Downloaded RFA hashes matched the reports. Measured component volumes matched the accepted desktop baselines exactly. This confirms these tested presets; the wider illustrative range and manufacturer approval remain separate.
 
 CI builds without licensed private payloads retain the desktop workflow and report cloud generation unavailable. Set `LITHIC_REQUIRE_CLOUD_PAYLOAD=1` for deployments that must fail rather than omit private generation inputs. Browser QA uses one worker because SwiftShader contexts competing in parallel caused local timeouts; six sequential browser tests passed.
+
+## Build history, recovery and usage
+
+The browser lists persistent, user-scoped build records from R2, including builds created before this update. Select a history entry to inspect its size, finishes and status or download a previously checked RFA. Every result retains its build reference and report; choosing history does not change the current configuration or imply visual approval.
+
+The private deployment permits ten APS work-item submission attempts per UTC day across all visitor/service namespaces. A conditional storage counter reserves allowance immediately before submission. Cached results, polling and downloads consume no allowance. Uncertain submissions consume allowance conservatively. Attempts made before this counter was deployed are not retrospectively counted. This cap limits submissions, not a monetary budget or Autodesk processing charges.
+
+“Check existing build” polls the confirmed APS work item and can retrieve and re-check its result after a temporary transfer failure. It never posts another work item. Native failures and unverified results remain blocked from download. A checking lease can be recovered after two minutes. A submission with no returned APS identifier stays held for support; automatically clearing its lock could duplicate a paid job. Temporary Autodesk objects can expire, so recovery is not guaranteed after their retention period. Verified copies already stored in R2 remain downloadable.
+
+The CI native contract now compares the five authoring/source files against the accepted desktop 0.2.1 package hashes, allowing LF/CRLF checkout conversion. Native source changes require a new evidence baseline. Software/browser tests verify delivery behavior; they do not replace execution in Revit or visual review.
