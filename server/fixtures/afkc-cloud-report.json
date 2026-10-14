@@ -1,0 +1,4123 @@
+{
+  "kind": "lithic-cloud-proof-report", 
+  "visualReviewPassed": false, 
+  "adapter": "lithic-afkc-aps-proof/0.1", 
+  "createdAt": "2026-10-14T07:23:22.037000Z", 
+  "status": "geometry-passed-awaiting-visual-review", 
+  "schemaVersion": "0.1", 
+  "cases": [
+    {
+      "materialBindings": [
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001b90", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001bc1", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001bcf", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c00", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c0e", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c3f", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c4d", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Timber Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c77", 
+          "expectedParameter": "Timber Material"
+        }, 
+        {
+          "materialParameter": "Glazing Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c90", 
+          "expectedParameter": "Glazing Material"
+        }, 
+        {
+          "materialParameter": "Glazing Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c9e", 
+          "expectedParameter": "Glazing Material"
+        }, 
+        {
+          "materialParameter": "Glazing Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cac", 
+          "expectedParameter": "Glazing Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cba", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cd0", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001ce6", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cfc", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d12", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d28", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d3e", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Glazing Spacer Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d54", 
+          "expectedParameter": "Glazing Spacer Material"
+        }, 
+        {
+          "materialParameter": "Aluminium Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d69", 
+          "expectedParameter": "Aluminium Material"
+        }, 
+        {
+          "materialParameter": "Aluminium Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001dc6", 
+          "expectedParameter": "Aluminium Material"
+        }, 
+        {
+          "materialParameter": "Aluminium Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001de8", 
+          "expectedParameter": "Aluminium Material"
+        }, 
+        {
+          "materialParameter": "Glazing Seal Material", 
+          "passed": true, 
+          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001e52", 
+          "expectedParameter": "Glazing Seal Material"
+        }
+      ], 
+      "sizeMm": [
+        1200, 
+        1500
+      ], 
+      "visualReviewStatus": "not-exported-headless-awaiting-Revit-review", 
+      "cavityProbes": [
+        {
+          "passed": true, 
+          "rangeMm": [
+            -6.5, 
+            11.5
+          ], 
+          "solidSegments": 0
+        }, 
+        {
+          "passed": true, 
+          "rangeMm": [
+            15.5, 
+            33.5
+          ], 
+          "solidSegments": 0
+        }
+      ], 
+      "hostThicknessCases": [
+        {
+          "expectedOpeningMm3": 180000000, 
+          "planSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedPlanSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedGeometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  -546.50000000000023, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466499.9999999963, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.50000000000034, 
+                  -560.00000000000045, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999999756, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.50000000000023, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466499.9999999953, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  560.00000000000045, 
+                  565.50000000000034, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999999756, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000023, 
+                  546.50000000000023, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999925, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001153, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000023, 
+                  546.50000000000023, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.9658925878, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959926, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000034, 
+                  -548.74999999999977, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64929.000000005632, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999977, 
+                  555.75000000000034, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64929.000000005632, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000044, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000001601, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000034, 
+                  -548.74999999999977, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64929.000000005653, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999977, 
+                  555.75000000000034, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64929.000000005632, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000073, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001608, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000114, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824314669, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  600.0, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723082, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -553.00000000000091, 
+                  553.00000000000091, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "openingPassed": true, 
+          "savedReopenedPassed": true, 
+          "geometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  -546.50000000000023, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466499.9999999963, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.50000000000034, 
+                  -560.00000000000045, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999999756, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.50000000000023, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466499.9999999953, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  560.00000000000045, 
+                  565.50000000000034, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999999756, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000023, 
+                  546.50000000000023, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999925, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001153, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000023, 
+                  546.50000000000023, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.9658925878, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959926, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000034, 
+                  -548.74999999999977, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64929.000000005632, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999977, 
+                  555.75000000000034, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64929.000000005632, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000044, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000001601, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000034, 
+                  -548.74999999999977, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64929.000000005653, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999977, 
+                  555.75000000000034, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64929.000000005632, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000073, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.74999999999977, 
+                  548.74999999999977, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001608, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000114, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824314669, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  600.0, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723082, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -553.00000000000091, 
+                  553.00000000000091, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-00001388", 
+          "passed": true, 
+          "uncutWallMm3": 3000000000.000001, 
+          "wallThicknessMm": 100, 
+          "reopenedOpeningPassed": true, 
+          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-00001393"
+        }, 
+        {
+          "expectedOpeningMm3": 360000000, 
+          "planSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedPlanSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedGeometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  -546.4999999999992, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000363, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.4999999999992, 
+                  -559.99999999999829, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999996903, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.4999999999992, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000345, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  560.00000000000045, 
+                  565.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999996903, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.4999999999992, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999907, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001153, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.4999999999992, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.965892585, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959926, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000148, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999864, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.999999995416, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000065, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.00000000163, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000148, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999864, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000102, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001659, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824315856, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  600.0, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723082, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -552.99999999999989, 
+                  552.99999999999989, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "openingPassed": true, 
+          "savedReopenedPassed": true, 
+          "geometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  -546.4999999999992, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000363, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.4999999999992, 
+                  -559.99999999999829, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999996903, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.4999999999992, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000345, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  560.00000000000045, 
+                  565.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434774.99999996903, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.4999999999992, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999907, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001153, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.4999999999992, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.965892585, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000045, 
+                  560.00000000000045, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959926, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.50000000000057, 
+                  559.50000000000057, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351444.0000000028, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000148, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999864, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.999999995416, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000065, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.00000000163, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.75000000000148, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.74999999999864, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000102, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001659, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  600.0, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824315856, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.0, 
+                  600.0, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723082, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -552.99999999999989, 
+                  552.99999999999989, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-00001397", 
+          "passed": true, 
+          "uncutWallMm3": 6000000000.0000019, 
+          "wallThicknessMm": 200, 
+          "reopenedOpeningPassed": true, 
+          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-000013a2"
+        }, 
+        {
+          "expectedOpeningMm3": 540000000, 
+          "planSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedPlanSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedGeometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  -546.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000494, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.50000000000136, 
+                  -559.99999999999829, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008312, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.49999999999704, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000466, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  559.99999999999829, 
+                  565.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008318, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999972, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001112, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.9658925906, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959845, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.999999995416, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000065, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.00000000163, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000102, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001659, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824320583, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -599.99999999999784, 
+                  600.00000000000216, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723099, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -552.99999999999989, 
+                  552.99999999999989, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "openingPassed": true, 
+          "savedReopenedPassed": true, 
+          "geometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  -546.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000494, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.50000000000136, 
+                  -559.99999999999829, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008312, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.49999999999704, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000466, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  559.99999999999829, 
+                  565.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008318, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999972, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001112, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.9658925906, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959845, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.999999995416, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000065, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.00000000163, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000102, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001659, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824320583, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -599.99999999999784, 
+                  600.00000000000216, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723099, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -552.99999999999989, 
+                  552.99999999999989, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-000013a6", 
+          "passed": true, 
+          "uncutWallMm3": 9000000000.0000076, 
+          "wallThicknessMm": 300, 
+          "reopenedOpeningPassed": true, 
+          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-000013b1"
+        }, 
+        {
+          "expectedOpeningMm3": 900000000, 
+          "planSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedPlanSymbols": {
+            "coarse": {
+              "passed": true, 
+              "curveCount": 10, 
+              "expectedCount": 10, 
+              "sha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59", 
+              "expectedSha256": "bf4a72c9c20c2d981f79fe635c9fbdfd88fa12d18008682291cc0e4a3e888d59"
+            }, 
+            "medium": {
+              "passed": true, 
+              "curveCount": 14, 
+              "expectedCount": 14, 
+              "sha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67", 
+              "expectedSha256": "92ba0e0a2c99145c7bd3d35fc6f896beb3984729a6a736acd6674aa816c9cc67"
+            }, 
+            "fine": {
+              "passed": true, 
+              "curveCount": 144, 
+              "expectedCount": 144, 
+              "sha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e", 
+              "expectedSha256": "649ff71bb3cfc0b3e66539f61519a4d8366c123652a2e4f06f9cbe585417fa0e"
+            }
+          }, 
+          "reopenedGeometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  -546.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000494, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.50000000000136, 
+                  -559.99999999999829, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008312, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.49999999999704, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000466, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  559.99999999999829, 
+                  565.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008318, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999972, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001112, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.9658925906, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959845, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.999999995416, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000065, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.00000000163, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000102, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001659, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824320583, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -599.99999999999784, 
+                  600.00000000000216, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723099, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -552.99999999999989, 
+                  552.99999999999989, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "openingPassed": true, 
+          "savedReopenedPassed": true, 
+          "geometry": {
+            "solidCount": 22, 
+            "passed": true, 
+            "parts": [
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  -546.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.500000000000036, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000494, 
+                "id": "timber-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -565.50000000000136, 
+                  -559.99999999999829, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008312, 
+                "id": "bead-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  546.49999999999704, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 6466500.0000000466, 
+                "id": "timber-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  559.99999999999829, 
+                  565.50000000000136, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 434775.00000008318, 
+                "id": "bead-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  1446.4999999999998, 
+                  1500.0, 
+                  -52.5, 
+                  52.5
+                ], 
+                "volumeMm3": 4711922.9999999972, 
+                "id": "timber-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  1460.0, 
+                  1465.5000000000002, 
+                  -13.500000000000002, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 324632.00000001112, 
+                "id": "bead-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -546.50000000000136, 
+                  546.50000000000136, 
+                  0.0, 
+                  53.500000000000021, 
+                  -52.499999999999993, 
+                  52.5
+                ], 
+                "volumeMm3": 4300306.9658925906, 
+                "id": "timber-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -560.00000000000261, 
+                  559.99999999999829, 
+                  28.029253639999997, 
+                  40.529621796000008, 
+                  -13.500000000000011, 
+                  39.200000000000003
+                ], 
+                "volumeMm3": 533313.31724959845, 
+                "id": "bead-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  -10.5, 
+                  -6.5000000000000009
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-1"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  11.5, 
+                  15.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-2"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -559.49999999999841, 
+                  559.50000000000273, 
+                  40.499999999999858, 
+                  1459.5, 
+                  33.5, 
+                  37.5
+                ], 
+                "volumeMm3": 6351443.9999999953, 
+                "id": "glass-pane-3"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-1-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 64928.999999995416, 
+                "id": "spacer-1-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.000000000065, 
+                "id": "spacer-1-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  -6.5000000000000009, 
+                  11.5
+                ], 
+                "volumeMm3": 50485.00000000163, 
+                "id": "spacer-1-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -555.7499999999992, 
+                  -548.7500000000008, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-left"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  548.7500000000008, 
+                  555.7499999999992, 
+                  44.249999999999822, 
+                  1455.7499999999998, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 64928.99999999546, 
+                "id": "spacer-2-right"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  44.249999999999993, 
+                  51.249999999999986, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000000102, 
+                "id": "spacer-2-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -548.7500000000008, 
+                  548.7500000000008, 
+                  1448.7500000000005, 
+                  1455.7500000000005, 
+                  15.5, 
+                  33.5
+                ], 
+                "volumeMm3": 50485.000000001659, 
+                "id": "spacer-2-head"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -600.00000000000216, 
+                  600.00000000000216, 
+                  -1.3535839116229909e-13, 
+                  1500.0, 
+                  40.499999999999858, 
+                  62.500000000000057
+                ], 
+                "volumeMm3": 512075.05824320583, 
+                "id": "aluminium-head-jamb-return"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -599.99999999999784, 
+                  600.00000000000216, 
+                  -3.3839597790574773e-14, 
+                  49.433000000000021, 
+                  40.499999999999957, 
+                  62.500000000000021
+                ], 
+                "volumeMm3": 119783.11438723099, 
+                "id": "aluminium-sill"
+              }, 
+              {
+                "passed": true, 
+                "boundsMm": [
+                  -552.99999999999989, 
+                  552.99999999999989, 
+                  46.999999999999737, 
+                  1453.0000000000005, 
+                  37.499999999999957, 
+                  40.499999999999986
+                ], 
+                "volumeMm3": 28512.799999938383, 
+                "id": "seal-perimeter"
+              }
+            ]
+          }, 
+          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-000013b5", 
+          "passed": true, 
+          "uncutWallMm3": 15000000000.000015, 
+          "wallThicknessMm": 500, 
+          "reopenedOpeningPassed": true, 
+          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-000013c0"
+        }
+      ], 
+      "drawingViewsPersisted": true, 
+      "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-00001366", 
+      "parts": [
+        {
+          "id": "timber-left", 
+          "expectedVolumeMm3": 6466500.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6466500.0, 
+          "expectedBoundsMm": [
+            -600.0, 
+            -546.5, 
+            0.0, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            -600.0, 
+            -546.5, 
+            0.0, 
+            1500.0, 
+            -52.500000000000036, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6466500.0000000065
+        }, 
+        {
+          "id": "bead-left", 
+          "expectedVolumeMm3": 434774.99999999988, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 434774.99999999988, 
+          "expectedBoundsMm": [
+            -565.5, 
+            -560.0, 
+            0.0, 
+            1500.0, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            -565.5, 
+            -560.0, 
+            0.0, 
+            1500.0, 
+            -13.500000000000002, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 434775.00000000291
+        }, 
+        {
+          "id": "timber-right", 
+          "expectedVolumeMm3": 6466500.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6466500.0, 
+          "expectedBoundsMm": [
+            546.5, 
+            600.0, 
+            0.0, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            546.5, 
+            600.0, 
+            0.0, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6466500.0000000037
+        }, 
+        {
+          "id": "bead-right", 
+          "expectedVolumeMm3": 434774.99999999988, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 434774.99999999988, 
+          "expectedBoundsMm": [
+            560.0, 
+            565.5, 
+            0.0, 
+            1500.0, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            560.0, 
+            565.5, 
+            0.0, 
+            1500.0, 
+            -13.500000000000002, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 434775.00000000291
+        }, 
+        {
+          "id": "timber-head", 
+          "expectedVolumeMm3": 4711923.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 4711923.0, 
+          "expectedBoundsMm": [
+            -546.5, 
+            546.5, 
+            1446.5, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            -546.5, 
+            546.5, 
+            1446.5, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 4711923.0000000019
+        }, 
+        {
+          "id": "bead-head", 
+          "expectedVolumeMm3": 324631.99999999988, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 324631.99999999988, 
+          "expectedBoundsMm": [
+            -560.0, 
+            560.0, 
+            1460.0, 
+            1465.5, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            -560.0, 
+            560.0, 
+            1460.0, 
+            1465.5, 
+            -13.500000000000002, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 324632.00000000617
+        }, 
+        {
+          "id": "timber-sill", 
+          "expectedVolumeMm3": 4300306.9658925869, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 4300306.9658925869, 
+          "expectedBoundsMm": [
+            -546.5, 
+            546.5, 
+            0.0, 
+            53.5, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            -546.5, 
+            546.5, 
+            0.0, 
+            53.5, 
+            -52.499999999999993, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 4300306.9658925859
+        }, 
+        {
+          "id": "bead-sill", 
+          "expectedVolumeMm3": 533313.31724959903, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 533313.31724959903, 
+          "expectedBoundsMm": [
+            -560.0, 
+            560.0, 
+            28.029253639999997, 
+            40.529621796000001, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            -560.0, 
+            560.0, 
+            28.029253639999997, 
+            40.529621796000001, 
+            -13.500000000000011, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 533313.31724959868
+        }, 
+        {
+          "id": "glass-pane-1", 
+          "expectedVolumeMm3": 6351444.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glass Panes", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6351444.0, 
+          "expectedBoundsMm": [
+            -559.5, 
+            559.5, 
+            40.5, 
+            1459.5, 
+            -10.5, 
+            -6.5
+          ], 
+          "boundsMm": [
+            -559.5, 
+            559.5, 
+            40.499999999999993, 
+            1459.5, 
+            -10.5, 
+            -6.5000000000000009
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6351444.0000000009
+        }, 
+        {
+          "id": "glass-pane-2", 
+          "expectedVolumeMm3": 6351444.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glass Panes", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6351444.0, 
+          "expectedBoundsMm": [
+            -559.5, 
+            559.5, 
+            40.5, 
+            1459.5, 
+            11.5, 
+            15.5
+          ], 
+          "boundsMm": [
+            -559.5, 
+            559.5, 
+            40.499999999999993, 
+            1459.5, 
+            11.5, 
+            15.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6351444.0000000009
+        }, 
+        {
+          "id": "glass-pane-3", 
+          "expectedVolumeMm3": 6351444.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glass Panes", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6351444.0, 
+          "expectedBoundsMm": [
+            -559.5, 
+            559.5, 
+            40.5, 
+            1459.5, 
+            33.5, 
+            37.5
+          ], 
+          "boundsMm": [
+            -559.5, 
+            559.5, 
+            40.499999999999993, 
+            1459.5, 
+            33.5, 
+            37.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6351444.0000000009
+        }, 
+        {
+          "id": "spacer-1-left", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            -555.75, 
+            -548.75, 
+            44.25, 
+            1455.75, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            -555.75, 
+            -548.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000546
+        }, 
+        {
+          "id": "spacer-1-right", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            548.75, 
+            555.75, 
+            44.25, 
+            1455.75, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            548.75, 
+            555.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000546
+        }, 
+        {
+          "id": "spacer-1-sill", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000000044
+        }, 
+        {
+          "id": "spacer-1-head", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000001615
+        }, 
+        {
+          "id": "spacer-2-left", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            -555.75, 
+            -548.75, 
+            44.25, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            -555.75, 
+            -548.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000546
+        }, 
+        {
+          "id": "spacer-2-right", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            548.75, 
+            555.75, 
+            44.25, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            548.75, 
+            555.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000575
+        }, 
+        {
+          "id": "spacer-2-sill", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000000051
+        }, 
+        {
+          "id": "spacer-2-head", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000001623
+        }, 
+        {
+          "id": "aluminium-head-jamb-return", 
+          "expectedVolumeMm3": 510530.09631813812, 
+          "nativeType": "GeomCombination", 
+          "material": "LITHIC Aluminium graphite", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 513536.71741188812, 
+          "expectedBoundsMm": [
+            -600.0, 
+            600.0, 
+            0.0, 
+            1500.0, 
+            40.5, 
+            62.5
+          ], 
+          "boundsMm": [
+            -600.00000000000011, 
+            600.00000000000011, 
+            -6.7679195581149545e-14, 
+            1500.0, 
+            40.499999999999858, 
+            62.500000000000057
+          ], 
+          "volumeRule": "bounded native join of overlapping source returns", 
+          "volumeMm3": 512075.05824314512
+        }, 
+        {
+          "id": "aluminium-sill", 
+          "expectedVolumeMm3": 119783.11438723197, 
+          "nativeType": "GeomCombination", 
+          "material": "LITHIC Aluminium graphite", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 119783.11438723197, 
+          "expectedBoundsMm": [
+            -600.0, 
+            600.0, 
+            0.0, 
+            49.433, 
+            40.5, 
+            62.5
+          ], 
+          "boundsMm": [
+            -600.0, 
+            600.0, 
+            -3.3839597790574773e-14, 
+            49.433000000000021, 
+            40.499999999999957, 
+            62.500000000000021
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 119783.11438723089
+        }, 
+        {
+          "id": "seal-perimeter", 
+          "expectedVolumeMm3": 28512.799999999053, 
+          "nativeType": "Sweep", 
+          "material": "LITHIC Glazing Seal - prototype elastomer", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 28512.799999999053, 
+          "expectedBoundsMm": [
+            -553.0, 
+            553.0, 
+            47.0, 
+            1453.0, 
+            37.5, 
+            40.5
+          ], 
+          "boundsMm": [
+            -553.00000000000011, 
+            553.00000000000011, 
+            46.999999999999844, 
+            1453.0000000000002, 
+            37.499999999999957, 
+            40.499999999999986
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 28512.799999938186
+        }
+      ], 
+      "projectFile": "LITHIC-AFKC-1200x1500-verification.rvt", 
+      "familySha256": "a6942f5680a53ee1f15295d65e4adc9478114bd78284fa8b60caa89e33ec3076", 
+      "nativeAuthoringPassed": true, 
+      "lowerCorners": [
+        {
+          "outerEndpointDistancesMm": [
+            0.0, 
+            0.0
+          ], 
+          "side": "left", 
+          "passed": true
+        }, 
+        {
+          "outerEndpointDistancesMm": [
+            0.0, 
+            0.0
+          ], 
+          "side": "right", 
+          "passed": true
+        }
+      ], 
+      "expectedOpeningMm3": 360000000.0, 
+      "drawingEvidence": [], 
+      "scheduleDimensionsPassed": true, 
+      "hostPassed": true, 
+      "planSymbolCounts": {
+        "coarse": 10, 
+        "medium": 14, 
+        "fine": 144
+      }, 
+      "cornerChecksPassed": true, 
+      "nativeFormCounts": {
+        "voidExtrusions": 4, 
+        "freeForms": 0, 
+        "directShapes": 0, 
+        "sweeps": 4, 
+        "solidExtrusions": 19
+      }, 
+      "sweepInputChecks": [
+        {
+          "passed": true, 
+          "expectedVolumeMm3": 455560.61980792548, 
+          "name": "Aluminium Head And Jambs", 
+          "volumeMm3": 455560.61980799917, 
+          "nativeType": "Sweep"
+        }, 
+        {
+          "passed": true, 
+          "expectedVolumeMm3": 63996.400000000001, 
+          "name": "Aluminium Coverage Return", 
+          "volumeMm3": 63996.400000001435, 
+          "nativeType": "Sweep"
+        }, 
+        {
+          "passed": true, 
+          "expectedVolumeMm3": 125552.83559999929, 
+          "name": "Aluminium Sill", 
+          "volumeMm3": 125552.8355999999, 
+          "nativeType": "Sweep"
+        }, 
+        {
+          "passed": true, 
+          "expectedVolumeMm3": 28512.799999999053, 
+          "name": "Glazing Seal Perimeter", 
+          "volumeMm3": 28512.799999938186, 
+          "nativeType": "Sweep"
+        }
+      ], 
+      "wallId": "853c5420-1143-454c-af56-5fc2f6571990-00001365", 
+      "familyReopened": true, 
+      "persistenceGeometryPassed": true, 
+      "planVisibilityPassed": true, 
+      "openingRemovedMm3": 359999999.99999905, 
+      "openingPassed": true, 
+      "cavitiesEmptyPassed": true, 
+      "reopenedParts": [
+        {
+          "id": "timber-left", 
+          "expectedVolumeMm3": 6466500.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6466500.0, 
+          "expectedBoundsMm": [
+            -600.0, 
+            -546.5, 
+            0.0, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            -600.0, 
+            -546.5, 
+            0.0, 
+            1500.0, 
+            -52.500000000000036, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6466500.0000000065
+        }, 
+        {
+          "id": "bead-left", 
+          "expectedVolumeMm3": 434774.99999999988, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 434774.99999999988, 
+          "expectedBoundsMm": [
+            -565.5, 
+            -560.0, 
+            0.0, 
+            1500.0, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            -565.5, 
+            -560.0, 
+            0.0, 
+            1500.0, 
+            -13.500000000000002, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 434775.00000000291
+        }, 
+        {
+          "id": "timber-right", 
+          "expectedVolumeMm3": 6466500.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6466500.0, 
+          "expectedBoundsMm": [
+            546.5, 
+            600.0, 
+            0.0, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            546.5, 
+            600.0, 
+            0.0, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6466500.0000000037
+        }, 
+        {
+          "id": "bead-right", 
+          "expectedVolumeMm3": 434774.99999999988, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 434774.99999999988, 
+          "expectedBoundsMm": [
+            560.0, 
+            565.5, 
+            0.0, 
+            1500.0, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            560.0, 
+            565.5, 
+            0.0, 
+            1500.0, 
+            -13.500000000000002, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 434775.00000000291
+        }, 
+        {
+          "id": "timber-head", 
+          "expectedVolumeMm3": 4711923.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 4711923.0, 
+          "expectedBoundsMm": [
+            -546.5, 
+            546.5, 
+            1446.5, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            -546.5, 
+            546.5, 
+            1446.5, 
+            1500.0, 
+            -52.5, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 4711923.0000000019
+        }, 
+        {
+          "id": "bead-head", 
+          "expectedVolumeMm3": 324631.99999999988, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 324631.99999999988, 
+          "expectedBoundsMm": [
+            -560.0, 
+            560.0, 
+            1460.0, 
+            1465.5, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            -560.0, 
+            560.0, 
+            1460.0, 
+            1465.5, 
+            -13.500000000000002, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 324632.00000000617
+        }, 
+        {
+          "id": "timber-sill", 
+          "expectedVolumeMm3": 4300306.9658925869, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 4300306.9658925869, 
+          "expectedBoundsMm": [
+            -546.5, 
+            546.5, 
+            0.0, 
+            53.5, 
+            -52.5, 
+            52.5
+          ], 
+          "boundsMm": [
+            -546.5, 
+            546.5, 
+            0.0, 
+            53.5, 
+            -52.499999999999993, 
+            52.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 4300306.9658925859
+        }, 
+        {
+          "id": "bead-sill", 
+          "expectedVolumeMm3": 533313.31724959903, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Timber timber", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 533313.31724959903, 
+          "expectedBoundsMm": [
+            -560.0, 
+            560.0, 
+            28.029253639999997, 
+            40.529621796000001, 
+            -13.5, 
+            39.200000000000003
+          ], 
+          "boundsMm": [
+            -560.0, 
+            560.0, 
+            28.029253639999997, 
+            40.529621796000001, 
+            -13.500000000000011, 
+            39.200000000000003
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 533313.31724959868
+        }, 
+        {
+          "id": "glass-pane-1", 
+          "expectedVolumeMm3": 6351444.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glass Panes", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6351444.0, 
+          "expectedBoundsMm": [
+            -559.5, 
+            559.5, 
+            40.5, 
+            1459.5, 
+            -10.5, 
+            -6.5
+          ], 
+          "boundsMm": [
+            -559.5, 
+            559.5, 
+            40.499999999999993, 
+            1459.5, 
+            -10.5, 
+            -6.5000000000000009
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6351444.0000000009
+        }, 
+        {
+          "id": "glass-pane-2", 
+          "expectedVolumeMm3": 6351444.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glass Panes", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6351444.0, 
+          "expectedBoundsMm": [
+            -559.5, 
+            559.5, 
+            40.5, 
+            1459.5, 
+            11.5, 
+            15.5
+          ], 
+          "boundsMm": [
+            -559.5, 
+            559.5, 
+            40.499999999999993, 
+            1459.5, 
+            11.5, 
+            15.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6351444.0000000009
+        }, 
+        {
+          "id": "glass-pane-3", 
+          "expectedVolumeMm3": 6351444.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glass Panes", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 6351444.0, 
+          "expectedBoundsMm": [
+            -559.5, 
+            559.5, 
+            40.5, 
+            1459.5, 
+            33.5, 
+            37.5
+          ], 
+          "boundsMm": [
+            -559.5, 
+            559.5, 
+            40.499999999999993, 
+            1459.5, 
+            33.5, 
+            37.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 6351444.0000000009
+        }, 
+        {
+          "id": "spacer-1-left", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            -555.75, 
+            -548.75, 
+            44.25, 
+            1455.75, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            -555.75, 
+            -548.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000546
+        }, 
+        {
+          "id": "spacer-1-right", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            548.75, 
+            555.75, 
+            44.25, 
+            1455.75, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            548.75, 
+            555.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000546
+        }, 
+        {
+          "id": "spacer-1-sill", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000000044
+        }, 
+        {
+          "id": "spacer-1-head", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            -6.5, 
+            11.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            -6.5000000000000009, 
+            11.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000001615
+        }, 
+        {
+          "id": "spacer-2-left", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            -555.75, 
+            -548.75, 
+            44.25, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            -555.75, 
+            -548.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000546
+        }, 
+        {
+          "id": "spacer-2-right", 
+          "expectedVolumeMm3": 64929.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 64929.0, 
+          "expectedBoundsMm": [
+            548.75, 
+            555.75, 
+            44.25, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            548.75, 
+            555.75, 
+            44.249999999999957, 
+            1455.7499999999998, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 64929.000000000575
+        }, 
+        {
+          "id": "spacer-2-sill", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            44.25, 
+            51.25, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000000051
+        }, 
+        {
+          "id": "spacer-2-head", 
+          "expectedVolumeMm3": 50485.0, 
+          "nativeType": "Extrusion", 
+          "material": "LITHIC Glazing Spacer Aluminium", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 50485.0, 
+          "expectedBoundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "boundsMm": [
+            -548.75, 
+            548.75, 
+            1448.75, 
+            1455.75, 
+            15.5, 
+            33.5
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 50485.000000001623
+        }, 
+        {
+          "id": "aluminium-head-jamb-return", 
+          "expectedVolumeMm3": 510530.09631813812, 
+          "nativeType": "GeomCombination", 
+          "material": "LITHIC Aluminium graphite", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 513536.71741188812, 
+          "expectedBoundsMm": [
+            -600.0, 
+            600.0, 
+            0.0, 
+            1500.0, 
+            40.5, 
+            62.5
+          ], 
+          "boundsMm": [
+            -600.00000000000011, 
+            600.00000000000011, 
+            -6.7679195581149545e-14, 
+            1500.0, 
+            40.499999999999858, 
+            62.500000000000057
+          ], 
+          "volumeRule": "bounded native join of overlapping source returns", 
+          "volumeMm3": 512075.05824314512
+        }, 
+        {
+          "id": "aluminium-sill", 
+          "expectedVolumeMm3": 119783.11438723197, 
+          "nativeType": "GeomCombination", 
+          "material": "LITHIC Aluminium graphite", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 119783.11438723197, 
+          "expectedBoundsMm": [
+            -600.0, 
+            600.0, 
+            0.0, 
+            49.433, 
+            40.5, 
+            62.5
+          ], 
+          "boundsMm": [
+            -600.0, 
+            600.0, 
+            -3.3839597790574773e-14, 
+            49.433000000000021, 
+            40.499999999999957, 
+            62.500000000000021
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 119783.11438723089
+        }, 
+        {
+          "id": "seal-perimeter", 
+          "expectedVolumeMm3": 28512.799999999053, 
+          "nativeType": "Sweep", 
+          "material": "LITHIC Glazing Seal - prototype elastomer", 
+          "passed": true, 
+          "maximumJoinedVolumeMm3": 28512.799999999053, 
+          "expectedBoundsMm": [
+            -553.0, 
+            553.0, 
+            47.0, 
+            1453.0, 
+            37.5, 
+            40.5
+          ], 
+          "boundsMm": [
+            -553.00000000000011, 
+            553.00000000000011, 
+            46.999999999999844, 
+            1453.0000000000002, 
+            37.499999999999957, 
+            40.499999999999986
+          ], 
+          "volumeRule": "analytic polygon volume", 
+          "volumeMm3": 28512.799999938186
+        }
+      ], 
+      "reopenedWarnings": [], 
+      "hostedGeometryStablePassed": true, 
+      "projectWarnings": [], 
+      "projectReopened": true, 
+      "familyFile": "LITHIC-AFKC-1200x1500.rfa", 
+      "familyWarnings": [], 
+      "materialsBoundPassed": true, 
+      "status": "passed", 
+      "geometryMode": "fixed-size-snapshot", 
+      "provenancePassed": true, 
+      "exteriorPassed": true, 
+      "nativeParameterFlex": false, 
+      "openingPersisted": true, 
+      "hostDepthConstraints": {
+        "explicitDimensionIds": [
+          "a33b662e-bf4a-4757-9a50-779953583326-00002162", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002163", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002164", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002165", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002166", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002167", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002168", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002169", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000216a", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000216b", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000216c", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000216d", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000216e", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000216f", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002170", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002171", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002172", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002173", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002174", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002175", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002176", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002177", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002178", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002179", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000217a", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000217b", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000217c", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000217d", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000217e", 
+          "a33b662e-bf4a-4757-9a50-779953583326-0000217f", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002180", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002181", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002182", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002183", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002184", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002185", 
+          "a33b662e-bf4a-4757-9a50-779953583326-00002186"
+        ], 
+        "unsupportedAutomaticDimensions": [
+          {
+            "automaticDimensionId": 7804, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7809, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7821, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7824, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7829, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7838, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7851, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7875, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7932, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7941, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7945, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7956, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 7958, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8043, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8050, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8054, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8066, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8068, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8129, 
+            "reason": "Invalid number of references."
+          }, 
+          {
+            "automaticDimensionId": 8466, 
+            "reason": "Invalid number of references."
+          }
+        ], 
+        "planCoordinateConstraints": {
+          "referencePlanes": 53, 
+          "alignedSymbolicEdges": 124
+        }, 
+        "method": "Locked offsets from Center (Front/Back), replacing host-face automatic dimensions"
+      }, 
+      "projectSha256": "13187ba932d846dd9f33f73aba7cbc1e9de2fd5d99b011fcbc4e96b79290938b", 
+      "hostSymbolViewIds": {
+        "coarse": "853c5420-1143-454c-af56-5fc2f6571990-00001368", 
+        "medium": "853c5420-1143-454c-af56-5fc2f6571990-00001372", 
+        "fine": "853c5420-1143-454c-af56-5fc2f6571990-0000137c"
+      }, 
+      "claddingOverlapMm3": 0.0, 
+      "hostPersisted": true
+    }
+  ], 
+  "sourceBuilder": "lithic-afkc-desktop/0.2.1", 
+  "revitVersion": "2024", 
+  "geometryChecksPassed": true, 
+  "templateSha256": "119e6e484175948046e95bad6a1d9c1f05eb544c5a6ff20722255b7276b2952b", 
+  "requestSha256": "58dc68cd289d73ad2247ea89584b4261ea409c74e5d7efc1e696477e1b3f38fd", 
+  "geometryMode": "fixed-size-snapshot", 
+  "manufacturerApproved": false, 
+  "nativeParameterFlex": false
+}

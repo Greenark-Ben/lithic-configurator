@@ -9,3 +9,9 @@ playwright-report/
 
 __pycache__/
 *.pyc
+
+# Licensed template and generated private APS payloads
+cloud/artifacts/
+cloud/package/
+cloud/bin/
+cloud/obj/

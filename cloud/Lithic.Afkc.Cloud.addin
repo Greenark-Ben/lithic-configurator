@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns><AddIn Type="DBApplication"><Name>LITHIC AFKC Cloud Proof</Name>
+<Assembly>Lithic.Afkc.Cloud.dll</Assembly><AddInId>425AE998-485E-40C3-8C94-8A18C038E9C9</AddInId>
+<FullClassName>Lithic.Afkc.Cloud.CloudApplication</FullClassName><VendorId>LTHC</VendorId>
+<VendorDescription>LITHIC</VendorDescription></AddIn></RevitAddIns>
