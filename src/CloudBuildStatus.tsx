@@ -1,0 +1,6 @@
+import type {CloudJob} from './useCloudBuild';
+const labels={preparing:'Preparing your build',queued:'Queued for Revit',building:'Building your family',checking:'Checking native results',ready:'Your Revit family is ready',failed:'Build could not complete','needs-attention':'Build needs attention'};
+export default function CloudBuildStatus({job,error}:{job:CloudJob|null;error:string}){
+ if(!job&&!error)return null;
+ return <div className="clarification cloud-build" aria-live="polite">{job&&<><strong>{labels[job.status]}</strong><p className="evidence-note">{job.sizeMm.join(' × ')} mm · Revit 2024{job.configuration&&<> · {job.configuration.interior} / {job.configuration.exterior}</>}</p>{job.status==='ready'?<><p className="evidence-note">Native geometry, materials, hosting and plan checks passed. Review the family in Revit before project use.</p><div className="cloud-downloads"><a className="secondary download" href={job.downloads?.family}>Download this build</a><a href={job.downloads?.evidence}>Models &amp; check report</a></div></>:<p className="evidence-note">{job.status==='needs-attention'||job.status==='failed'?job.error:'You can keep exploring while Revit builds this configuration.'}</p>}</>}{error&&<p className="error" role="alert">{error}</p>}</div>;
+}

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Lithic.Afkc.Cloud</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RevitInstall Condition="'$(RevitInstall)' == ''">C:\Program Files\Autodesk\Revit 2024</RevitInstall>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RevitAPI"><HintPath>$(RevitInstall)\RevitAPI.dll</HintPath><Private>false</Private></Reference>
+    <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2024.0.2" />
+    <PackageReference Include="IronPython" Version="2.7.12" />
+    <PackageReference Include="IronPython.StdLib" Version="2.7.12" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

@@ -7,3 +7,6 @@
 .proposal-field{margin:18px 0;padding-bottom:14px;border-bottom:1px solid var(--border,#deded5)}.proposal-field label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}.proposal-field input{width:100%;box-sizing:border-box}.proposal-field .evidence-note{overflow-wrap:anywhere}
 
 .scene-preview{height:100%;position:relative}.dimension-overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden}.dimension-anchor{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}.height-anchor{width:20px;height:80px;display:grid;place-items:center}
+.cloud-downloads{display:flex;flex-direction:column;gap:10px;margin-top:12px}.cloud-downloads a{color:var(--text);text-decoration:none;font-size:12px}.cloud-downloads a.secondary{display:flex;justify-content:center;text-align:center}.cloud-downloads a:focus-visible{outline:2px solid #d7c4a3;outline-offset:3px}
+
+.cloud-primary{display:flex;justify-content:center;text-decoration:none}
