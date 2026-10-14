@@ -66,7 +66,7 @@ def validate(raw, manifest, source):
     config = request['configuration']
     width, height = config['width'], config['height']
     if not all(finite(n) and 300 <= n <= 3000 for n in [width, height]):
-        raise ValueError('Overall dimensions must be 300â€“3000 mm.')
+        raise ValueError('Overall dimensions must be 300-3000 mm.')
     if config.get('interior') not in ['timber', 'white'] or config.get('exterior') not in ['graphite', 'white']:
         raise ValueError('Unsupported finish selection.')
     if request.get('parts') != expected_parts(source, width, height):

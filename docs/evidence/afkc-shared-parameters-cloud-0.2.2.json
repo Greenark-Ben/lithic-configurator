@@ -413,5 +413,14 @@
   },
   "nativeParameterFlex": false,
   "manufacturerApproved": false,
-  "visualReviewPassed": false
+  "visualReviewPassed": false,
+  "executedArtifacts": {
+    "adapter": "lithic-afkc-aps-browser/0.2",
+    "sourceBuilder": "lithic-afkc-desktop/0.2.2",
+    "engine": "Autodesk.Revit+2024",
+    "files": {
+      "appbundle.zip": "13fd8a44210942097c58decfb38bd5c7f737f2f26425a2389bc23404f1480c5f",
+      "window.rft": "119e6e484175948046e95bad6a1d9c1f05eb544c5a6ff20722255b7276b2952b"
+    }
+  }
 }

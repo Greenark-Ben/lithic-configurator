@@ -8,7 +8,7 @@
   "packageHashes": {
     "script.py": "e805eee72f98cef4c685fd24dbcad4d311d667e72c62f983a277a3a640a4b0cd",
     "authoring.py": "adced184d9c73727ebfb951e6394eb505ca495e1c7e071531a48b6a135b91900",
-    "contract.py": "928e737ebae8cb1ccc886a9787e090c790bac56dff71c8241a5b96a5ff403e30",
+    "contract.py": "4229d0a71e50dc4a3558ec0858b47ea925af30ac8a98e55b64a71074fc689ecb",
     "drawings.py": "b8ca3daac857462adc6237b513e3535d00e329184d5a078196837f64671efef5",
     "afkc-source.json": "769047f2ac9d136af0332de9b97a429334e8143dbf5edfd8f405b0ee05eb47c1"
   },
@@ -1227,5 +1227,21 @@
         "schema": "lithic-revit-parameters/1"
       }
     }
-  ]
+  ],
+  "buildPackageHashes": {
+    "script.py": "e805eee72f98cef4c685fd24dbcad4d311d667e72c62f983a277a3a640a4b0cd",
+    "authoring.py": "adced184d9c73727ebfb951e6394eb505ca495e1c7e071531a48b6a135b91900",
+    "contract.py": "928e737ebae8cb1ccc886a9787e090c790bac56dff71c8241a5b96a5ff403e30",
+    "drawings.py": "b8ca3daac857462adc6237b513e3535d00e329184d5a078196837f64671efef5",
+    "afkc-source.json": "769047f2ac9d136af0332de9b97a429334e8143dbf5edfd8f405b0ee05eb47c1"
+  },
+  "contractMessageCorrection": {
+    "passed": true,
+    "rejectedWidthMm": 299,
+    "contractSha256": "4229d0a71e50dc4a3558ec0858b47ea925af30ac8a98e55b64a71074fc689ecb",
+    "errorMessage": "Overall dimensions must be 300-3000 mm.",
+    "validRequestAccepted": true,
+    "revitVersion": "2024",
+    "changeScope": "Error message encoding only; contract logic and geometry functions unchanged"
+  }
 }
