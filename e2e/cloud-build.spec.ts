@@ -29,3 +29,12 @@ test('restores build history and recovers an existing job without a paid submiss
  const pending=page.waitForEvent('download');await page.getByRole('link',{name:'Download this build',exact:true}).click();expect((await pending).suggestedFilename()).toBe('LITHIC-AFKC-900x1200.rfa');
  await page.reload();await page.getByRole('button',{name:'Review AFKC source profiles'}).click();await page.getByRole('button',{name:'Approve product definition'}).click();await expect(page.getByText('Your Revit family is ready',{exact:true})).toBeVisible();await expect(page.locator('canvas')).toBeVisible();expect(submissions).toBe(0);expect(recoveries).toBe(1);
 });
+
+test('a late initial history response cannot replace the newly submitted build',async({page})=>{
+ test.setTimeout(60000);let releaseHistory:()=>void=()=>{},submissions=0,started=false;
+ const gate=new Promise<void>(resolve=>releaseHistory=resolve),old={id:'a'.repeat(64),status:'ready',createdAt:'2026-10-13T10:00:00Z',sizeMm:[900,1200],configuration:{width:900,height:1200,interior:'timber',exterior:'graphite'},nativeChecksPassed:true,downloads:{family:'/old.rfa'}},fresh={...old,id:'b'.repeat(64),status:'queued',createdAt:'2026-10-14T10:00:00Z',sizeMm:[1200,1500],configuration:{...old.configuration,width:1200,height:1500},nativeChecksPassed:false,downloads:undefined};
+ await page.route('**/api/revit/status',r=>r.fulfill({json:{available:true}}));
+ await page.route('**/api/revit/jobs',async r=>{if(r.request().method()==='POST'){submissions++;started=true;await r.fulfill({status:202,json:fresh});return}if(!started)await gate;await r.fulfill({json:{jobs:[old],usage:{limit:10,used:1,remaining:9}}})});
+ await page.route('**/api/revit/jobs/*',r=>r.fulfill({json:fresh}));
+ await page.goto('/');await page.getByRole('button',{name:'Review AFKC source profiles'}).click();await page.getByRole('button',{name:'Approve product definition'}).click();await page.getByRole('button',{name:'Build Revit family',exact:true}).click();await expect(page.getByText('Queued for Revit',{exact:true})).toBeVisible();releaseHistory();await page.waitForTimeout(500);await expect(page.getByText('Queued for Revit',{exact:true})).toBeVisible();await expect(page.getByText('Your Revit family is ready',{exact:true})).toHaveCount(0);expect(submissions).toBe(1);
+});

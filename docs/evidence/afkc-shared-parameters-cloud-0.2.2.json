@@ -1,0 +1,417 @@
+{
+  "observedAtUtc": "2026-10-14T14:21:23.117000Z",
+  "builder": "lithic-afkc-desktop/0.2.2",
+  "status": "geometry-passed-awaiting-visual-review",
+  "requestSha256": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+  "familySha256": "85f2be646417fe32aeeb3fa66ab1b4de50efb5ddc0cdc9fa7bbae00185d12046",
+  "projectSha256": "65551502e502296d959e761a9188ad59fc08f0c07731278a74faef2714757860",
+  "liveCheck": {
+    "url": "https://lithic-configurator.ben333051.chatgpt.site",
+    "status": "passed",
+    "browserJobId": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+    "sizeMm": [
+      1200,
+      1500
+    ],
+    "familySha256": "85f2be646417fe32aeeb3fa66ab1b4de50efb5ddc0cdc9fa7bbae00185d12046",
+    "sourceBuilder": "lithic-afkc-desktop/0.2.2",
+    "sharedParametersPassed": true,
+    "initialScheduleRows": 5,
+    "reopenedScheduleRows": 5,
+    "historicalDownloadRetained": true,
+    "paidBuildsSubmitted": 1,
+    "additionalSubmissions": 0
+  },
+  "sharedFamilyParameters": [
+    {
+      "passed": true,
+      "name": "Timber Material",
+      "guid": "89233a69-2130-54f3-97c1-5099f3132b53"
+    },
+    {
+      "passed": true,
+      "name": "Aluminium Material",
+      "guid": "8d688857-f368-50e3-8edb-c86fa80a8497"
+    },
+    {
+      "passed": true,
+      "name": "Glazing Material",
+      "guid": "4f9948f6-c890-5b8e-b816-364776608ebb"
+    },
+    {
+      "passed": true,
+      "name": "Glazing Spacer Material",
+      "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e"
+    },
+    {
+      "passed": true,
+      "name": "Glazing Seal Material",
+      "guid": "7e803715-2853-57eb-8061-f06126a367a3"
+    },
+    {
+      "passed": true,
+      "name": "LITHIC Request SHA256",
+      "guid": "a08321d9-4db4-5642-88a3-2bb392356b84"
+    },
+    {
+      "passed": true,
+      "name": "LITHIC Source Drawing",
+      "guid": "57488663-609d-5303-a491-9e67d3f9beaa"
+    },
+    {
+      "passed": true,
+      "name": "LITHIC Builder",
+      "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5"
+    },
+    {
+      "passed": true,
+      "name": "LITHIC Evidence Status",
+      "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2"
+    },
+    {
+      "passed": true,
+      "name": "LITHIC Geometry Mode",
+      "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109"
+    }
+  ],
+  "sharedParameters": {
+    "expectedValues": [
+      "LITHIC Timber timber",
+      "LITHIC Aluminium graphite",
+      "LITHIC Glass Panes",
+      "LITHIC Glazing Spacer Aluminium",
+      "LITHIC Glazing Seal - prototype elastomer",
+      "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+      "61-37-F221 rev A",
+      "lithic-afkc-desktop/0.2.2",
+      "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+      "fixed-size-snapshot"
+    ],
+    "passed": true,
+    "scheduleCells": [
+      [
+        "Timber Material",
+        "Aluminium Material",
+        "Glazing Material",
+        "Glazing Spacer Material",
+        "Glazing Seal Material",
+        "LITHIC Request SHA256",
+        "LITHIC Source Drawing",
+        "LITHIC Builder",
+        "LITHIC Evidence Status",
+        "LITHIC Geometry Mode"
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ]
+    ],
+    "parameters": [
+      {
+        "passed": true,
+        "name": "Timber Material",
+        "guid": "89233a69-2130-54f3-97c1-5099f3132b53",
+        "value": "LITHIC Timber timber"
+      },
+      {
+        "passed": true,
+        "name": "Aluminium Material",
+        "guid": "8d688857-f368-50e3-8edb-c86fa80a8497",
+        "value": "LITHIC Aluminium graphite"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Material",
+        "guid": "4f9948f6-c890-5b8e-b816-364776608ebb",
+        "value": "LITHIC Glass Panes"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Spacer Material",
+        "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e",
+        "value": "LITHIC Glazing Spacer Aluminium"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Seal Material",
+        "guid": "7e803715-2853-57eb-8061-f06126a367a3",
+        "value": "LITHIC Glazing Seal - prototype elastomer"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Request SHA256",
+        "guid": "a08321d9-4db4-5642-88a3-2bb392356b84",
+        "value": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Source Drawing",
+        "guid": "57488663-609d-5303-a491-9e67d3f9beaa",
+        "value": "61-37-F221 rev A"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Builder",
+        "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5",
+        "value": "lithic-afkc-desktop/0.2.2"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Evidence Status",
+        "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2",
+        "value": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Geometry Mode",
+        "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109",
+        "value": "fixed-size-snapshot"
+      }
+    ],
+    "matchingRows": 5,
+    "schema": "lithic-revit-parameters/1"
+  },
+  "reopenedSharedParameters": {
+    "expectedValues": [
+      "LITHIC Timber timber",
+      "LITHIC Aluminium graphite",
+      "LITHIC Glass Panes",
+      "LITHIC Glazing Spacer Aluminium",
+      "LITHIC Glazing Seal - prototype elastomer",
+      "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+      "61-37-F221 rev A",
+      "lithic-afkc-desktop/0.2.2",
+      "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+      "fixed-size-snapshot"
+    ],
+    "passed": true,
+    "scheduleCells": [
+      [
+        "Timber Material",
+        "Aluminium Material",
+        "Glazing Material",
+        "Glazing Spacer Material",
+        "Glazing Seal Material",
+        "LITHIC Request SHA256",
+        "LITHIC Source Drawing",
+        "LITHIC Builder",
+        "LITHIC Evidence Status",
+        "LITHIC Geometry Mode"
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "LITHIC Timber timber",
+        "LITHIC Aluminium graphite",
+        "LITHIC Glass Panes",
+        "LITHIC Glazing Spacer Aluminium",
+        "LITHIC Glazing Seal - prototype elastomer",
+        "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ]
+    ],
+    "parameters": [
+      {
+        "passed": true,
+        "name": "Timber Material",
+        "guid": "89233a69-2130-54f3-97c1-5099f3132b53",
+        "value": "LITHIC Timber timber"
+      },
+      {
+        "passed": true,
+        "name": "Aluminium Material",
+        "guid": "8d688857-f368-50e3-8edb-c86fa80a8497",
+        "value": "LITHIC Aluminium graphite"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Material",
+        "guid": "4f9948f6-c890-5b8e-b816-364776608ebb",
+        "value": "LITHIC Glass Panes"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Spacer Material",
+        "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e",
+        "value": "LITHIC Glazing Spacer Aluminium"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Seal Material",
+        "guid": "7e803715-2853-57eb-8061-f06126a367a3",
+        "value": "LITHIC Glazing Seal - prototype elastomer"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Request SHA256",
+        "guid": "a08321d9-4db4-5642-88a3-2bb392356b84",
+        "value": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Source Drawing",
+        "guid": "57488663-609d-5303-a491-9e67d3f9beaa",
+        "value": "61-37-F221 rev A"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Builder",
+        "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5",
+        "value": "lithic-afkc-desktop/0.2.2"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Evidence Status",
+        "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2",
+        "value": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Geometry Mode",
+        "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109",
+        "value": "fixed-size-snapshot"
+      }
+    ],
+    "matchingRows": 5,
+    "schema": "lithic-revit-parameters/1"
+  },
+  "nativeFormCounts": {
+    "voidExtrusions": 4,
+    "freeForms": 0,
+    "directShapes": 0,
+    "sweeps": 4,
+    "solidExtrusions": 19
+  },
+  "nativeParameterFlex": false,
+  "manufacturerApproved": false,
+  "visualReviewPassed": false
+}
