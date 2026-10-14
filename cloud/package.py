@@ -47,6 +47,6 @@ with zipfile.ZipFile(artifacts / 'appbundle.zip', 'w', zipfile.ZIP_DEFLATED) as 
     for file in contents.parent.rglob('*'):
         if file.is_file(): archive.write(file, file.relative_to(root / 'package').as_posix())
 shutil.copy2(Path(args.template), artifacts / 'window.rft')
-manifest = {'adapter':'lithic-afkc-aps-browser/0.2','sourceBuilder':'lithic-afkc-desktop/0.2.1','engine':'Autodesk.Revit+2024','files':{name:hashlib.sha256((artifacts / name).read_bytes()).hexdigest() for name in ['appbundle.zip','window.rft']}}
+manifest = {'adapter':'lithic-afkc-aps-browser/0.2','sourceBuilder':'lithic-afkc-desktop/0.2.2','engine':'Autodesk.Revit+2024','files':{name:hashlib.sha256((artifacts / name).read_bytes()).hexdigest() for name in ['appbundle.zip','window.rft']}}
 (root / 'artifacts-manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
 print('Private APS artifacts packaged; desktop geometry functions retained.')

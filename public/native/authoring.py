@@ -2,9 +2,71 @@
 """AFKC native forms and drawing conventions. No FreeForm or DirectShape fallback."""
 from __future__ import division
 from pyrevit import DB
+import io, os, tempfile
+from System import Guid
 from contract import expected_parts, native_specs, polygon_moments
 
 MM=1/304.8
+
+
+def shared_parameters(document, source):
+    """Create immutable shared identities without changing the user's definition file."""
+    app=document.Application;previous=app.SharedParametersFilename
+    handle,path=tempfile.mkstemp(prefix='lithic-shared-',suffix='.txt');os.close(handle)
+    result={}
+    try:
+        app.SharedParametersFilename=path
+        group=app.OpenSharedParameterFile().Groups.Create('LITHIC')
+        for entry in source['authoringRules']['sharedParameterSchema']['parameters']:
+            name=entry['name'];kind=DB.SpecTypeId.Reference.Material if entry['dataType']=='material' else DB.SpecTypeId.String.Text
+            options=DB.ExternalDefinitionCreationOptions(name,kind)
+            options.GUID=Guid(entry['guid']);options.Visible=True;options.UserModifiable=entry['editable']
+            options.Description='LITHIC '+source['authoringRules']['sharedParameterSchema']['version']+'; fixed-size prototype'
+            definition=group.Definitions.Create(options)
+            if any(p.Definition.Name==name for p in document.FamilyManager.Parameters):
+                raise ValueError('Template already contains LITHIC parameter '+name)
+            group_id=DB.GroupTypeId.Materials if entry['dataType']=='material' else DB.GroupTypeId.IdentityData
+            try:result[name]=document.FamilyManager.AddParameter(definition,group_id,False)
+            except Exception as error:raise ValueError('Cannot add shared '+name+': '+str(error))
+        return result
+    finally:
+        app.SharedParametersFilename=previous
+        os.remove(path)
+
+def shared_family_checks(document,source):
+    result=[]
+    for entry in source['authoringRules']['sharedParameterSchema']['parameters']:
+        p=next((p for p in document.FamilyManager.Parameters if p.Definition.Name==entry['name']),None)
+        passed=p is not None and p.IsShared and str(p.GUID).lower()==entry['guid'] and not p.IsInstance
+        if passed:
+            wanted=DB.SpecTypeId.Reference.Material if entry['dataType']=='material' else DB.SpecTypeId.String.Text
+            passed=p.Definition.GetDataType()==wanted and p.UserModifiable==entry['editable']
+        result.append({'name':entry['name'],'guid':str(p.GUID) if p and p.IsShared else None,'passed':passed})
+    return result
+
+def shared_schedule(project,source):
+    view=DB.ViewSchedule.CreateSchedule(project,DB.ElementId(DB.BuiltInCategory.OST_Windows))
+    view.Name='LITHIC configuration and materials'
+    available=list(view.Definition.GetSchedulableFields())
+    for entry in source['authoringRules']['sharedParameterSchema']['parameters']:
+        parameter=DB.SharedParameterElement.Lookup(project,Guid(entry['guid']))
+        field=next((f for f in available if parameter and f.ParameterId==parameter.Id),None)
+        if field is None:raise ValueError('Shared parameter is not schedulable: '+entry['name'])
+        view.Definition.AddField(field).ColumnHeading=entry['name']
+    return view
+
+def shared_project_checks(project,symbol,source,view):
+    entries=source['authoringRules']['sharedParameterSchema']['parameters'];checks=[];values=[]
+    for entry in entries:
+        p=symbol.get_Parameter(Guid(entry['guid']))
+        value=project.GetElement(p.AsElementId()).Name if p and entry['dataType']=='material' else p.AsString() if p else None
+        values.append(value)
+        passed=p is not None and p.IsShared and bool(value) and p.UserModifiable==entry['editable']
+        checks.append({'name':entry['name'],'guid':entry['guid'],'value':value,'passed':passed})
+    data=view.GetTableData().GetSectionData(DB.SectionType.Body)
+    rows=[[view.GetCellText(DB.SectionType.Body,r,c) for c in range(data.FirstColumnNumber,data.LastColumnNumber+1)] for r in range(data.FirstRowNumber,data.LastRowNumber+1)]
+    data_rows=[row for row in rows if row==values]
+    return {'schema':source['authoringRules']['sharedParameterSchema']['version'],'parameters':checks,'scheduleCells':rows,'expectedValues':values,'matchingRows':len(data_rows),'passed':all(c['passed'] for c in checks) and len(data_rows)==5}
 
 def point(x,y,z):return DB.XYZ(x*MM,y*MM,z*MM)
 
@@ -83,11 +145,11 @@ def lock_host_depth(document,host):
     plan_constraints=lock_plan_coordinates(document)
     return {'method':'Locked offsets from Center (Front/Back), replacing host-face automatic dimensions','explicitDimensionIds':added,'planCoordinateConstraints':plan_constraints,'unsupportedAutomaticDimensions':unsupported}
 
-def create_forms(document,source,width,height,exterior,materials):
+def create_forms(document,source,width,height,exterior,materials,shared):
     manager=document.FamilyManager
     parameters={}
     for role,name in source['authoringRules']['materialParameters'].items():
-        fp=manager.AddParameter(name,DB.GroupTypeId.Materials,DB.SpecTypeId.Reference.Material,False)
+        fp=shared[name]
         manager.Set(fp,materials[role]);parameters[role]=fp
     def bind(element,name,role):
         element.Subcategory=category(document,'LITHIC '+name)

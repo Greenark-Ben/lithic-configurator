@@ -1,5 +1,6 @@
+import {validateSharedParameters} from './sharedParameters';
 import {createBuildRequest,PRESETS,type Approval,type Configuration} from './engine';
-export const NATIVE_BUILDER='lithic-afkc-desktop/0.2.1';
+export const NATIVE_BUILDER='lithic-afkc-desktop/0.2.2';
 export async function requestIdentity(a:Approval,c:Configuration){
  const text=JSON.stringify(createBuildRequest(a,c),null,2);
  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
@@ -36,6 +37,7 @@ export async function readNativeReport(value:unknown,a:Approval,c:Configuration)
   if(result.status==='passed'){
    const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed'];
    if(required.some(k=>result[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(result[k])||result[k].length)||!Array.isArray(result.parts)||result.parts.length!==22||result.parts.some((p:any)=>p.passed!==true)||typeof result.familyFile!=='string'||!/^LITHIC-AFKC-[\d_x]+\.rfa$/.test(result.familyFile)||!/^[a-f0-9]{64}$/.test(result.familySha256))throw new Error('The claimed pass lacks its native check evidence.');
+   validateSharedParameters(result,identity.sha256,NATIVE_BUILDER);
    const ids=[...createBuildRequest(a,{...c,width:result.sizeMm[0],height:result.sizeMm[1]}).parts.filter(p=>p.role!=='aluminium'&&p.role!=='seal').map(p=>p.id),'aluminium-head-jamb-return','aluminium-sill','seal-perimeter'];
    const counts=result.nativeFormCounts;
    const hosts=result.hostThicknessCases;

@@ -16,7 +16,7 @@ from pyrevit import DB, forms, revit
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from contract import BUILDER, validate, expected_parts, verification_sizes, native_specs
-from authoring import create_forms, create_plan_symbols, authoring_checks, lock_host_depth
+from authoring import create_forms, create_plan_symbols, authoring_checks, lock_host_depth, shared_parameters, shared_family_checks, shared_schedule, shared_project_checks
 from drawings import create_review_views, export_review_views
 
 MM = 1.0 / 304.8
@@ -76,7 +76,7 @@ def text_parameter(document, name, value):
     manager = document.FamilyManager
     parameter = next((p for p in manager.Parameters if p.Definition.Name == name), None)
     if parameter is None:
-        parameter = manager.AddParameter(name, DB.GroupTypeId.IdentityData, DB.SpecTypeId.String.Text, False)
+        raise ValueError('Missing shared provenance parameter '+name)
     manager.Set(parameter, value)
 
 def material(document, name, color, transparency=0):
@@ -198,6 +198,7 @@ def build_case(application, template, output, request, source, width, height, di
             manager = family.FamilyManager
             if manager.CurrentType is None:
                 manager.NewType('AFKC '+label)
+            shared = shared_parameters(family, source)
             for name, value in [('Width', width), ('Height', height), ('AFKC Timber Depth', 105), ('AFKC Frame Sightline', 53.5), ('AFKC Glazing Assembly Depth', 48)]:
                 fixed_parameter(family, name, value)
             for name, value in [('LITHIC Request SHA256', digest), ('LITHIC Evidence Status', 'UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE'), ('LITHIC Source Drawing', '61-37-F221 rev A'), ('LITHIC Builder', BUILDER), ('LITHIC Geometry Mode', 'fixed-size-snapshot')]:
@@ -209,7 +210,7 @@ def build_case(application, template, output, request, source, width, height, di
                 'glazing': material(family, 'LITHIC Glass Panes', (181, 197, 194), 72),
                 'spacer': material(family, 'LITHIC Glazing Spacer Aluminium', (135,145,151)),
                 'seal': material(family, 'LITHIC Glazing Seal - prototype elastomer', (34,35,37))}
-            elements,input_checks = create_forms(family, source, width, height, exterior, materials)
+            elements,input_checks = create_forms(family, source, width, height, exterior, materials, shared)
             result['planSymbolCounts'] = create_plan_symbols(family,source,width,height,exterior,elements['aluminium-head-jamb-return'])
             element_ids = {name:element.UniqueId for name,element in elements.items()}
             opening_profile = loop([DB.XYZ(x*MM, 0, z*MM) for x, z in [(-width/2, 0), (width/2, 0), (width/2, height), (-width/2, height)]])
@@ -232,6 +233,7 @@ def build_case(application, template, output, request, source, width, height, di
         result['reopenedParts'] = family_checks(family, parts, reopened, exterior, materials, source)
         result['persistenceGeometryPassed'] = len(reopened) == 22 and all(p['passed'] for p in result['reopenedParts'])
         result.update(authoring_checks(family,source,width,height,exterior,reopened,input_checks))
+        result['sharedFamilyParameters'] = shared_family_checks(family,source)
         project = application.NewProjectDocument(DB.UnitSystem.Metric)
         loaded = family.LoadFamily(project)
         symbol_ids = list(loaded.GetFamilySymbolIds())
@@ -270,6 +272,10 @@ def build_case(application, template, output, request, source, width, height, di
             result['wallId'] = wall.UniqueId
             expected_plans=family_plan_signatures(family)
             result['hostThicknessCases'],result['hostSymbolViewIds']=create_host_cases(project,symbol,level,width,height,parts,exterior,expected_plans)
+            schedule = shared_schedule(project,source)
+            schedule_id = schedule.UniqueId
+            project.Regenerate()
+            result['sharedParameters'] = shared_project_checks(project,symbol,source,schedule)
             views = create_review_views(project,instance,width,height,exterior)
             view_ids = [v.UniqueId for v in views]
             if tx.Commit() != DB.TransactionStatus.Committed:
@@ -286,6 +292,8 @@ def build_case(application, template, output, request, source, width, height, di
         persisted_instance = project.GetElement(result['instanceId'])
         persisted_wall = project.GetElement(result['wallId'])
         result['projectReopened'] = True
+        result['reopenedSharedParameters'] = shared_project_checks(project,persisted_instance.Symbol,source,project.GetElement(schedule_id))
+        result['sharedParametersPassed'] = all(c['passed'] for c in result['sharedFamilyParameters']) and result['sharedParameters']['passed'] and result['reopenedSharedParameters']['passed']
         result['hostPersisted'] = persisted_instance.Host.Id == persisted_wall.Id
         result['drawingViewsPersisted'] = all(project.GetElement(uid) is not None for uid in view_ids)
         result['visualReviewStatus'] = 'exported-views-await-visual-review'
@@ -302,7 +310,7 @@ def build_case(application, template, output, request, source, width, height, di
         result['familySha256'] = file_hash(family_path)
         result['projectFile'] = os.path.basename(project_path)
         result['projectSha256'] = file_hash(project_path)
-        required = ['scheduleDimensionsPassed', 'provenancePassed', 'hostPassed', 'openingPassed', 'exteriorPassed', 'familyReopened', 'projectReopened', 'persistenceGeometryPassed', 'hostPersisted', 'openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed']
+        required = ['sharedParametersPassed', 'scheduleDimensionsPassed', 'provenancePassed', 'hostPassed', 'openingPassed', 'exteriorPassed', 'familyReopened', 'projectReopened', 'persistenceGeometryPassed', 'hostPersisted', 'openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed']
         result['status'] = 'passed' if all(result.get(k) is True for k in required) and all(p['passed'] for p in result['parts']) and not result['familyWarnings'] and not result['projectWarnings'] and not result['reopenedWarnings'] else 'failed'
     except Exception as error:
         result['error'] = str(error)

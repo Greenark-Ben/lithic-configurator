@@ -1,3 +1,5 @@
+import {sharedFixture} from '../src/sharedParameters.test-fixture';
+import {NATIVE_BUILDER} from '../src/nativeHandoff';
 import {describe,it,expect,vi} from 'vitest';
 import {revitRoute,validateRequest,validateReport,sha256,type CloudStore,type CloudEnv} from './revit';
 import {AFKC} from '../src/profiles';
@@ -18,7 +20,7 @@ const post=()=>new Request('https://lithic.test/api/revit/jobs',{method:'POST',h
 const get=(id:string,suffix='',user='owner')=>new Request(`https://lithic.test/api/revit/jobs/${id}${suffix}`,{headers:{'oai-authenticated-user-id':user}});
 const assets={bundle:new Uint8Array([1,2,3]),template:new Uint8Array([4,5]),bundleSha256:'fixture'};
 async function fixture(change?:(r:any)=>void){
- const report:any=structuredClone(evidence),id=await sha256(new TextEncoder().encode(requestText));report.adapter='lithic-afkc-aps-browser/0.2';report.requestSha256=id;
+ const report:any=structuredClone(evidence),id=await sha256(new TextEncoder().encode(requestText));report.adapter='lithic-afkc-aps-browser/0.2';report.requestSha256=id;report.sourceBuilder=NATIVE_BUILDER;Object.assign(report.cases[0],sharedFixture(id));
  const family=new TextEncoder().encode('TEST ONLY RFA BYTES'),project=new TextEncoder().encode('TEST ONLY RVT BYTES');report.cases[0].familySha256=await sha256(family);report.cases[0].projectSha256=await sha256(project);change?.(report);
  const zip=zipFiles([{name:'cloud-proof-report.json',data:new TextEncoder().encode(JSON.stringify(report))},{name:report.cases[0].familyFile,data:family},{name:report.cases[0].projectFile,data:project}]);
  let phase='pending',workItems=0;

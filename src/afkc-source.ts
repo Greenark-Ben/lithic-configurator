@@ -671,7 +671,7 @@ export const AFKC_SOURCE = {
     }
   },
   "authoringRules": {
-    "version": "afkc-native-authoring/0.2",
+    "version": "afkc-native-authoring/0.2.2",
     "visualBaseline": {
       "widthMm": 1200,
       "heightMm": 1500,
@@ -694,6 +694,81 @@ export const AFKC_SOURCE = {
       "glazing": "Glazing Material",
       "spacer": "Glazing Spacer Material",
       "seal": "Glazing Seal Material"
+    },
+    "sharedParameterSchema": {
+      "version": "lithic-revit-parameters/1",
+      "parameters": [
+        {
+          "name": "Timber Material",
+          "guid": "89233a69-2130-54f3-97c1-5099f3132b53",
+          "dataType": "material",
+          "binding": "type",
+          "editable": true
+        },
+        {
+          "name": "Aluminium Material",
+          "guid": "8d688857-f368-50e3-8edb-c86fa80a8497",
+          "dataType": "material",
+          "binding": "type",
+          "editable": true
+        },
+        {
+          "name": "Glazing Material",
+          "guid": "4f9948f6-c890-5b8e-b816-364776608ebb",
+          "dataType": "material",
+          "binding": "type",
+          "editable": true
+        },
+        {
+          "name": "Glazing Spacer Material",
+          "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e",
+          "dataType": "material",
+          "binding": "type",
+          "editable": true
+        },
+        {
+          "name": "Glazing Seal Material",
+          "guid": "7e803715-2853-57eb-8061-f06126a367a3",
+          "dataType": "material",
+          "binding": "type",
+          "editable": true
+        },
+        {
+          "name": "LITHIC Request SHA256",
+          "guid": "a08321d9-4db4-5642-88a3-2bb392356b84",
+          "dataType": "text",
+          "binding": "type",
+          "editable": false
+        },
+        {
+          "name": "LITHIC Source Drawing",
+          "guid": "57488663-609d-5303-a491-9e67d3f9beaa",
+          "dataType": "text",
+          "binding": "type",
+          "editable": false
+        },
+        {
+          "name": "LITHIC Builder",
+          "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5",
+          "dataType": "text",
+          "binding": "type",
+          "editable": false
+        },
+        {
+          "name": "LITHIC Evidence Status",
+          "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2",
+          "dataType": "text",
+          "binding": "type",
+          "editable": false
+        },
+        {
+          "name": "LITHIC Geometry Mode",
+          "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109",
+          "dataType": "text",
+          "binding": "type",
+          "editable": false
+        }
+      ]
     }
   }
 } as const;

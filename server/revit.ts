@@ -1,3 +1,4 @@
+import {validateSharedParameters} from '../src/sharedParameters';
 import {unzipSync} from 'fflate';
 import {AFKC} from '../src/profiles';
 import {createBuildRequest,configurationIssues,type Approval,type Configuration} from '../src/engine';
@@ -43,6 +44,7 @@ export function validateReport(report:any,j:Pick<Job,'requestSha256'|'sizeMm'>){
  if(c.hostThicknessCases?.length!==4||JSON.stringify(c.hostThicknessCases.map((h:any)=>h.wallThicknessMm).sort((a:number,b:number)=>a-b))!=='[100,200,300,500]')throw new Error('Hosted-wall evidence is incomplete.');
  for(const h of c.hostThicknessCases){if(h.passed!==true||h.savedReopenedPassed!==true||h.geometry?.passed!==true||h.reopenedGeometry?.passed!==true||h.openingPassed!==true||h.reopenedOpeningPassed!==true)throw new Error('Hosted-wall checks failed.');for(const k of ['planSymbols','reopenedPlanSymbols'])for(const [lod,count] of [['coarse',10],['medium',14],['fine',144]] as const){const p=h[k]?.[lod];if(p?.passed!==true||p.curveCount!==count||p.expectedCount!==count||!/^[a-f0-9]{64}$/.test(p.sha256)||p.sha256!==p.expectedSha256)throw new Error('Plan graphics checks failed.');}}
  if(!/^LITHIC-AFKC-[0-9_]+x[0-9_]+\.rfa$/.test(c.familyFile)||!/^LITHIC-AFKC-[0-9_]+x[0-9_]+-verification\.rvt$/.test(c.projectFile)||!/^[a-f0-9]{64}$/.test(c.familySha256)||!/^[a-f0-9]{64}$/.test(c.projectSha256))throw new Error('Native file evidence is incomplete.');
+ validateSharedParameters(c,j.requestSha256,NATIVE_BUILDER);
  return c;
 }
 

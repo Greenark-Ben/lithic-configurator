@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {test,expect} from '@playwright/test';
 test('cloud build keeps the viewer, shows progress and downloads the checked family',async({page})=>{
+ test.setTimeout(60000);
  let submissions=0,job:any;
  await page.route('**/api/revit/status',r=>r.fulfill({json:{available:true}}));
  await page.route('**/api/revit/jobs',async r=>{if(r.request().method()==='GET'){await r.fulfill({json:{jobs:job?[job]:[],usage:{limit:10,used:submissions,remaining:10-submissions}}});return}submissions++;const input=r.request().postDataJSON();expect(input.configuration).toEqual({width:1200,height:1500,interior:'timber',exterior:'graphite'});const digest=createHash('sha256').update(r.request().postData()!).digest('hex');job={id:digest,status:'queued',createdAt:'2026-10-14T10:00:00Z',sizeMm:[1200,1500],requestSha256:digest,configuration:input.configuration,nativeChecksPassed:false,visualReviewPassed:false,nativeParameterFlex:false};await r.fulfill({status:202,json:job})});

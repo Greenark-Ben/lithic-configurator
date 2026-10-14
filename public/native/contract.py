@@ -5,7 +5,7 @@ import hashlib
 import json
 import math
 
-BUILDER = 'lithic-afkc-desktop/0.2.1'
+BUILDER = 'lithic-afkc-desktop/0.2.2'
 CASES = [(900, 1200), (1200, 1500), (1500, 1800)]
 
 def finite(value):
@@ -53,20 +53,20 @@ def validate(raw, manifest, source):
     request = json.loads(raw.decode('utf-8'))
     if request.get('kind') != 'lithic-build-request' or request.get('schemaVersion') != '0.1' or request.get('units') != 'mm':
         raise ValueError('Unsupported build request format.')
-    if request.get('geometryEngine') != 'fixed-window-profile-sweeps/0.2' or not request.get('approvedAt'):
+    if request.get('geometryEngine') != 'fixed-window-profile-sweeps/0.2.2' or not request.get('approvedAt'):
         raise ValueError('Only reviewed AFKC profile requests are supported by this builder.')
     definition = request['definition']
     if definition.get('id') != 'elitfonster-afkc-profile-proof' or definition.get('operation') != 'fixed':
         raise ValueError('This builder only accepts the AFKC fixed-window proof.')
     profile = definition.get('profile', {})
-    if profile.get('id') != 'afkc-polygon/0.2' or profile.get('manufacturerApproved') is not False or profile.get('source') != source:
+    if profile.get('id') != 'afkc-polygon/0.2.2' or profile.get('manufacturerApproved') is not False or profile.get('source') != source:
         raise ValueError('The source profile bundle was changed or is unsupported.')
     if [definition.get(k) for k in ['frameFace', 'frameDepth', 'glazingThickness']] != [53.5, 105, 48]:
         raise ValueError('Fixed source section dimensions were changed.')
     config = request['configuration']
     width, height = config['width'], config['height']
     if not all(finite(n) and 300 <= n <= 3000 for n in [width, height]):
-        raise ValueError('Overall dimensions must be 300–3000 mm.')
+        raise ValueError('Overall dimensions must be 300â€“3000 mm.')
     if config.get('interior') not in ['timber', 'white'] or config.get('exterior') not in ['graphite', 'white']:
         raise ValueError('Unsupported finish selection.')
     if request.get('parts') != expected_parts(source, width, height):
