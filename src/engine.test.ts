@@ -23,6 +23,6 @@ describe('source-derived AFKC profiles',()=>{
  });
  it('blocks changed fixed sections and exports traceable sweeps without native claims',()=>{
   expect(()=>calculateParts({...AFKC,frameDepth:120},INITIAL)).toThrow('Source profiles require');
-  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-09'},INITIAL);expect(request.geometryEngine).toBe('fixed-window-profile-sweeps/0.2');expect(request.definition.profile?.manufacturerApproved).toBe(false);expect(request.nativeStatus).toBe('not-built');expect(request.limitations).toContain(AFKC.profile!.source.junctionAssumption);
+  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-09'},INITIAL);expect(request.geometryEngine).toBe('fixed-window-profile-sweeps/0.2.2');expect(request.definition.profile?.manufacturerApproved).toBe(false);expect(request.nativeStatus).toBe('not-built');expect(request.limitations).toContain(AFKC.profile!.source.junctionAssumption);
  });
 });

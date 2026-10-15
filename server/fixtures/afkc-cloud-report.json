@@ -1,149 +1,314 @@
 {
   "kind": "lithic-cloud-proof-report", 
   "visualReviewPassed": false, 
-  "adapter": "lithic-afkc-aps-proof/0.1", 
-  "createdAt": "2026-10-14T07:23:22.037000Z", 
+  "adapter": "lithic-afkc-aps-browser/0.2", 
+  "createdAt": "2026-10-14T14:21:23.117000Z", 
   "status": "geometry-passed-awaiting-visual-review", 
   "schemaVersion": "0.1", 
   "cases": [
     {
+      "reopenedSharedParameters": {
+        "expectedValues": [
+          "LITHIC Timber timber", 
+          "LITHIC Aluminium graphite", 
+          "LITHIC Glass Panes", 
+          "LITHIC Glazing Spacer Aluminium", 
+          "LITHIC Glazing Seal - prototype elastomer", 
+          "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+          "61-37-F221 rev A", 
+          "lithic-afkc-desktop/0.2.2", 
+          "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+          "fixed-size-snapshot"
+        ], 
+        "passed": true, 
+        "scheduleCells": [
+          [
+            "Timber Material", 
+            "Aluminium Material", 
+            "Glazing Material", 
+            "Glazing Spacer Material", 
+            "Glazing Seal Material", 
+            "LITHIC Request SHA256", 
+            "LITHIC Source Drawing", 
+            "LITHIC Builder", 
+            "LITHIC Evidence Status", 
+            "LITHIC Geometry Mode"
+          ], 
+          [
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            ""
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ]
+        ], 
+        "parameters": [
+          {
+            "passed": true, 
+            "name": "Timber Material", 
+            "guid": "89233a69-2130-54f3-97c1-5099f3132b53", 
+            "value": "LITHIC Timber timber"
+          }, 
+          {
+            "passed": true, 
+            "name": "Aluminium Material", 
+            "guid": "8d688857-f368-50e3-8edb-c86fa80a8497", 
+            "value": "LITHIC Aluminium graphite"
+          }, 
+          {
+            "passed": true, 
+            "name": "Glazing Material", 
+            "guid": "4f9948f6-c890-5b8e-b816-364776608ebb", 
+            "value": "LITHIC Glass Panes"
+          }, 
+          {
+            "passed": true, 
+            "name": "Glazing Spacer Material", 
+            "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e", 
+            "value": "LITHIC Glazing Spacer Aluminium"
+          }, 
+          {
+            "passed": true, 
+            "name": "Glazing Seal Material", 
+            "guid": "7e803715-2853-57eb-8061-f06126a367a3", 
+            "value": "LITHIC Glazing Seal - prototype elastomer"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Request SHA256", 
+            "guid": "a08321d9-4db4-5642-88a3-2bb392356b84", 
+            "value": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Source Drawing", 
+            "guid": "57488663-609d-5303-a491-9e67d3f9beaa", 
+            "value": "61-37-F221 rev A"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Builder", 
+            "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5", 
+            "value": "lithic-afkc-desktop/0.2.2"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Evidence Status", 
+            "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2", 
+            "value": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Geometry Mode", 
+            "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109", 
+            "value": "fixed-size-snapshot"
+          }
+        ], 
+        "matchingRows": 5, 
+        "schema": "lithic-revit-parameters/1"
+      }, 
       "materialBindings": [
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001b90", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001b90", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001bc1", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001bc1", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001bcf", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001bcf", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c00", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c00", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c0e", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c0e", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c3f", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c3f", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c4d", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c4d", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Timber Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c77", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c77", 
           "expectedParameter": "Timber Material"
         }, 
         {
           "materialParameter": "Glazing Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c90", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c90", 
           "expectedParameter": "Glazing Material"
         }, 
         {
           "materialParameter": "Glazing Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001c9e", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001c9e", 
           "expectedParameter": "Glazing Material"
         }, 
         {
           "materialParameter": "Glazing Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cac", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001cac", 
           "expectedParameter": "Glazing Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cba", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001cba", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cd0", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001cd0", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001ce6", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001ce6", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001cfc", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001cfc", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d12", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001d12", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d28", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001d28", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d3e", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001d3e", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Glazing Spacer Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d54", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001d54", 
           "expectedParameter": "Glazing Spacer Material"
         }, 
         {
           "materialParameter": "Aluminium Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001d69", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001d69", 
           "expectedParameter": "Aluminium Material"
         }, 
         {
           "materialParameter": "Aluminium Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001dc6", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001dc6", 
           "expectedParameter": "Aluminium Material"
         }, 
         {
           "materialParameter": "Aluminium Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001de8", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001de8", 
           "expectedParameter": "Aluminium Material"
         }, 
         {
           "materialParameter": "Glazing Seal Material", 
           "passed": true, 
-          "id": "a33b662e-bf4a-4757-9a50-779953583326-00001e52", 
+          "id": "078a5fe4-e1c4-4161-8868-bc41d19aa900-00001e52", 
           "expectedParameter": "Glazing Seal Material"
         }
       ], 
@@ -805,12 +970,12 @@
               }
             ]
           }, 
-          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-00001388", 
+          "wallId": "045fc3b6-3320-474e-a37e-8df84e653a63-0000137e", 
           "passed": true, 
           "uncutWallMm3": 3000000000.000001, 
           "wallThicknessMm": 100, 
           "reopenedOpeningPassed": true, 
-          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-00001393"
+          "instanceId": "045fc3b6-3320-474e-a37e-8df84e653a63-00001389"
         }, 
         {
           "expectedOpeningMm3": 360000000, 
@@ -1446,12 +1611,12 @@
               }
             ]
           }, 
-          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-00001397", 
+          "wallId": "045fc3b6-3320-474e-a37e-8df84e653a63-0000138d", 
           "passed": true, 
           "uncutWallMm3": 6000000000.0000019, 
           "wallThicknessMm": 200, 
           "reopenedOpeningPassed": true, 
-          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-000013a2"
+          "instanceId": "045fc3b6-3320-474e-a37e-8df84e653a63-00001398"
         }, 
         {
           "expectedOpeningMm3": 540000000, 
@@ -2087,12 +2252,12 @@
               }
             ]
           }, 
-          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-000013a6", 
+          "wallId": "045fc3b6-3320-474e-a37e-8df84e653a63-0000139c", 
           "passed": true, 
           "uncutWallMm3": 9000000000.0000076, 
           "wallThicknessMm": 300, 
           "reopenedOpeningPassed": true, 
-          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-000013b1"
+          "instanceId": "045fc3b6-3320-474e-a37e-8df84e653a63-000013a7"
         }, 
         {
           "expectedOpeningMm3": 900000000, 
@@ -2728,16 +2893,181 @@
               }
             ]
           }, 
-          "wallId": "853c5420-1143-454c-af56-5fc2f6571990-000013b5", 
+          "wallId": "045fc3b6-3320-474e-a37e-8df84e653a63-000013ab", 
           "passed": true, 
           "uncutWallMm3": 15000000000.000015, 
           "wallThicknessMm": 500, 
           "reopenedOpeningPassed": true, 
-          "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-000013c0"
+          "instanceId": "045fc3b6-3320-474e-a37e-8df84e653a63-000013b6"
         }
       ], 
       "drawingViewsPersisted": true, 
-      "instanceId": "853c5420-1143-454c-af56-5fc2f6571990-00001366", 
+      "instanceId": "045fc3b6-3320-474e-a37e-8df84e653a63-0000135c", 
+      "sharedParameters": {
+        "expectedValues": [
+          "LITHIC Timber timber", 
+          "LITHIC Aluminium graphite", 
+          "LITHIC Glass Panes", 
+          "LITHIC Glazing Spacer Aluminium", 
+          "LITHIC Glazing Seal - prototype elastomer", 
+          "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+          "61-37-F221 rev A", 
+          "lithic-afkc-desktop/0.2.2", 
+          "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+          "fixed-size-snapshot"
+        ], 
+        "passed": true, 
+        "scheduleCells": [
+          [
+            "Timber Material", 
+            "Aluminium Material", 
+            "Glazing Material", 
+            "Glazing Spacer Material", 
+            "Glazing Seal Material", 
+            "LITHIC Request SHA256", 
+            "LITHIC Source Drawing", 
+            "LITHIC Builder", 
+            "LITHIC Evidence Status", 
+            "LITHIC Geometry Mode"
+          ], 
+          [
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            "", 
+            ""
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ], 
+          [
+            "LITHIC Timber timber", 
+            "LITHIC Aluminium graphite", 
+            "LITHIC Glass Panes", 
+            "LITHIC Glazing Spacer Aluminium", 
+            "LITHIC Glazing Seal - prototype elastomer", 
+            "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
+            "61-37-F221 rev A", 
+            "lithic-afkc-desktop/0.2.2", 
+            "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE", 
+            "fixed-size-snapshot"
+          ]
+        ], 
+        "parameters": [
+          {
+            "passed": true, 
+            "name": "Timber Material", 
+            "guid": "89233a69-2130-54f3-97c1-5099f3132b53", 
+            "value": "LITHIC Timber timber"
+          }, 
+          {
+            "passed": true, 
+            "name": "Aluminium Material", 
+            "guid": "8d688857-f368-50e3-8edb-c86fa80a8497", 
+            "value": "LITHIC Aluminium graphite"
+          }, 
+          {
+            "passed": true, 
+            "name": "Glazing Material", 
+            "guid": "4f9948f6-c890-5b8e-b816-364776608ebb", 
+            "value": "LITHIC Glass Panes"
+          }, 
+          {
+            "passed": true, 
+            "name": "Glazing Spacer Material", 
+            "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e", 
+            "value": "LITHIC Glazing Spacer Aluminium"
+          }, 
+          {
+            "passed": true, 
+            "name": "Glazing Seal Material", 
+            "guid": "7e803715-2853-57eb-8061-f06126a367a3", 
+            "value": "LITHIC Glazing Seal - prototype elastomer"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Request SHA256", 
+            "guid": "a08321d9-4db4-5642-88a3-2bb392356b84", 
+            "value": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Source Drawing", 
+            "guid": "57488663-609d-5303-a491-9e67d3f9beaa", 
+            "value": "61-37-F221 rev A"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Builder", 
+            "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5", 
+            "value": "lithic-afkc-desktop/0.2.2"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Evidence Status", 
+            "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2", 
+            "value": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE"
+          }, 
+          {
+            "passed": true, 
+            "name": "LITHIC Geometry Mode", 
+            "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109", 
+            "value": "fixed-size-snapshot"
+          }
+        ], 
+        "matchingRows": 5, 
+        "schema": "lithic-revit-parameters/1"
+      }, 
       "parts": [
         {
           "id": "timber-left", 
@@ -3313,7 +3643,7 @@
         }
       ], 
       "projectFile": "LITHIC-AFKC-1200x1500-verification.rvt", 
-      "familySha256": "a6942f5680a53ee1f15295d65e4adc9478114bd78284fa8b60caa89e33ec3076", 
+      "familySha256": "85f2be646417fe32aeeb3fa66ab1b4de50efb5ddc0cdc9fa7bbae00185d12046", 
       "nativeAuthoringPassed": true, 
       "lowerCorners": [
         {
@@ -3333,6 +3663,7 @@
           "passed": true
         }
       ], 
+      "sharedParametersPassed": true, 
       "expectedOpeningMm3": 360000000.0, 
       "drawingEvidence": [], 
       "scheduleDimensionsPassed": true, 
@@ -3380,12 +3711,64 @@
           "nativeType": "Sweep"
         }
       ], 
-      "wallId": "853c5420-1143-454c-af56-5fc2f6571990-00001365", 
+      "wallId": "045fc3b6-3320-474e-a37e-8df84e653a63-0000135b", 
       "familyReopened": true, 
       "persistenceGeometryPassed": true, 
       "planVisibilityPassed": true, 
       "openingRemovedMm3": 359999999.99999905, 
       "openingPassed": true, 
+      "sharedFamilyParameters": [
+        {
+          "passed": true, 
+          "name": "Timber Material", 
+          "guid": "89233a69-2130-54f3-97c1-5099f3132b53"
+        }, 
+        {
+          "passed": true, 
+          "name": "Aluminium Material", 
+          "guid": "8d688857-f368-50e3-8edb-c86fa80a8497"
+        }, 
+        {
+          "passed": true, 
+          "name": "Glazing Material", 
+          "guid": "4f9948f6-c890-5b8e-b816-364776608ebb"
+        }, 
+        {
+          "passed": true, 
+          "name": "Glazing Spacer Material", 
+          "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e"
+        }, 
+        {
+          "passed": true, 
+          "name": "Glazing Seal Material", 
+          "guid": "7e803715-2853-57eb-8061-f06126a367a3"
+        }, 
+        {
+          "passed": true, 
+          "name": "LITHIC Request SHA256", 
+          "guid": "a08321d9-4db4-5642-88a3-2bb392356b84"
+        }, 
+        {
+          "passed": true, 
+          "name": "LITHIC Source Drawing", 
+          "guid": "57488663-609d-5303-a491-9e67d3f9beaa"
+        }, 
+        {
+          "passed": true, 
+          "name": "LITHIC Builder", 
+          "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5"
+        }, 
+        {
+          "passed": true, 
+          "name": "LITHIC Evidence Status", 
+          "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2"
+        }, 
+        {
+          "passed": true, 
+          "name": "LITHIC Geometry Mode", 
+          "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109"
+        }
+      ], 
       "cavitiesEmptyPassed": true, 
       "reopenedParts": [
         {
@@ -3976,43 +4359,43 @@
       "openingPersisted": true, 
       "hostDepthConstraints": {
         "explicitDimensionIds": [
-          "a33b662e-bf4a-4757-9a50-779953583326-00002162", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002163", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002164", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002165", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002166", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002167", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002168", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002169", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000216a", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000216b", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000216c", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000216d", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000216e", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000216f", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002170", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002171", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002172", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002173", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002174", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002175", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002176", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002177", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002178", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002179", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000217a", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000217b", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000217c", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000217d", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000217e", 
-          "a33b662e-bf4a-4757-9a50-779953583326-0000217f", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002180", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002181", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002182", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002183", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002184", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002185", 
-          "a33b662e-bf4a-4757-9a50-779953583326-00002186"
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002162", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002163", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002164", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002165", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002166", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002167", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002168", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002169", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000216a", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000216b", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000216c", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000216d", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000216e", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000216f", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002170", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002171", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002172", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002173", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002174", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002175", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002176", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002177", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002178", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002179", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000217a", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000217b", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000217c", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000217d", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000217e", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-0000217f", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002180", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002181", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002182", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002183", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002184", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002185", 
+          "078a5fe4-e1c4-4161-8868-bc41d19aa900-00002186"
         ], 
         "unsupportedAutomaticDimensions": [
           {
@@ -4102,21 +4485,21 @@
         }, 
         "method": "Locked offsets from Center (Front/Back), replacing host-face automatic dimensions"
       }, 
-      "projectSha256": "13187ba932d846dd9f33f73aba7cbc1e9de2fd5d99b011fcbc4e96b79290938b", 
+      "projectSha256": "65551502e502296d959e761a9188ad59fc08f0c07731278a74faef2714757860", 
       "hostSymbolViewIds": {
-        "coarse": "853c5420-1143-454c-af56-5fc2f6571990-00001368", 
-        "medium": "853c5420-1143-454c-af56-5fc2f6571990-00001372", 
-        "fine": "853c5420-1143-454c-af56-5fc2f6571990-0000137c"
+        "coarse": "045fc3b6-3320-474e-a37e-8df84e653a63-0000135e", 
+        "medium": "045fc3b6-3320-474e-a37e-8df84e653a63-00001368", 
+        "fine": "045fc3b6-3320-474e-a37e-8df84e653a63-00001372"
       }, 
       "claddingOverlapMm3": 0.0, 
       "hostPersisted": true
     }
   ], 
-  "sourceBuilder": "lithic-afkc-desktop/0.2.1", 
+  "sourceBuilder": "lithic-afkc-desktop/0.2.2", 
   "revitVersion": "2024", 
   "geometryChecksPassed": true, 
   "templateSha256": "119e6e484175948046e95bad6a1d9c1f05eb544c5a6ff20722255b7276b2952b", 
-  "requestSha256": "58dc68cd289d73ad2247ea89584b4261ea409c74e5d7efc1e696477e1b3f38fd", 
+  "requestSha256": "0f365b15b6473eb573715798f403cd22aba48fe627042121056d2d6a3c2dbec9", 
   "geometryMode": "fixed-size-snapshot", 
   "manufacturerApproved": false, 
   "nativeParameterFlex": false

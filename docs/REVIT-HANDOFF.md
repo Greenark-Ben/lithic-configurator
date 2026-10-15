@@ -1,4 +1,4 @@
-# AFKC desktop handoff 0.2.1
+# AFKC desktop handoff 0.2.2
 
 The AFKC preview and desktop builder share a versioned reviewed construction definition. Prepare Revit handoff exports the exact browser request, SHA-256 manifest, source bundle, native authoring/drawing modules, pyRevit command and installer. The Build Revit family action now connects AFKC to APS Revit 2024 generation. The desktop handoff remains available. See [APS browser generation](APS-BROWSER.md).
 
@@ -47,3 +47,7 @@ Integration validation and native run results are recorded with the change; they
 Builder 0.2.1 replaces wall-face automatic sketch dimensions with locked offsets from the family centre plane. Version 0.2 was checked in a 200 mm host only; a user placement in a 300 mm wall revealed that Revit reshaped the timber sketches. Every snapshot now requires all 22 component bounds/volumes and the wall opening to pass in 100, 200, 300 and 500 mm hosts, both initially and after project reopening. Reports from earlier builders cannot establish this pass. Unsupported automatic dimension references are recorded; they cannot bypass the complete hosted geometry checks.
 
 Plan graphics also require independent coordinate datums: orthogonal symbolic edges are aligned to dimensioned reference planes, so their coordinates cannot follow the host. Every coarse/medium/fine line endpoint and style is compared with the source family at each wall thickness, then compared again after reopening. Counts alone cannot establish stable graphics.
+
+## Schedulable materials and provenance
+
+Builder 0.2.2 adds ten shared type parameters with permanent GUIDs: the five materials and request SHA-256, source drawing, builder, evidence status and geometry mode. Five material values are editable; provenance is user-read-only. Fresh isolated schedules must contain the expected values for all five test placements, including after reopening. Existing 0.2.1 downloads remain historical snapshots; rebuild to obtain the new shared fields. See [schema and native proof](AFKC-SHARED-PARAMETERS.md).

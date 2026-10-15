@@ -1,4 +1,4 @@
-LITHIC AFKC Revit handoff — desktop builder 0.2.1
+LITHIC AFKC Revit handoff — desktop builder 0.2.2
 
 This package builds fixed-size snapshots of the reviewed AFKC prototype in
 Revit 2024 or later. Revit and pyRevit are required. It creates fresh family
@@ -53,3 +53,9 @@ geometry and openings. Earlier 0.2 reports did not cover varying host depth.
 Plan coordinates are fixed with native reference planes and alignments.
 Every coarse/medium/fine line endpoint/style is checked before and after
 project reopening in all four host thicknesses.
+
+Shared parameters 0.2.2:
+Five editable material fields and five user-read-only provenance fields have
+permanent shared GUIDs. All ten are available in Window schedules and checked
+across five placements before/after reopening. Existing downloads are not
+modified; rebuild with this package for shared fields.

@@ -1,0 +1,338 @@
+{
+  "activeProjectPreserved": true,
+  "materialBindingsPassed": true,
+  "reopenedSchedule": {
+    "expectedValues": [
+      "TEST ONLY shared Timber Material",
+      "TEST ONLY shared Aluminium Material",
+      "TEST ONLY shared Glazing Material",
+      "TEST ONLY shared Glazing Spacer Material",
+      "TEST ONLY shared Glazing Seal Material",
+      "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+      "61-37-F221 rev A",
+      "lithic-afkc-desktop/0.2.2",
+      "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+      "fixed-size-snapshot"
+    ],
+    "passed": true,
+    "scheduleCells": [
+      [
+        "Timber Material",
+        "Aluminium Material",
+        "Glazing Material",
+        "Glazing Spacer Material",
+        "Glazing Seal Material",
+        "LITHIC Request SHA256",
+        "LITHIC Source Drawing",
+        "LITHIC Builder",
+        "LITHIC Evidence Status",
+        "LITHIC Geometry Mode"
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ]
+    ],
+    "parameters": [
+      {
+        "passed": true,
+        "name": "Timber Material",
+        "guid": "89233a69-2130-54f3-97c1-5099f3132b53",
+        "value": "TEST ONLY shared Timber Material"
+      },
+      {
+        "passed": true,
+        "name": "Aluminium Material",
+        "guid": "8d688857-f368-50e3-8edb-c86fa80a8497",
+        "value": "TEST ONLY shared Aluminium Material"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Material",
+        "guid": "4f9948f6-c890-5b8e-b816-364776608ebb",
+        "value": "TEST ONLY shared Glazing Material"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Spacer Material",
+        "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e",
+        "value": "TEST ONLY shared Glazing Spacer Material"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Seal Material",
+        "guid": "7e803715-2853-57eb-8061-f06126a367a3",
+        "value": "TEST ONLY shared Glazing Seal Material"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Request SHA256",
+        "guid": "a08321d9-4db4-5642-88a3-2bb392356b84",
+        "value": "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Source Drawing",
+        "guid": "57488663-609d-5303-a491-9e67d3f9beaa",
+        "value": "61-37-F221 rev A"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Builder",
+        "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5",
+        "value": "lithic-afkc-desktop/0.2.2"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Evidence Status",
+        "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2",
+        "value": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Geometry Mode",
+        "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109",
+        "value": "fixed-size-snapshot"
+      }
+    ],
+    "matchingRows": 5,
+    "schema": "lithic-revit-parameters/1"
+  },
+  "status": "passed",
+  "schedule": {
+    "expectedValues": [
+      "TEST ONLY shared Timber Material",
+      "TEST ONLY shared Aluminium Material",
+      "TEST ONLY shared Glazing Material",
+      "TEST ONLY shared Glazing Spacer Material",
+      "TEST ONLY shared Glazing Seal Material",
+      "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+      "61-37-F221 rev A",
+      "lithic-afkc-desktop/0.2.2",
+      "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+      "fixed-size-snapshot"
+    ],
+    "passed": true,
+    "scheduleCells": [
+      [
+        "Timber Material",
+        "Aluminium Material",
+        "Glazing Material",
+        "Glazing Spacer Material",
+        "Glazing Seal Material",
+        "LITHIC Request SHA256",
+        "LITHIC Source Drawing",
+        "LITHIC Builder",
+        "LITHIC Evidence Status",
+        "LITHIC Geometry Mode"
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ],
+      [
+        "TEST ONLY shared Timber Material",
+        "TEST ONLY shared Aluminium Material",
+        "TEST ONLY shared Glazing Material",
+        "TEST ONLY shared Glazing Spacer Material",
+        "TEST ONLY shared Glazing Seal Material",
+        "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1",
+        "61-37-F221 rev A",
+        "lithic-afkc-desktop/0.2.2",
+        "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
+        "fixed-size-snapshot"
+      ]
+    ],
+    "parameters": [
+      {
+        "passed": true,
+        "name": "Timber Material",
+        "guid": "89233a69-2130-54f3-97c1-5099f3132b53",
+        "value": "TEST ONLY shared Timber Material"
+      },
+      {
+        "passed": true,
+        "name": "Aluminium Material",
+        "guid": "8d688857-f368-50e3-8edb-c86fa80a8497",
+        "value": "TEST ONLY shared Aluminium Material"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Material",
+        "guid": "4f9948f6-c890-5b8e-b816-364776608ebb",
+        "value": "TEST ONLY shared Glazing Material"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Spacer Material",
+        "guid": "6f44499d-0fc2-547f-85be-5ef9769c9f1e",
+        "value": "TEST ONLY shared Glazing Spacer Material"
+      },
+      {
+        "passed": true,
+        "name": "Glazing Seal Material",
+        "guid": "7e803715-2853-57eb-8061-f06126a367a3",
+        "value": "TEST ONLY shared Glazing Seal Material"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Request SHA256",
+        "guid": "a08321d9-4db4-5642-88a3-2bb392356b84",
+        "value": "ec682bf72e4d5e60ab81cbc05dc82eec325e771a9fd2e14cf5c3f5688ba9ade1"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Source Drawing",
+        "guid": "57488663-609d-5303-a491-9e67d3f9beaa",
+        "value": "61-37-F221 rev A"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Builder",
+        "guid": "11f25f0f-1625-5cac-84b8-7cdc805d35a5",
+        "value": "lithic-afkc-desktop/0.2.2"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Evidence Status",
+        "guid": "bc500aa4-4004-533c-9969-b1baaa100fe2",
+        "value": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE"
+      },
+      {
+        "passed": true,
+        "name": "LITHIC Geometry Mode",
+        "guid": "f77a85c6-b9d5-5f72-9a02-aaa9a0200109",
+        "value": "fixed-size-snapshot"
+      }
+    ],
+    "matchingRows": 5,
+    "schema": "lithic-revit-parameters/1"
+  },
+  "reopenedMaterialBindingsPassed": true,
+  "reopenedWarnings": [],
+  "initialWarnings": []
+}
