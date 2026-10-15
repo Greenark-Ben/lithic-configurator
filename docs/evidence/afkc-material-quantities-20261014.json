@@ -1,0 +1,374 @@
+{
+  "date": "2026-10-14",
+  "revitVersion": "2024",
+  "status": "passed",
+  "auditSourceSha256": "f5bb52dd39931c178ca99e019f0e904b674498fda79ac77ab867a8c76923165b",
+  "activeProjectPreserved": true,
+  "cases": [
+    {
+      "name": "900x1200",
+      "inputSha256": "31ee52c937c97145c5ca99819a475b314fe1f99913b66cd6f1c93a49f551c10f",
+      "status": "passed",
+      "instances": 5,
+      "materialPairCount": 25,
+      "scheduleRowChecks": 25,
+      "persistencePassed": true,
+      "allAreasMatchTotalSolidSurface": true,
+      "initialWarnings": [],
+      "reopenedWarnings": [],
+      "projectSha256": "9c1c9b7b4289b222855e1d162c9be522a397369bc2fa67a29e56982ceaade1cb",
+      "singleInstanceMaterials": [
+        {
+          "takeoffAreaMm2": 1789622.9378110187,
+          "material": "LITHIC Timber timber",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 1789622.9378110184,
+          "solidVolumeMm3": 18208786.370201036,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 18208786.37020104
+        },
+        {
+          "takeoffAreaMm2": 700058.6136678888,
+          "material": "LITHIC Aluminium graphite",
+          "solidCount": 2,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 700058.6136678888,
+          "solidVolumeMm3": 486881.5411969999,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 486881.54119699984
+        },
+        {
+          "takeoffAreaMm2": 5545278.000000002,
+          "material": "LITHIC Glass Panes",
+          "solidCount": 3,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 5545278.000000002,
+          "solidVolumeMm3": 10997531.999999998,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 10997532.0
+        },
+        {
+          "takeoffAreaMm2": 703247.9999999998,
+          "material": "LITHIC Glazing Spacer Aluminium",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 703247.9999999998,
+          "solidVolumeMm3": 351255.9999999912,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 351255.9999999914
+        },
+        {
+          "takeoffAreaMm2": 49507.755897038085,
+          "material": "LITHIC Glazing Seal - prototype elastomer",
+          "solidCount": 1,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 49507.755897038085,
+          "solidVolumeMm3": 21672.80000000691,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 21672.80000000691
+        }
+      ]
+    },
+    {
+      "name": "1200x1500",
+      "inputSha256": "05e02679ed7620de6a1c26dbca92e3d30e3977e18221dcdc558994e962dc4212",
+      "status": "passed",
+      "instances": 5,
+      "materialPairCount": 25,
+      "scheduleRowChecks": 25,
+      "persistencePassed": true,
+      "allAreasMatchTotalSolidSurface": true,
+      "initialWarnings": [],
+      "reopenedWarnings": [],
+      "projectSha256": "babe67b3bde3e1946046e12f76ab2cebe71b74cf91de2eb5204792d6f0be05eb",
+      "singleInstanceMaterials": [
+        {
+          "takeoffAreaMm2": 2314581.4962355485,
+          "material": "LITHIC Timber timber",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 2314581.4962355485,
+          "solidVolumeMm3": 23672725.28314221,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 23672725.283142205
+        },
+        {
+          "takeoffAreaMm2": 908962.4397470331,
+          "material": "LITHIC Aluminium graphite",
+          "solidCount": 2,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 908962.439747033,
+          "solidVolumeMm3": 631858.1726303736,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 631858.1726303761
+        },
+        {
+          "takeoffAreaMm2": 9588078.000000002,
+          "material": "LITHIC Glass Panes",
+          "solidCount": 3,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 9588078.000000002,
+          "solidVolumeMm3": 19054332.000000004,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 19054332.000000004
+        },
+        {
+          "takeoffAreaMm2": 924048.0000000003,
+          "material": "LITHIC Glazing Spacer Aluminium",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 924048.0000000005,
+          "solidVolumeMm3": 461656.0000000054,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 461656.00000000553
+        },
+        {
+          "takeoffAreaMm2": 65132.31200709254,
+          "material": "LITHIC Glazing Seal - prototype elastomer",
+          "solidCount": 1,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 65132.31200709254,
+          "solidVolumeMm3": 28512.799999937793,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 28512.799999938186
+        }
+      ]
+    },
+    {
+      "name": "1500x1800",
+      "inputSha256": "7b39592266f15745431f640de72675f62e4d8dfd5dbb450a45e1e174c965e914",
+      "status": "passed",
+      "instances": 5,
+      "materialPairCount": 25,
+      "scheduleRowChecks": 25,
+      "persistencePassed": true,
+      "allAreasMatchTotalSolidSurface": true,
+      "initialWarnings": [],
+      "reopenedWarnings": [],
+      "projectSha256": "d7abd4d88f831f27ce4ed4c03707228b6f45ce9fc56ec99f35384c55d4ea0637",
+      "singleInstanceMaterials": [
+        {
+          "takeoffAreaMm2": 2839540.0546600786,
+          "material": "LITHIC Timber timber",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 2839540.054660079,
+          "solidVolumeMm3": 29136664.196083352,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 29136664.19608335
+        },
+        {
+          "takeoffAreaMm2": 1117866.265826176,
+          "material": "LITHIC Aluminium graphite",
+          "solidCount": 2,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 1117866.265826176,
+          "solidVolumeMm3": 776834.8040638319,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 776834.8040638319
+        },
+        {
+          "takeoffAreaMm2": 14710878.000000002,
+          "material": "LITHIC Glass Panes",
+          "solidCount": 3,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 14710878.000000004,
+          "solidVolumeMm3": 29271132.0,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 29271132.000000004
+        },
+        {
+          "takeoffAreaMm2": 1144847.9999999998,
+          "material": "LITHIC Glazing Spacer Aluminium",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 1144847.9999999998,
+          "solidVolumeMm3": 572055.9999999828,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 572055.9999999828
+        },
+        {
+          "takeoffAreaMm2": 80756.86811714881,
+          "material": "LITHIC Glazing Seal - prototype elastomer",
+          "solidCount": 1,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 80756.86811714881,
+          "solidVolumeMm3": 35352.79999990637,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 35352.79999990676
+        }
+      ]
+    },
+    {
+      "name": "cloud-1200x1500",
+      "inputSha256": "65551502e502296d959e761a9188ad59fc08f0c07731278a74faef2714757860",
+      "status": "passed",
+      "instances": 5,
+      "materialPairCount": 25,
+      "scheduleRowChecks": 25,
+      "persistencePassed": true,
+      "allAreasMatchTotalSolidSurface": true,
+      "initialWarnings": [],
+      "reopenedWarnings": [],
+      "projectSha256": "17ffe36649a68500f677e86efcf50c3b5ef55a477502bc6cb9018b14820373de",
+      "singleInstanceMaterials": [
+        {
+          "takeoffAreaMm2": 2314581.4962355485,
+          "material": "LITHIC Timber timber",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 2314581.4962355485,
+          "solidVolumeMm3": 23672725.28314221,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 23672725.283142205
+        },
+        {
+          "takeoffAreaMm2": 908962.4397470331,
+          "material": "LITHIC Aluminium graphite",
+          "solidCount": 2,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 908962.439747033,
+          "solidVolumeMm3": 631858.1726303736,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 631858.1726303761
+        },
+        {
+          "takeoffAreaMm2": 9588078.000000002,
+          "material": "LITHIC Glass Panes",
+          "solidCount": 3,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 9588078.000000002,
+          "solidVolumeMm3": 19054332.000000004,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 19054332.000000004
+        },
+        {
+          "takeoffAreaMm2": 924048.0000000003,
+          "material": "LITHIC Glazing Spacer Aluminium",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 924048.0000000005,
+          "solidVolumeMm3": 461656.0000000054,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 461656.00000000553
+        },
+        {
+          "takeoffAreaMm2": 65132.31200709254,
+          "material": "LITHIC Glazing Seal - prototype elastomer",
+          "solidCount": 1,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 65132.31200709254,
+          "solidVolumeMm3": 28512.799999937793,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 28512.799999938186
+        }
+      ]
+    },
+    {
+      "name": "edited-materials",
+      "inputSha256": "82ecff4136e361d00be01e5851f17647a1dc7d17e8a8a439c10597fb47071a17",
+      "status": "passed",
+      "instances": 5,
+      "materialPairCount": 25,
+      "scheduleRowChecks": 25,
+      "persistencePassed": true,
+      "allAreasMatchTotalSolidSurface": true,
+      "initialWarnings": [],
+      "reopenedWarnings": [],
+      "projectSha256": "fc2cfa95fb438f646b95f72bd47abf535f34baccf0e177b1bf2e0451838ffd6f",
+      "singleInstanceMaterials": [
+        {
+          "takeoffAreaMm2": 2314581.4962355485,
+          "material": "TEST ONLY shared Timber Material",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 2314581.4962355485,
+          "solidVolumeMm3": 23672725.28314221,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 23672725.283142205
+        },
+        {
+          "takeoffAreaMm2": 908962.4397470331,
+          "material": "TEST ONLY shared Aluminium Material",
+          "solidCount": 2,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 908962.439747033,
+          "solidVolumeMm3": 631858.1726303736,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 631858.1726303761
+        },
+        {
+          "takeoffAreaMm2": 9588078.000000002,
+          "material": "TEST ONLY shared Glazing Material",
+          "solidCount": 3,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 9588078.000000002,
+          "solidVolumeMm3": 19054332.000000004,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 19054332.000000004
+        },
+        {
+          "takeoffAreaMm2": 924048.0000000003,
+          "material": "TEST ONLY shared Glazing Spacer Material",
+          "solidCount": 8,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 924048.0000000005,
+          "solidVolumeMm3": 461656.0000000054,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 461656.00000000553
+        },
+        {
+          "takeoffAreaMm2": 65132.31200709254,
+          "material": "TEST ONLY shared Glazing Seal Material",
+          "solidCount": 1,
+          "mark": "Q1",
+          "solidSurfaceAreaMm2": 65132.31200709254,
+          "solidVolumeMm3": 28512.799999937793,
+          "areaMatchesTotalSolidSurface": true,
+          "volumePassed": true,
+          "takeoffVolumeMm3": 28512.799999938186
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "modelledVolume": true,
+    "totalSolidSurfaceArea": true,
+    "clearGlazedArea": false,
+    "purchasingQuantities": false,
+    "nativeParameterFlex": false,
+    "manufacturerApproved": false
+  },
+  "tolerances": {
+    "apiVsSolidRelative": 1e-06,
+    "minimumVolumeMm3": 1,
+    "minimumAreaMm2": 1,
+    "formattedScheduleVolumeMm3": 1.1,
+    "formattedScheduleAreaMm2": 0.01
+  }
+}
