@@ -235,5 +235,16 @@
   "widthHeightFlex": false,
   "manufacturerApproved": false,
   "unitTestsPassed": 9,
-  "reviewImageCount": 11
+  "reviewImageCount": 14,
+  "wallVisiblePlacementReview": {
+    "setbacksMm": [
+      0,
+      50,
+      100
+    ],
+    "projectPersistencePassed": true,
+    "warnings": [],
+    "originalUserProjectPreserved": true,
+    "activeDocumentRestored": true
+  }
 }
