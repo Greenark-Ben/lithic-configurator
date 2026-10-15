@@ -1,0 +1,239 @@
+{
+  "scope": "AFSC closed fixed-size prototype with native placement control",
+  "configuration": {
+    "module": [
+      9,
+      12
+    ],
+    "frameSizeMm": [
+      880,
+      1180
+    ]
+  },
+  "sourceDrawing": "61-37-S221 rev A",
+  "sourceDwgSha256": "21adc077f5b1fdf82ebcfeb9c0319ba200e7168b12b56a1a559f3354c6f4118d",
+  "sourceDefinitionSha256": "7eaf436efd6ed1aae7715afb82aec522d7a630115f6dcfe661e40bca9e8cd341",
+  "nativeForms": {
+    "voidExtrusions": 16,
+    "freeForms": 0,
+    "directShapes": 0,
+    "sweeps": 8,
+    "solidExtrusions": 21
+  },
+  "renderedComponents": 29,
+  "familyGeometryPersists": true,
+  "materialAssociationsPersist": true,
+  "nativeAnalyticVolumeChecks": {
+    "count": 16,
+    "passed": true
+  },
+  "setbackDatum": "Exterior host wall face to front of timber frame; positive inward; aluminium projection excluded",
+  "setbackIsInstance": true,
+  "familySetbackChecks": [
+    {
+      "actualDatumYmm": 100.0,
+      "rigidGeometryPassed": true,
+      "expectedDatumYmm": 100.0,
+      "passed": true,
+      "valueMm": 0
+    },
+    {
+      "actualDatumYmm": 50.0,
+      "rigidGeometryPassed": true,
+      "expectedDatumYmm": 50.0,
+      "passed": true,
+      "valueMm": 50
+    },
+    {
+      "actualDatumYmm": 0.0,
+      "rigidGeometryPassed": true,
+      "expectedDatumYmm": 0.0,
+      "passed": true,
+      "valueMm": 100
+    },
+    {
+      "actualDatumYmm": -100.0,
+      "rigidGeometryPassed": true,
+      "expectedDatumYmm": -100.0,
+      "passed": true,
+      "valueMm": 200
+    },
+    {
+      "actualDatumYmm": 50.0,
+      "rigidGeometryPassed": true,
+      "expectedDatumYmm": 50.0,
+      "passed": true,
+      "valueMm": 50
+    }
+  ],
+  "projectSetbackChecks": [
+    {
+      "rigidGeometryPassed": true,
+      "passed": true,
+      "components": 29,
+      "openingPassed": true,
+      "valueMm": 0
+    },
+    {
+      "rigidGeometryPassed": true,
+      "passed": true,
+      "components": 29,
+      "openingPassed": true,
+      "valueMm": 50
+    },
+    {
+      "rigidGeometryPassed": true,
+      "passed": true,
+      "components": 29,
+      "openingPassed": true,
+      "valueMm": 100
+    },
+    {
+      "rigidGeometryPassed": true,
+      "passed": true,
+      "components": 29,
+      "openingPassed": true,
+      "valueMm": 200
+    },
+    {
+      "rigidGeometryPassed": true,
+      "passed": true,
+      "components": 29,
+      "openingPassed": true,
+      "valueMm": 50
+    }
+  ],
+  "hostThicknessChecks": [
+    {
+      "hostMm": 100,
+      "passed": true,
+      "setbackMm": 0,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 100,
+      "passed": true,
+      "setbackMm": 50,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 100,
+      "passed": true,
+      "setbackMm": 100,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 200,
+      "passed": true,
+      "setbackMm": 0,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 200,
+      "passed": true,
+      "setbackMm": 50,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 200,
+      "passed": true,
+      "setbackMm": 100,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 300,
+      "passed": true,
+      "setbackMm": 0,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 300,
+      "passed": true,
+      "setbackMm": 50,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 300,
+      "passed": true,
+      "setbackMm": 100,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 500,
+      "passed": true,
+      "setbackMm": 0,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 500,
+      "passed": true,
+      "setbackMm": 50,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    },
+    {
+      "hostMm": 500,
+      "passed": true,
+      "setbackMm": 100,
+      "openingPassed": true,
+      "rigidGeometryPassed": true
+    }
+  ],
+  "materialControlChecks": [
+    {
+      "passed": true,
+      "parameter": "Timber Material"
+    },
+    {
+      "passed": true,
+      "parameter": "Aluminium Material"
+    },
+    {
+      "passed": true,
+      "parameter": "Glazing Material"
+    },
+    {
+      "passed": true,
+      "parameter": "Glazing Spacer Material"
+    },
+    {
+      "passed": true,
+      "parameter": "Glazing Seal Material"
+    }
+  ],
+  "planSetbackChecks": [
+    {
+      "curves": 276,
+      "setbackMm": 0,
+      "minYmm": -4.999999999999997,
+      "maxYmm": 110.00000000000001
+    },
+    {
+      "curves": 276,
+      "setbackMm": 100,
+      "minYmm": -105.0,
+      "maxYmm": 10.0
+    }
+  ],
+  "planSetbackPassed": true,
+  "projectPersistencePassed": true,
+  "physicalSillPassed": true,
+  "nativeWarnings": [],
+  "originalUserProjectPreserved": true,
+  "visualAcceptance": "review-required",
+  "openingMovementVerified": false,
+  "widthHeightFlex": false,
+  "manufacturerApproved": false,
+  "unitTestsPassed": 9,
+  "reviewImageCount": 11
+}
