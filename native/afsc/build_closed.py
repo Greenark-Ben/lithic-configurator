@@ -88,6 +88,8 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         if len(hosts)!=(0 if assembly_only else 1) or DB.FilteredElementCollector(f).OfClass(DB.GenericForm).GetElementCount():raise ValueError('Empty template required')
         host=None if assembly_only else hosts[0];exterior=1 if assembly_only or host.Orientation.Y>0 else -1
         width,height=source['frameSizeMm'];half=width/2;manager=f.FamilyManager
+        selected_group=source.get('openingStudyGeometryGroup')
+        if selected_group and (not assembly_only or selected_group not in ['Fixed Frame','Moving Sash']):raise ValueError('Group selection is limited to isolated opening-study assemblies')
         tx=DB.Transaction(f,'LITHIC AFSC closed geometry study');tx.Start();failure_handler=fail_closed(tx,report)
         if assembly_only:f.OwnerFamily.FamilyCategory=f.Settings.Categories.get_Item(DB.BuiltInCategory.OST_Windows)
         if manager.CurrentType is None:manager.NewType('AFSC M9x12 closed prototype')
@@ -114,7 +116,7 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         def bind(e,name,role,group):
             e.Subcategory=helpers.category(f,'LITHIC AFSC '+name)
             manager.AssociateElementParameterToFamilyParameter(e.get_Parameter(DB.BuiltInParameter.MATERIAL_ID_PARAM),shared[params[role]])
-            vis=e.GetVisibility();vis.IsShownInTopBottom=False;vis.IsShownInPlanRCPCut=False;e.SetVisibility(vis)
+            vis=e.GetVisibility();vis.IsShownInTopBottom=bool(selected_group);vis.IsShownInPlanRCPCut=bool(selected_group);e.SetVisibility(vis)
             all_forms.append(e);form_roles[e.UniqueId]=role;groups[name]=group;return e
         def extrusion(name,points,normal,length,role,group,holes=None):
             loops=DB.CurveArrArray();loops.Append(curves(points))
@@ -131,8 +133,10 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
                 result.append(family_point(x,y,z))
             return result
         profiles=source.get('nativeProfiles',source['profiles'])
+        frame_keys=source.get('frameCladdingProfileKeys',{'Left':'frameHeadClip','Right':'frameHeadClip','Head':'frameHeadClip','Sill':'frameSillCover'})
         corner_math=imp.load_source('afsc_corner_math',os.path.join(os.path.dirname(__file__),'corner_math.py')) if source.get('compoundSashMitres') else None
         for group,prefix in [('Fixed Frame','frame'),('Moving Sash','sash')]:
+            if selected_group and selected_group!=group:continue
             checkpoint('timber-'+prefix)
             for side in ['Left','Right','Head','Sill']:
                 key=prefix+side
@@ -148,6 +152,7 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         # Straight native sweeps retain independently editable source sections.
         # Complementary native void cuts share each corner plane; visual review remains required.
         def swept_member(name,key,side,group):
+            if selected_group and selected_group!=group:return
             checkpoint('sweep-'+name)
             pts=profiles[key]['pointsMm'];start=0 if side in ['Left','Right'] else -half
             # Keep the entire profile inward of its native sweep path. Revit's
@@ -168,6 +173,11 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
                     expected_volumes[name]=area_moment(pts)[0]*height-positive_moment(pts)-corner_math.integral(pts,corner_math.frame_sill_spec())
                 elif key=='frameSillCover':
                     expected_volumes[name]=area_moment(pts)[0]*width-2*corner_math.integral(pts,corner_math.frame_sill_spec(),True)
+            if corner_math and source.get('sourceSpecificFrameCladding') and key in frame_keys.values():
+                if side in ['Left','Right']:
+                    expected_volumes[name]=area_moment(pts)[0]*height-sum(corner_math.integral(pts,corner_math.frame_corner_spec(profiles,frame_keys,side,h)) for h in ['Head','Sill'])
+                else:
+                    expected_volumes[name]=area_moment(pts)[0]*width-sum(corner_math.integral(pts,corner_math.frame_corner_spec(profiles,frame_keys,j,side),True) for j in ['Left','Right'])
             # CurveLoopsProfile uses local XY at the path attachment.
             # +Z path local X is +X; +X path local X is -Z.
             inward=-exterior if side=='Left' else exterior if side=='Right' else 1 if side=='Head' else -1
@@ -195,11 +205,19 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
                     if corner_math and source.get('matchedFrameSillCuts') and ((key=='frameHeadClip' and side in ['Left','Right'] and not top) or key=='frameSillCover'):
                         spec=corner_math.frame_sill_spec();region=corner_math.cut_region(spec,side in ['Left','Right'])
                         report.setdefault('fixedFrameSillCuts',[]).append({'member':name,'spec':spec})
+                    if corner_math and source.get('sourceSpecificFrameCladding') and key in frame_keys.values():
+                        jamb=side if side in ['Left','Right'] else 'Left' if sign==exterior else 'Right'
+                        horizontal=('Head' if top else 'Sill') if side in ['Left','Right'] else side
+                        spec=corner_math.frame_corner_spec(profiles,frame_keys,jamb,horizontal);region=corner_math.frame_cut_region(spec,side in ['Left','Right'])
+                        report.setdefault('sourceSpecificFrameCuts',[]).append({'member':name,'corner':jamb+' '+horizontal,'spec':spec})
                     # Jamb keeps v >= u; horizontal member keeps v <= u.
-                    coords=[point(sign*(half+offset-u),-160*exterior,sill_datum+(height+offset-v if top else v-offset)) for u,v in region]
+                    cut_start=-160;cut_length=330
+                    if source.get('sourceSpecificFrameCladding') and key in frame_keys.values():
+                        depths=[-d for u,d in pts];cut_start=min(depths)-2;cut_length=max(depths)-min(depths)+4
+                    coords=[point(sign*(half+offset-u),cut_start*exterior,sill_datum+(height+offset-v if top else v-offset)) for u,v in region]
                     loops2=DB.CurveArrArray();loops2.Append(curves(coords))
                     plane=DB.SketchPlane.Create(f,DB.Plane.CreateByNormalAndOrigin(DB.XYZ(0,exterior,0),coords[0]))
-                    void=f.FamilyCreate.NewExtrusion(False,loops2,plane,330*MM);members.Append(void)
+                    void=f.FamilyCreate.NewExtrusion(False,loops2,plane,cut_length*MM);members.Append(void)
             f.Regenerate();elements[name]=f.CombineElements(members);f.Regenerate()
             report.setdefault('sweepCutChecks',[]).append({'name':name,'signature':signature(elements[name])})
             write()
@@ -208,28 +226,29 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
             swept_member('Moving Sash Aluminium '+side,'sashAluminium'+side,side,'Moving Sash')
         for side in ['Left','Right','Head']:
             if source.get('includePlasterTrim',True):swept_member('Fixed Frame Outer Trim '+side,'frameOuterTrim',side,'Fixed Frame')
-            swept_member('Fixed Frame Rail '+side,'frameHeadClip',side,'Fixed Frame')
-        swept_member('Fixed Frame Sill Cover','frameSillCover','Sill','Fixed Frame')
+            swept_member('Fixed Frame Rail '+side,frame_keys[side],side,'Fixed Frame')
+        swept_member('Fixed Frame Sill Cover',frame_keys['Sill'],'Sill','Fixed Frame')
         checkpoint('glazing-spacers-and-seals')
         edge=source['glazingEdgeInsetsMm'];x0=-half+edge['left'];x1=half-edge['right'];z0=edge['sill'];z1=height-edge['head']
         def rect(name,x0,x1,z0,z1,d0,d1,role,holes=None):
             pts=[family_point(x,d0,z) for x,z in [(x0,z0),(x1,z0),(x1,z1),(x0,z1)]]
             hs=[[family_point(x,d0,z) for x,z in h] for h in holes] if holes else None
             return extrusion(name,pts,DB.XYZ(0,-exterior,0),d1-d0,role,'Moving Sash',hs)
-        for i,(a,b) in enumerate(source['glazingDepthRangesMm']):rect('Moving Sash Glass Pane '+str(i+1),x0,x1,z0,z1,a,b,'glazing')
-        for i,(a,b) in enumerate([(21,39),(43,61)]):
-            # A hollow perimeter ring, kept clear of the centre of both gas cavities.
-            inset=4;radial=7;skin=1
-            for side in ['Left','Right','Head','Sill']:
-                lo,hi=(z0+inset,z1-inset) if side in ['Left','Right'] else (x0+inset+radial,x1-inset-radial)
-                u0,u1=(x0+inset,x0+inset+radial) if side=='Left' else (x1-inset-radial,x1-inset) if side=='Right' else (z1-inset-radial,z1-inset) if side=='Head' else (z0+inset,z0+inset+radial)
-                pts=[family_point(u0,a,lo),family_point(u1,a,lo),family_point(u1,b,lo),family_point(u0,b,lo)] if side in ['Left','Right'] else [family_point(lo,a,u0),family_point(lo,b,u0),family_point(lo,b,u1),family_point(lo,a,u1)]
-                hs=[family_point(u0+skin,a+skin,lo),family_point(u1-skin,a+skin,lo),family_point(u1-skin,b-skin,lo),family_point(u0+skin,b-skin,lo)] if side in ['Left','Right'] else [family_point(lo,a+skin,u0+skin),family_point(lo,b-skin,u0+skin),family_point(lo,b-skin,u1-skin),family_point(lo,a+skin,u1-skin)]
-                extrusion('Moving Sash Warm Edge '+str(i+1)+' '+side,pts,DB.XYZ.BasisZ if side in ['Left','Right'] else DB.XYZ.BasisX,hi-lo,'spacer','Moving Sash',[hs])
-        # Closed glazing seals at the two pane faces, geometry deliberately simplified.
-        for a,b in [(15,17),(65,67)]:
-            hole=[(x0+9,z0+9),(x0+9,z1-9),(x1-9,z1-9),(x1-9,z0+9)]
-            rect('Moving Sash Glazing Seal '+str(a),x0-1,x1+1,z0-1,z1+1,a,b,'seal',[hole])
+        if selected_group!='Fixed Frame':
+            for i,(a,b) in enumerate(source['glazingDepthRangesMm']):rect('Moving Sash Glass Pane '+str(i+1),x0,x1,z0,z1,a,b,'glazing')
+            for i,(a,b) in enumerate([(21,39),(43,61)]):
+                # A hollow perimeter ring, kept clear of the centre of both gas cavities.
+                inset=4;radial=7;skin=1
+                for side in ['Left','Right','Head','Sill']:
+                    lo,hi=(z0+inset,z1-inset) if side in ['Left','Right'] else (x0+inset+radial,x1-inset-radial)
+                    u0,u1=(x0+inset,x0+inset+radial) if side=='Left' else (x1-inset-radial,x1-inset) if side=='Right' else (z1-inset-radial,z1-inset) if side=='Head' else (z0+inset,z0+inset+radial)
+                    pts=[family_point(u0,a,lo),family_point(u1,a,lo),family_point(u1,b,lo),family_point(u0,b,lo)] if side in ['Left','Right'] else [family_point(lo,a,u0),family_point(lo,b,u0),family_point(lo,b,u1),family_point(lo,a,u1)]
+                    hs=[family_point(u0+skin,a+skin,lo),family_point(u1-skin,a+skin,lo),family_point(u1-skin,b-skin,lo),family_point(u0+skin,b-skin,lo)] if side in ['Left','Right'] else [family_point(lo,a+skin,u0+skin),family_point(lo,b-skin,u0+skin),family_point(lo,b-skin,u1-skin),family_point(lo,a+skin,u1-skin)]
+                    extrusion('Moving Sash Warm Edge '+str(i+1)+' '+side,pts,DB.XYZ.BasisZ if side in ['Left','Right'] else DB.XYZ.BasisX,hi-lo,'spacer','Moving Sash',[hs])
+            # Closed glazing seals at the two pane faces, geometry deliberately simplified.
+            for a,b in [(15,17),(65,67)]:
+                hole=[(x0+9,z0+9),(x0+9,z1-9),(x1-9,z1-9),(x1-9,z0+9)]
+                rect('Moving Sash Glazing Seal '+str(a),x0-1,x1+1,z0-1,z1+1,a,b,'seal',[hole])
         if not assembly_only:
             for opening in list(DB.FilteredElementCollector(f).OfClass(DB.Opening)):f.Delete(opening.Id)
             f.FamilyCreate.NewOpening(host,curves([family_point(-half,0,0),family_point(half,0,0),family_point(half,0,height),family_point(-half,0,height)]))
@@ -238,6 +257,7 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         plane=DB.SketchPlane.Create(f,DB.Plane.CreateByNormalAndOrigin(DB.XYZ.BasisZ,family_point(0,0,height/2)))
         symbolic=[];symbolic_keys=set();plan_segments=[]
         def create_plan_line(a,b):
+            if selected_group:return
             if a.DistanceTo(b)<.9*MM:return
             key=tuple(sorted(tuple(round(getattr(p,axis)/MM,4) for axis in ['X','Y','Z']) for p in [a,b]))
             if key in symbolic_keys:return
@@ -248,7 +268,7 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         def plan_line(a,b):plan_segments.append((a,b))
         for side in ['Left','Right']:
             keys=['frame'+side,'sash'+side,'sashAluminium'+side]
-            if source.get('completePlan',False):keys+=['frameHeadClip']+(['frameOuterTrim'] if source.get('includePlasterTrim',True) else [])
+            if source.get('completePlan',False):keys+=[frame_keys[side]]+(['frameOuterTrim'] if source.get('includePlasterTrim',True) else [])
             for key in keys:
                 pts=section_points(profiles[key]['pointsMm'],side,height/2)
                 for a,b in zip(pts,pts[1:]+pts[:1]):plan_line(a,b)

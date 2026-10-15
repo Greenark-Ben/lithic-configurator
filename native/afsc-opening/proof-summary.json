@@ -1,0 +1,49 @@
+{
+  "milestone": "AFSC native opening mechanism study 01",
+  "geometryMode": "fixed-size-snapshot",
+  "dimensionsMm": [
+    880,
+    1180
+  ],
+  "nativeLeftHandAngleControlVerified": true,
+  "nativeRightHandAngleControlVerified": false,
+  "familyAnglesDegrees": [
+    0,
+    15,
+    30,
+    45,
+    90
+  ],
+  "reopenedFamilyAnglesDegrees": [
+    0,
+    15,
+    45,
+    90,
+    0
+  ],
+  "projectAnglesDegrees": [
+    0,
+    45,
+    90
+  ],
+  "projectSaveReopenPassed": true,
+  "movingSolids": 21,
+  "fixedSolids": 8,
+  "freeForms": 0,
+  "directShapes": 0,
+  "sampledFrameCases": 24,
+  "sampledWallCases": 72,
+  "sampledOverlapThresholdMm3": 1,
+  "sampledFrameHits": 0,
+  "sampledWallHits": 0,
+  "booleanErrors": 0,
+  "continuousTravelVerified": false,
+  "sourceHingeMechanismVerified": false,
+  "maximumOpeningVerified": false,
+  "hostedOpeningControlVerified": false,
+  "combinedSetbackOpeningVerified": false,
+  "frameHeadCornerAnalyticVolumeCheckPassed": false,
+  "activeProjectPreserved": true,
+  "visualAcceptance": "pending",
+  "status": "MECHANISM_PROVED_FRAME_REFINEMENT_REQUIRED"
+}

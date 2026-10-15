@@ -17,6 +17,15 @@ def frame_sill_spec():
     m=(28.279-9.72)/(40.2-3.081);b=9.72-m*3.081
     return {'kneeU':300,'kneeV':m*300+b,'slope':m,'intercept':b,'delta':0}
 
+def frame_corner_spec(profiles,keys,jamb,horizontal):
+    def front(side):
+        values=[u for u,d in profiles[keys[side]]['pointsMm'] if abs(d+10)<.001]
+        if len(values)<2:raise ValueError('Frame exterior face needs two source points: '+side)
+        return min(values),max(values)
+    a,b=front(jamb);c,d=front(horizontal)
+    m=(d-c)/(b-a);offset=c-m*a
+    return {'kneeU':300,'kneeV':m*300+offset,'slope':m,'intercept':offset,'delta':0}
+
 def boundary(spec,u):
     return spec['slope']*u+spec['intercept'] if u<spec['kneeU'] else u+spec['delta']
 
@@ -28,7 +37,15 @@ def cut_region(spec,jamb):
     edge=[[-150,boundary(spec,-150)]]
     if -150<spec['kneeU']<250:edge.append([spec['kneeU'],spec['kneeV']])
     edge.append([250,boundary(spec,250)])
-    return [[-150,-200],[250,-200]]+list(reversed(edge)) if jamb else edge+[[250,350],[-150,350]]
+    low=min(-200,min(p[1] for p in edge)-100);high=max(350,max(p[1] for p in edge)+100)
+    return [[-150,low],[250,low]]+list(reversed(edge)) if jamb else edge+[[250,high],[-150,high]]
+
+def frame_cut_region(spec,jamb):
+    # Keep the corner cutter local to the frame section to avoid distant
+    # near-coplanar intersections in Revit's thin-sheet solid kernel.
+    edge=[[-20,boundary(spec,-20)],[80,boundary(spec,80)]]
+    low=min(-30,min(v for u,v in edge)-20);high=max(100,max(v for u,v in edge)+20)
+    return [[-20,low],[80,low]]+list(reversed(edge)) if jamb else edge+[[80,high],[-20,high]]
 
 def integral(points,spec,horizontal=False):
     def clip(points,limit,lower):
