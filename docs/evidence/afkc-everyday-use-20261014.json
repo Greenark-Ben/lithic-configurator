@@ -1,0 +1,141 @@
+{
+  "kind": "lithic-everyday-use-evidence",
+  "revitVersion": "2024",
+  "sizeMm": [
+    1200,
+    1500
+  ],
+  "status": "native-checks-passed-with-recorded-limitations",
+  "nativeParameterFlex": false,
+  "manufacturerApproved": false,
+  "visualReviewPassed": false,
+  "inputFamilySha256": "eb8451938537f54b24b5aecd4ca8e888904faccde7499e83b43271f453417942",
+  "inputProjectSha256": "46cda465fe9e6785f622928e580c96ae44b0c6d69c20d3040c52728c01a707b1",
+  "limitations": {
+    "standaloneMirror": "Revit 2024 API returned: Can't mirror an instance without its host. Tested mirror scope includes walls and windows together.",
+    "handFlip": "CanFlipHand is false in the released fixed-window family; facing flip is supported.",
+    "materialScheduling": [
+      "Timber Material",
+      "Aluminium Material",
+      "Glazing Material",
+      "Glazing Spacer Material",
+      "Glazing Seal Material"
+    ],
+    "printScale": "PNG exports fit views to the image; physical printed scale has not been verified."
+  },
+  "activeProjectObservations": {
+    "firstBaseline": {
+      "modified": true,
+      "elements": 4893
+    },
+    "latestAuditBaseline": {
+      "modified": true,
+      "elements": 4893
+    },
+    "latestAuditAfter": {
+      "modified": true,
+      "elements": 4893
+    },
+    "allAcceptedRunsPreservedOwnBeforeAfter": true,
+    "modifiedFlagChangedBetweenRuns": false,
+    "causeOfBetweenRunFlagChange": "not established",
+    "activeProjectSaveOrReloadRequested": false
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "status": "passed",
+      "instancesBeforeAndAfter": 10,
+      "distinctHostThicknessMm": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "partsPerInstance": 22,
+      "scheduleColumns": 5,
+      "schedulePassed": true,
+      "schedulePersisted": true,
+      "mirrorScope": null,
+      "savedProjectSha256": "6ca0b842954c639d2374725647af54421474686b967fd92ef9230456657d2b5e",
+      "warnings": [],
+      "reopenedWarnings": []
+    },
+    {
+      "name": "flip-facing",
+      "status": "passed",
+      "instancesBeforeAndAfter": 10,
+      "distinctHostThicknessMm": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "partsPerInstance": 22,
+      "scheduleColumns": 5,
+      "schedulePassed": true,
+      "schedulePersisted": true,
+      "mirrorScope": null,
+      "savedProjectSha256": "7c233bb35aab8ff251404b878c422565ad36383f18fabebf9a24197834a73842",
+      "warnings": [],
+      "reopenedWarnings": []
+    },
+    {
+      "name": "materials",
+      "status": "passed",
+      "instancesBeforeAndAfter": 10,
+      "distinctHostThicknessMm": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "partsPerInstance": 22,
+      "scheduleColumns": 5,
+      "schedulePassed": true,
+      "schedulePersisted": true,
+      "mirrorScope": null,
+      "savedProjectSha256": "c772eb79d6a1aef05238401498b2c791ec3cd6514906e2cfa6aca55769065fa9",
+      "warnings": [],
+      "reopenedWarnings": []
+    },
+    {
+      "name": "mirror-left-right",
+      "status": "passed",
+      "instancesBeforeAndAfter": 10,
+      "distinctHostThicknessMm": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "partsPerInstance": 22,
+      "scheduleColumns": 5,
+      "schedulePassed": true,
+      "schedulePersisted": true,
+      "mirrorScope": "host-and-window-assemblies",
+      "savedProjectSha256": "8938c7b244df6d177aa999e7987070f36ac06f9ab67990f8e7fef44c824541c2",
+      "warnings": [],
+      "reopenedWarnings": []
+    },
+    {
+      "name": "mirror-front-back",
+      "status": "passed",
+      "instancesBeforeAndAfter": 10,
+      "distinctHostThicknessMm": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "partsPerInstance": 22,
+      "scheduleColumns": 5,
+      "schedulePassed": true,
+      "schedulePersisted": true,
+      "mirrorScope": "host-and-window-assemblies",
+      "savedProjectSha256": "64fe0875e3614bc2136c199bcaf006fd6b5f9abf1d06a2ea75117575db75c1e5",
+      "warnings": [],
+      "reopenedWarnings": []
+    }
+  ]
+}
