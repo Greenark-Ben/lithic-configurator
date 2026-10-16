@@ -51,10 +51,9 @@ has NOT yet been verified.
 - The hinge axis is a DWG observation, not a manufacturer-approved mechanism.
   Hardware heights, hinge travel, seal compression and maximum opening are
   unverified. Use 0..90 degrees only as the tested diagnostic range.
-- Wall-hosted opening control, `Window Setback` combined with opening,
-  material-control propagation through the additional nesting, and authored
-  right-hand/mirror behavior still require proof. Existing closed proofs
-  do not automatically establish these behaviors for this opening study.
+- Material-control propagation through the additional nesting and authored
+  right-hand/mirror behavior still require proof. The hosted opening/setback
+  correction is recorded separately below; it does not approve these items.
 - Plan graphics currently use native geometry for the mechanism study;
   the accepted closed symbolic plan must not be reused as an open-sash plan.
 - Width/Height flex, hardware, drainage, fixings and web/APS integration
@@ -74,3 +73,29 @@ has NOT yet been verified.
 Requires a locally licensed Revit 2024 template and the existing desktop
 authoring helpers. Templates and manufacturer source files are not distributed.
 All tools use isolated documents and fresh output directories.
+
+## Hosted wall-cut correction — 16 October 2026
+
+The first mechanism family intentionally had no host or opening. Project
+placement against a wall therefore left the wall intact, as the user's
+screenshots showed. `wrap_hosted.py` embeds the proven mechanism in an actual
+wall-hosted Window template and authors a native rectangular Opening.
+It associates an instance `Opening Angle` to the nested mechanism and controls
+placement with an instance `Window Setback`. Width and Height remain fixed.
+
+Native Revit 2024 proof passed 12 family cases and 48 actual hosted project
+cases: 100/200/300/500 mm walls, 0/50/100 mm setbacks and 0/15/45/90 degree
+angles. All 29 solids retain their expected geometry, the physical sill agrees
+with Revit's Sill Height, and wall volume independently confirms the full
+880 x 1180 mm cut. A saved/reopened project retains three hosted instances at
+0/45/90 degrees and three correct wall openings. No family or project warnings.
+The active user project was preserved and restored after native image export.
+See `hosted-proof-summary.json`; raw evidence is in the local Study 02 package.
+
+Use the new `HOSTED-OPENING-STUDY.rfa` with the Window placement command and
+replace earlier unhosted mechanism-study instances. The host type cannot be
+added to those instances by simply reloading the earlier family.
+
+This correction does not resolve the head-cladding volume discrepancy,
+right-hand control, parent material propagation or manufacturer mechanism
+approval. It has not been deployed to the website or APS.

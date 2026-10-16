@@ -1,0 +1,50 @@
+{
+  "milestone": "AFSC hosted opening study 02",
+  "date": "2026-10-16",
+  "dimensionsMm": [
+    880,
+    1180
+  ],
+  "geometryMode": "fixed-size-snapshot",
+  "familyPlacementType": "OneLevelBasedHosted",
+  "nativeWallOpeningCount": 1,
+  "nativeOpeningAngleAssociationPassed": true,
+  "familyGeometryCasesPassed": 12,
+  "projectPlacementCasesPassed": 48,
+  "wallThicknessesMm": [
+    100,
+    200,
+    300,
+    500
+  ],
+  "setbacksMm": [
+    0,
+    50,
+    100
+  ],
+  "openingAnglesDegrees": [
+    0,
+    15,
+    45,
+    90
+  ],
+  "openingVolumeVerified": true,
+  "threeInstancesCutVerified": true,
+  "familySaveReopenPassed": true,
+  "projectSaveReopenCutPassed": true,
+  "savedProjectInstancesAnglesDegrees": [
+    45,
+    0,
+    90
+  ],
+  "solidsPerInstance": 29,
+  "familyWarnings": 0,
+  "projectWarnings": 0,
+  "activeProjectPreserved": true,
+  "headCornerCheckResolved": false,
+  "manufacturerMechanismVerified": false,
+  "maximumOpeningVerified": false,
+  "nativeRightHandControlVerified": false,
+  "parentMaterialControlsVerified": false,
+  "visualAcceptance": "pending"
+}
