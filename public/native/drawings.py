@@ -21,7 +21,7 @@ def create_review_views(project,instance,width,height,exterior):
     views=[]
     for detail,scale in [('coarse',50),('medium',50),('fine',10)]:
         v=DB.ViewPlan.Create(project,types[DB.ViewFamily.FloorPlan].Id,level.Id)
-        v.Name='AFKC '+detail+' plan 1-'+str(scale);v.Scale=scale
+        v.Name='LITHIC Fixed Window '+detail+' plan 1-'+str(scale);v.Scale=scale
         v.DetailLevel={'coarse':DB.ViewDetailLevel.Coarse,'medium':DB.ViewDetailLevel.Medium,'fine':DB.ViewDetailLevel.Fine}[detail]
         vr=v.GetViewRange();vr.SetOffset(DB.PlanViewPlane.TopClipPlane,bounds.Max.Z+100/304.8-level.Elevation);vr.SetOffset(DB.PlanViewPlane.CutPlane,mid-level.Elevation);vr.SetOffset(DB.PlanViewPlane.BottomClipPlane,0);vr.SetOffset(DB.PlanViewPlane.ViewDepthPlane,0);v.SetViewRange(vr)
         crop=DB.BoundingBoxXYZ();crop.Min=DB.XYZ(bounds.Min.X-150/304.8,-150/304.8,0);crop.Max=DB.XYZ(bounds.Max.X+150/304.8,150/304.8,5000/304.8);v.CropBox=crop;v.CropBoxActive=True;v.CropBoxVisible=False
@@ -32,7 +32,7 @@ def create_review_views(project,instance,width,height,exterior):
         zbase=bounds.Min.Z if end=='bottom' else bounds.Max.Z;direction=1 if end=='bottom' else -1
         for sign in [-1,1]:
             v=DB.View3D.CreateIsometric(project,types[DB.ViewFamily.ThreeDimensional].Id)
-            v.Name='AFKC '+('left' if sign<0 else 'right')+' '+end+' corner';v.Scale=2;v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
+            v.Name='LITHIC Fixed Window '+('left' if sign<0 else 'right')+' '+end+' corner';v.Scale=2;v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
             target=DB.XYZ(sign*(width/2-40)/304.8,ext*50/304.8,zbase+direction*40/304.8)
             eye=target+DB.XYZ(sign*.9,ext*1.2,direction*.7);forward=(target-eye).Normalize();right=forward.CrossProduct(DB.XYZ.BasisZ).Normalize();up=right.CrossProduct(forward).Normalize();v.SetOrientation(DB.ViewOrientation3D(eye,up,forward))
             v.IsSectionBoxActive=True;box=DB.BoundingBoxXYZ();box.Min=DB.XYZ((width/2-120 if sign>0 else -width/2-40)/304.8,-90/304.8,zbase+(-10 if end=='bottom' else -150)/304.8);box.Max=DB.XYZ((width/2+40 if sign>0 else -width/2+120)/304.8,90/304.8,zbase+(150 if end=='bottom' else 10)/304.8);v.SetSectionBox(box)
@@ -45,7 +45,7 @@ def create_review_views(project,instance,width,height,exterior):
     for name,low,high in [('sill',bounds.Min.Z-5/304.8,bounds.Min.Z+95/304.8),('head',bounds.Max.Z-95/304.8,bounds.Max.Z+5/304.8)]:
         transform=DB.Transform.Identity;transform.BasisX=DB.XYZ.BasisY;transform.BasisY=DB.XYZ.BasisZ;transform.BasisZ=DB.XYZ.BasisX
         box=DB.BoundingBoxXYZ();box.Transform=transform;box.Min=DB.XYZ(-75/304.8,low,-20/304.8);box.Max=DB.XYZ(75/304.8,high,20/304.8)
-        v=DB.ViewSection.CreateSection(project,types[DB.ViewFamily.Section].Id,box);v.Name='AFKC '+name+' section';v.Scale=2;v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
+        v=DB.ViewSection.CreateSection(project,types[DB.ViewFamily.Section].Id,box);v.Name='LITHIC Fixed Window '+name+' section';v.Scale=2;v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
         ids=List[DB.ElementId]()
         for wall in DB.FilteredElementCollector(project).OfClass(DB.Wall):
             if wall.CanBeHidden(v):ids.Add(wall.Id)

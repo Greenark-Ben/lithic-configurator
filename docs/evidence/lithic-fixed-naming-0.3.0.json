@@ -1,0 +1,131 @@
+{
+  "builder": "lithic-window-fixed-desktop/0.3.0",
+  "nativeParameterFlex": false,
+  "manufacturerApproved": false,
+  "geometryMode": "fixed-size-snapshot",
+  "productId": "lithic.window.fixed",
+  "constructionId": "lithic.fixed.timber-aluminium/1",
+  "sourceModel": "AFKC",
+  "packageHashes": {
+    "script.py": "ae8d88b837e931a08528c2e905390b24aa3dd79e4111e8ed9e728461adc1a000",
+    "authoring.py": "736ff97fbabf7b8c4533071e1df405532a152d6d92cbd10d3a78f3e6f0ce1d5d",
+    "contract.py": "6cecdbc63f1c8917caa93ecfd2444a62d24bd0a26aa345601985753b79f0a574",
+    "drawings.py": "77e9b86e6258d1f865799cdb28a3f8dc4bbfb67f4cdf93be152e7c49977b4d65",
+    "afkc-source.json": "928d79d6737868a393da228aca98be19268c570ebbb5a206ec6f348e7c36adc6",
+    "Install.ps1": "970da0038611b01e9713d9de4dac7227087d263d64f8c838a1a5ce81c72f0263",
+    "bundle.yaml": "9e3773d8176b05631ed1767fca44db356be3158676e5dd4b17dd72d61610e06c",
+    "README.txt": "aaf612131e0366afeebda520f7fcffaaef93c012f32a6ab558863b381a882948"
+  },
+  "requestSha256": "d449b841ed4e35cee3a70cedfea037c34e8deb093eebc89b5bda66ad8db1ed23",
+  "nativeProof": "lithic-naming-native-20261016-02",
+  "cases": [
+    {
+      "sizeMm": [
+        1200,
+        1500
+      ],
+      "status": "passed",
+      "familyFile": "LITHIC-Window-Fixed-1200x1500.rfa",
+      "familySha256": "e8dc18582f0845f213f15fe073eb3fe75607d0a53cdf4c83b04ee5329881d1fc",
+      "hostThicknessChecks": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "warnings": []
+    },
+    {
+      "sizeMm": [
+        900,
+        1200
+      ],
+      "status": "passed",
+      "familyFile": "LITHIC-Window-Fixed-900x1200.rfa",
+      "familySha256": "83eb8a28df7df97639c5148fda9885ce63dd7649890797665240eccf5efd6fdb",
+      "hostThicknessChecks": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "warnings": []
+    },
+    {
+      "sizeMm": [
+        1500,
+        1800
+      ],
+      "status": "passed",
+      "familyFile": "LITHIC-Window-Fixed-1500x1800.rfa",
+      "familySha256": "76913787df0c7ac7b1e6cf9e14fcdbcc60f2205f8f4b9ae401d3f23b474d9440",
+      "hostThicknessChecks": [
+        100,
+        200,
+        300,
+        500
+      ],
+      "warnings": []
+    }
+  ],
+  "namingChecks": [
+    {
+      "sizeMm": [
+        1200,
+        1500
+      ],
+      "passed": true,
+      "types": [
+        "LITHIC Fixed Window 1200x1500"
+      ],
+      "provenance": {
+        "LITHIC Source Model": "AFKC",
+        "LITHIC Product ID": "lithic.window.fixed",
+        "LITHIC Construction ID": "lithic.fixed.timber-aluminium/1",
+        "LITHIC Source Manufacturer": "Elitfonster"
+      },
+      "loadedFamilyName": "LITHIC-Window-Fixed-1200x1500",
+      "familyName": "LITHIC-Window-Fixed-1200x1500"
+    },
+    {
+      "sizeMm": [
+        900,
+        1200
+      ],
+      "passed": true,
+      "types": [
+        "LITHIC Fixed Window 900x1200"
+      ],
+      "provenance": {
+        "LITHIC Source Model": "AFKC",
+        "LITHIC Product ID": "lithic.window.fixed",
+        "LITHIC Construction ID": "lithic.fixed.timber-aluminium/1",
+        "LITHIC Source Manufacturer": "Elitfonster"
+      },
+      "loadedFamilyName": "LITHIC-Window-Fixed-900x1200",
+      "familyName": "LITHIC-Window-Fixed-900x1200"
+    },
+    {
+      "sizeMm": [
+        1500,
+        1800
+      ],
+      "passed": true,
+      "types": [
+        "LITHIC Fixed Window 1500x1800"
+      ],
+      "provenance": {
+        "LITHIC Source Model": "AFKC",
+        "LITHIC Product ID": "lithic.window.fixed",
+        "LITHIC Construction ID": "lithic.fixed.timber-aluminium/1",
+        "LITHIC Source Manufacturer": "Elitfonster"
+      },
+      "loadedFamilyName": "LITHIC-Window-Fixed-1500x1800",
+      "familyName": "LITHIC-Window-Fixed-1500x1800"
+    }
+  ],
+  "activeProjectPreserved": true,
+  "cloudExecutionOfThisRevisionVerified": false,
+  "historicalEvidenceRelabelled": false,
+  "actualBrowserReportImportPassed": true
+}

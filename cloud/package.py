@@ -13,12 +13,12 @@ args = parser.parse_args()
 root = Path(__file__).resolve().parent
 native = root.parent / 'public/native'
 binary = root / 'bin/Release/net48'
-contents = root / 'package/LithicAfkcCloud.bundle/Contents'
+contents = root / 'package/LithicWindowFixedCloud.bundle/Contents'
 contents.mkdir(parents=True, exist_ok=True)
 for file in binary.glob('*.dll'):
     if not file.name.lower().startswith('revitapi'):
         shutil.copy2(file, contents / file.name)
-if not (contents / 'Lithic.Afkc.Cloud.dll').exists():
+if not (contents / 'Lithic.WindowFixed.Cloud.dll').exists():
     raise ValueError('Build the .NET add-in before packaging.')
 library = binary / 'Lib'
 if not library.exists():
@@ -40,13 +40,13 @@ if 'revit.' in text or 'forms.' in text: raise ValueError('Desktop dependency re
 (contents / 'cloud_builder.py').write_text(text, encoding='utf-8')
 shutil.copy2(root / 'cloud_entry.py', contents / 'cloud_entry.py')
 shutil.copy2(root / 'PackageContents.xml', contents.parent / 'PackageContents.xml')
-shutil.copy2(root / 'Lithic.Afkc.Cloud.addin', contents / 'Lithic.Afkc.Cloud.addin')
+shutil.copy2(root / 'Lithic.WindowFixed.Cloud.addin', contents / 'Lithic.WindowFixed.Cloud.addin')
 artifacts = root / 'artifacts'
 artifacts.mkdir(exist_ok=True)
 with zipfile.ZipFile(artifacts / 'appbundle.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
     for file in contents.parent.rglob('*'):
-        if file.is_file(): archive.write(file, file.relative_to(root / 'package').as_posix())
+        if file.is_file() and file.name != 'Lithic.Afkc.Cloud.dll': archive.write(file, file.relative_to(root / 'package').as_posix())
 shutil.copy2(Path(args.template), artifacts / 'window.rft')
-manifest = {'adapter':'lithic-afkc-aps-browser/0.2','sourceBuilder':'lithic-afkc-desktop/0.2.2','engine':'Autodesk.Revit+2024','files':{name:hashlib.sha256((artifacts / name).read_bytes()).hexdigest() for name in ['appbundle.zip','window.rft']}}
+manifest = {'adapter':'lithic-window-fixed-aps-browser/0.3.0','sourceBuilder':'lithic-window-fixed-desktop/0.3.0','engine':'Autodesk.Revit+2024','files':{name:hashlib.sha256((artifacts / name).read_bytes()).hexdigest() for name in ['appbundle.zip','window.rft']}}
 (root / 'artifacts-manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
 print('Private APS artifacts packaged; desktop geometry functions retained.')

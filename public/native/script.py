@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""LITHIC AFKC native snapshot builder, executed inside Revit by pyRevit.
+"""LITHIC Fixed Window native snapshot builder, executed inside Revit by pyRevit.
 No HTTP listener, eval, external project edits or automatic warning suppression.
 This builder makes fixed-size families; it does NOT claim native parameter flex.
 """
@@ -175,8 +175,8 @@ def create_host_cases(project,symbol,level,width,height,specs,exterior,expected_
 def build_case(application, template, output, request, source, width, height, digest):
     family, project = None, None
     label = str(width).replace('.', '_')+'x'+str(height).replace('.', '_')
-    family_path = os.path.join(output, 'LITHIC-AFKC-'+label+'.rfa')
-    project_path = os.path.join(output, 'LITHIC-AFKC-'+label+'-verification.rvt')
+    family_path = os.path.join(output, 'LITHIC-Window-Fixed-'+label+'.rfa')
+    project_path = os.path.join(output, 'LITHIC-Window-Fixed-'+label+'-verification.rvt')
     result = {'sizeMm': [width, height], 'status': 'failed', 'geometryMode': 'fixed-size-snapshot', 'nativeParameterFlex': False}
     try:
         family = application.NewFamilyDocument(template)
@@ -190,19 +190,24 @@ def build_case(application, template, output, request, source, width, height, di
         host = hosts[0]
         exterior = 1 if host.Orientation.Y > 0 else -1
         parts = native_specs(source, width, height)
-        tx = DB.Transaction(family, 'LITHIC source-derived fixed-size AFKC')
+        tx = DB.Transaction(family, 'LITHIC source-derived fixed window')
         tx.Start()
         try:
             for opening in DB.FilteredElementCollector(family).OfClass(DB.Opening).ToElements():
                 family.Delete(opening.Id)
             manager = family.FamilyManager
             if manager.CurrentType is None:
-                manager.NewType('AFKC '+label)
+                manager.NewType('LITHIC Fixed Window '+label)
+            else:
+                manager.RenameCurrentType('LITHIC Fixed Window '+label)
             shared = shared_parameters(family, source)
-            for name, value in [('Width', width), ('Height', height), ('AFKC Timber Depth', 105), ('AFKC Frame Sightline', 53.5), ('AFKC Glazing Assembly Depth', 48)]:
+            for name, value in [('Width', width), ('Height', height), ('LITHIC Timber Depth', 105), ('LITHIC Frame Sightline', 53.5), ('LITHIC Glazing Assembly Depth', 48)]:
                 fixed_parameter(family, name, value)
             for name, value in [('LITHIC Request SHA256', digest), ('LITHIC Evidence Status', 'UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE'), ('LITHIC Source Drawing', '61-37-F221 rev A'), ('LITHIC Builder', BUILDER), ('LITHIC Geometry Mode', 'fixed-size-snapshot')]:
                 text_parameter(family, name, value)
+            for name,value in [('LITHIC Product ID', 'lithic.window.fixed'), ('LITHIC Construction ID', request['definition']['id']), ('LITHIC Source Manufacturer', source['product']['manufacturer']), ('LITHIC Source Model', source['product']['productCode'])]:
+                fp=manager.AddParameter(name,DB.GroupTypeId.IdentityData,DB.SpecTypeId.String.Text,False)
+                manager.SetFormula(fp,'"'+value.replace('"','')+'"')
             finishes = request['configuration']
             materials = {
                 'timber': material(family, 'LITHIC Timber '+finishes['interior'], (219, 195, 164) if finishes['interior'] == 'timber' else (231, 229, 222)),
@@ -343,7 +348,7 @@ def main():
     application = revit.doc.Application
     if int(application.VersionNumber) < 2024:
         raise ValueError('This handoff requires Revit 2024 or later.')
-    output = os.path.join(folder, 'LITHIC-AFKC-'+datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')+'-'+digest[:8])
+    output = os.path.join(folder, 'LITHIC-Window-Fixed-'+datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')+'-'+digest[:8])
     os.mkdir(output)
     report = {'kind': 'lithic-native-report', 'schemaVersion': '0.2', 'builder': BUILDER, 'requestSha256': digest, 'createdAt': datetime.datetime.utcnow().isoformat()+'Z', 'revitVersion': application.VersionNumber, 'geometryMode': 'fixed-size-snapshot', 'nativeParameterFlex': False, 'manufacturerApproved': False, 'templateSha256': file_hash(template), 'cases': []}
     for width, height in verification_sizes(request):

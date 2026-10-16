@@ -7,7 +7,7 @@ using Autodesk.Revit.ApplicationServices;
 using DesignAutomationFramework;
 using IronPython.Hosting;
 
-namespace Lithic.Afkc.Cloud
+namespace Lithic.WindowFixed.Cloud
 {
     public sealed class CloudApplication : IExternalDBApplication
     {

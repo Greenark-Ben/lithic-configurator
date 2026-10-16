@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <AssemblyName>Lithic.Afkc.Cloud</AssemblyName>
+    <AssemblyName>Lithic.WindowFixed.Cloud</AssemblyName>
     <LangVersion>latest</LangVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <RevitInstall Condition="'$(RevitInstall)' == ''">C:\Program Files\Autodesk\Revit 2024</RevitInstall>

@@ -20,7 +20,7 @@ const post=()=>new Request('https://lithic.test/api/revit/jobs',{method:'POST',h
 const get=(id:string,suffix='',user='owner')=>new Request(`https://lithic.test/api/revit/jobs/${id}${suffix}`,{headers:{'oai-authenticated-user-id':user}});
 const assets={bundle:new Uint8Array([1,2,3]),template:new Uint8Array([4,5]),bundleSha256:'fixture'};
 async function fixture(change?:(r:any)=>void){
- const report:any=structuredClone(evidence),id=await sha256(new TextEncoder().encode(requestText));report.adapter='lithic-afkc-aps-browser/0.2';report.requestSha256=id;report.sourceBuilder=NATIVE_BUILDER;Object.assign(report.cases[0],sharedFixture(id));
+ const report:any=structuredClone(evidence),id=await sha256(new TextEncoder().encode(requestText));report.adapter='lithic-window-fixed-aps-browser/0.3.0';report.requestSha256=id;report.sourceBuilder=NATIVE_BUILDER;Object.assign(report.cases[0],sharedFixture(id));report.cases[0].familyFile=report.cases[0].familyFile.replace('LITHIC-AFKC-','LITHIC-Window-Fixed-');report.cases[0].projectFile=report.cases[0].projectFile.replace('LITHIC-AFKC-','LITHIC-Window-Fixed-');
  const family=new TextEncoder().encode('TEST ONLY RFA BYTES'),project=new TextEncoder().encode('TEST ONLY RVT BYTES');report.cases[0].familySha256=await sha256(family);report.cases[0].projectSha256=await sha256(project);change?.(report);
  const zip=zipFiles([{name:'cloud-proof-report.json',data:new TextEncoder().encode(JSON.stringify(report))},{name:report.cases[0].familyFile,data:family},{name:report.cases[0].projectFile,data:project}]);
  let phase='pending',workItems=0;
@@ -52,4 +52,35 @@ describe('APS browser generation',()=>{
  it('does not retry an uncertain work-item submission',async()=>{const f=await fixture(),normal=f.upstream;const upstream=vi.fn(async(input:any,init:any)=>{if(String(input).endsWith('/workitems')&&init?.method==='POST')throw new Error('Network lost after send');return normal(input,init)}) as unknown as typeof fetch;const response=await revitRoute(post(),f.env,assets,upstream);expect(await response.json()).toMatchObject({status:'needs-attention'});await revitRoute(post(),f.env,assets,upstream);expect((upstream as any).mock.calls.filter(([u]:any)=>String(u).endsWith('/workitems')).length).toBe(1)});
  it('calls fetch as a standalone function and permits an explicit retry before submission',async()=>{const f=await fixture();let reject=true;const upstream=(function(this:unknown,input:any,init:any){expect(this).toBeUndefined();if(String(input).endsWith('/token')&&reject)return Promise.resolve(new Response('',{status:401}));return f.upstream(input,init)}) as typeof fetch;expect(await(await revitRoute(post(),f.env,assets,upstream)).json()).toMatchObject({status:'failed'});expect(f.workItems()).toBe(0);reject=false;expect(await(await revitRoute(post(),f.env,assets,upstream)).json()).toMatchObject({status:'queued'});expect(f.workItems()).toBe(1);});
  it('rejects incomplete reports and old adapters',async()=>{const f=await fixture();expect(()=>validateReport(f.report,{requestSha256:f.id,sizeMm:[1200,1500]})).not.toThrow();for(const change of [(r:any)=>r.adapter='lithic-afkc-aps-proof/0.1',(r:any)=>r.cases[0].nativeFormCounts.freeForms=1,(r:any)=>r.cases[0].reopenedWarnings=['warning']]){const r=structuredClone(f.report);change(r);expect(()=>validateReport(r,{requestSha256:f.id,sizeMm:[1200,1500]})).toThrow()}});
+});
+
+describe('version-pinned naming migration',()=>{
+ it('keeps authentic legacy evidence valid only for its original contract',()=>{
+  const old=structuredClone(evidence);
+  const job={requestSha256:old.requestSha256,sizeMm:old.cases[0].sizeMm,builderVersion:'lithic-afkc-desktop/0.2.2'};
+  expect(validateReport(old,job).familyFile).toContain('LITHIC-AFKC-');
+  expect(()=>validateReport(old,{...job,builderVersion:NATIVE_BUILDER})).toThrow('does not verify');
+  expect(()=>validateReport(old,{...job,builderVersion:'unknown'})).toThrow('Unsupported build contract');
+ });
+ it('rejects supplier-named output from a new-contract job',async()=>{
+  const f=await fixture();f.report.cases[0].familyFile='LITHIC-AFKC-1200x1500.rfa';
+  expect(()=>validateReport(f.report,{requestSha256:f.id,sizeMm:[1200,1500],builderVersion:NATIVE_BUILDER})).toThrow('Native file evidence');
+ });
+ it('rejects legacy requests instead of silently relabelling their approval',()=>{
+  const old=JSON.parse(requestText);old.definition.id='elitfonster-afkc-profile-proof';
+  expect(()=>validateRequest(JSON.stringify(old))).toThrow('differs from');
+ });
+});
+
+it('finishes a pre-migration pending cloud job without a new submission',async()=>{
+ const legacy='lithic-afkc-desktop/0.2.2';
+ const f=await fixture(r=>{
+  const replace=(v:any):any=>typeof v==='string'?v.replaceAll(NATIVE_BUILDER,legacy).replaceAll('lithic-window-fixed-aps-browser/0.3.0','lithic-afkc-aps-browser/0.2').replaceAll('LITHIC-Window-Fixed-','LITHIC-AFKC-'):Array.isArray(v)?v.map(replace):v&&typeof v==='object'?Object.fromEntries(Object.entries(v).map(([k,x])=>[k,replace(x)])):v;
+  Object.assign(r,replace(r));
+ });
+ expect((await revitRoute(post(),f.env,assets,f.upstream)).status).toBe(202);
+ const scope=(await sha256(new TextEncoder().encode('owner'))).slice(0,24),key=`revit/jobs/${scope}/${f.id}.json`;
+ const old=await (await f.env.BUCKET!.get(key))!.json<any>();delete old.builderVersion;await f.env.BUCKET!.put(key,JSON.stringify(old));
+ f.phase('success');const result=await revitRoute(get(f.id),f.env,assets,f.upstream);expect((await result.json() as any).status).toBe('ready');
+ const download=await revitRoute(get(f.id,'/family'),f.env,assets,f.upstream);expect(download.headers.get('content-disposition')).toContain('LITHIC-AFKC-');expect(f.workItems()).toBe(1);
 });

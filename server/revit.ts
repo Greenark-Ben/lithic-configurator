@@ -1,6 +1,6 @@
 import {validateSharedParameters} from '../src/sharedParameters';
 import {unzipSync} from 'fflate';
-import {AFKC} from '../src/profiles';
+import {FIXED_WINDOW_DEFINITION} from '../src/profiles';
 import {createBuildRequest,configurationIssues,type Approval,type Configuration} from '../src/engine';
 import {zipFiles,NATIVE_BUILDER} from '../src/nativeHandoff';
 
@@ -9,9 +9,10 @@ export type CloudStore={get(key:string):Promise<StoreObject|null>;list(options:{
 export type CloudEnv={APS_CLIENT_ID?:string;APS_CLIENT_SECRET?:string;BUCKET?:CloudStore};
 export type CloudAssets={bundle:Uint8Array;template:Uint8Array;bundleSha256:string};
 type State='preparing'|'queued'|'building'|'checking'|'ready'|'failed'|'needs-attention';
-type Job={id:string;scope:string;status:State;sizeMm:number[];configuration:Configuration;createdAt:string;requestSha256:string;workItemId?:string;submissionAttempted?:boolean;checkingAt?:string;resultFinalized?:boolean;resultObject?:string;uploadKey?:string;bucket?:string;error?:string;familyFile?:string;familySha256?:string;resultSha256?:string};
-const HOST='https://developer.api.autodesk.com',DA=HOST+'/da/us-east/v3',ADAPTER='lithic-afkc-aps-browser/0.2';
-const bundleName='LithicAfkcBrowser',activityName='LithicAfkcBrowserActivity',alias='browser';
+type Job={id:string;scope:string;status:State;sizeMm:number[];configuration:Configuration;createdAt:string;requestSha256:string;workItemId?:string;submissionAttempted?:boolean;checkingAt?:string;resultFinalized?:boolean;resultObject?:string;uploadKey?:string;bucket?:string;error?:string;familyFile?:string;familySha256?:string;resultSha256?:string;builderVersion?:string};
+const HOST='https://developer.api.autodesk.com',DA=HOST+'/da/us-east/v3',ADAPTER='lithic-window-fixed-aps-browser/0.3.0';
+const LEGACY_BUILDER='lithic-afkc-desktop/0.2.2';
+const bundleName='LithicWindowFixedBrowser',activityName='LithicWindowFixedBrowserActivity',alias='browser';
 const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'cache-control':'no-store'}});
 export async function sha256(bytes:Uint8Array){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new Uint8Array(bytes).buffer))].map(n=>n.toString(16).padStart(2,'0')).join('')}
 const decode=(value:string)=>new TextEncoder().encode(value);
@@ -29,22 +30,27 @@ async function reserveSubmission(store:CloudStore){
 export function validateRequest(text:string){
  let input:any;try{input=JSON.parse(text)}catch{throw new Error('Invalid build request.');}
  const c=input.configuration as Configuration;
- if(!c||configurationIssues(c,AFKC).length||!['timber','white'].includes(c.interior)||!['graphite','white'].includes(c.exterior))throw new Error('Choose supported AFKC dimensions and finishes.');
- if(typeof input.approvedAt!=='string'||!Number.isFinite(Date.parse(input.approvedAt)))throw new Error('Approve the AFKC definition before building.');
- const expected=createBuildRequest({definition:AFKC,approvedAt:input.approvedAt},c);
- if(JSON.stringify(input)!==JSON.stringify(expected))throw new Error('The build request differs from the reviewed AFKC definition. Refresh and approve it again.');
+ if(!c||configurationIssues(c,FIXED_WINDOW_DEFINITION).length||!['timber','white'].includes(c.interior)||!['graphite','white'].includes(c.exterior))throw new Error('Choose supported LITHIC Fixed Window dimensions and finishes.');
+ if(typeof input.approvedAt!=='string'||!Number.isFinite(Date.parse(input.approvedAt)))throw new Error('Approve the LITHIC Fixed Window definition before building.');
+ const expected=createBuildRequest({definition:FIXED_WINDOW_DEFINITION,approvedAt:input.approvedAt},c);
+ if(JSON.stringify(input)!==JSON.stringify(expected))throw new Error('The build request differs from the reviewed LITHIC Fixed Window definition. Refresh and approve it again.');
  return c;
 }
-export function validateReport(report:any,j:Pick<Job,'requestSha256'|'sizeMm'>){
- if(report?.kind!=='lithic-cloud-proof-report'||report.adapter!==ADAPTER||report.sourceBuilder!==NATIVE_BUILDER||report.revitVersion!=='2024'||report.requestSha256!==j.requestSha256||report.geometryChecksPassed!==true||report.nativeParameterFlex!==false||report.manufacturerApproved!==false||report.visualReviewPassed!==false||report.status!=='geometry-passed-awaiting-visual-review'||report.cases?.length!==1)throw new Error('The returned report does not verify this configuration.');
+export function validateReport(report:any,j:Pick<Job,'requestSha256'|'sizeMm'|'builderVersion'>){
+ const builder=j.builderVersion??NATIVE_BUILDER,legacy=builder===LEGACY_BUILDER;
+ if(![NATIVE_BUILDER,LEGACY_BUILDER].includes(builder))throw new Error('Unsupported build contract.');
+ const adapter=legacy?'lithic-afkc-aps-browser/0.2':ADAPTER;
+ const familyPattern=legacy?/^LITHIC-AFKC-[0-9_]+x[0-9_]+\.rfa$/:/^LITHIC-Window-Fixed-[0-9_]+x[0-9_]+\.rfa$/;
+ const projectPattern=legacy?/^LITHIC-AFKC-[0-9_]+x[0-9_]+-verification\.rvt$/:/^LITHIC-Window-Fixed-[0-9_]+x[0-9_]+-verification\.rvt$/;
+ if(report?.kind!=='lithic-cloud-proof-report'||report.adapter!==adapter||report.sourceBuilder!==builder||report.revitVersion!=='2024'||report.requestSha256!==j.requestSha256||report.geometryChecksPassed!==true||report.nativeParameterFlex!==false||report.manufacturerApproved!==false||report.visualReviewPassed!==false||report.status!=='geometry-passed-awaiting-visual-review'||report.cases?.length!==1)throw new Error('The returned report does not verify this configuration.');
  const c=report.cases[0],required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed'];
  if(c.status!=='passed'||JSON.stringify(c.sizeMm)!==JSON.stringify(j.sizeMm)||required.some(k=>c[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(c[k])||c[k].length))throw new Error('Native checks failed or are incomplete.');
  if(c.parts?.length!==22||c.reopenedParts?.length!==22||[...c.parts,...c.reopenedParts].some((p:any)=>p.passed!==true))throw new Error('Native geometry checks are incomplete.');
  const n=c.nativeFormCounts;if(!n||n.sweeps!==4||n.solidExtrusions!==19||n.voidExtrusions!==4||n.freeForms!==0||n.directShapes!==0||c.sweepInputChecks?.length!==4||c.sweepInputChecks.some((p:any)=>p.passed!==true||p.nativeType!=='Sweep')||c.materialBindings?.length!==23||c.materialBindings.some((p:any)=>p.passed!==true))throw new Error('Native authoring or material evidence is incomplete.');
  if(c.hostThicknessCases?.length!==4||JSON.stringify(c.hostThicknessCases.map((h:any)=>h.wallThicknessMm).sort((a:number,b:number)=>a-b))!=='[100,200,300,500]')throw new Error('Hosted-wall evidence is incomplete.');
  for(const h of c.hostThicknessCases){if(h.passed!==true||h.savedReopenedPassed!==true||h.geometry?.passed!==true||h.reopenedGeometry?.passed!==true||h.openingPassed!==true||h.reopenedOpeningPassed!==true)throw new Error('Hosted-wall checks failed.');for(const k of ['planSymbols','reopenedPlanSymbols'])for(const [lod,count] of [['coarse',10],['medium',14],['fine',144]] as const){const p=h[k]?.[lod];if(p?.passed!==true||p.curveCount!==count||p.expectedCount!==count||!/^[a-f0-9]{64}$/.test(p.sha256)||p.sha256!==p.expectedSha256)throw new Error('Plan graphics checks failed.');}}
- if(!/^LITHIC-AFKC-[0-9_]+x[0-9_]+\.rfa$/.test(c.familyFile)||!/^LITHIC-AFKC-[0-9_]+x[0-9_]+-verification\.rvt$/.test(c.projectFile)||!/^[a-f0-9]{64}$/.test(c.familySha256)||!/^[a-f0-9]{64}$/.test(c.projectSha256))throw new Error('Native file evidence is incomplete.');
- validateSharedParameters(c,j.requestSha256,NATIVE_BUILDER);
+ if(!familyPattern.test(c.familyFile)||!projectPattern.test(c.projectFile)||!/^[a-f0-9]{64}$/.test(c.familySha256)||!/^[a-f0-9]{64}$/.test(c.projectSha256))throw new Error('Native file evidence is incomplete.');
+ validateSharedParameters(c,j.requestSha256,builder);
  return c;
 }
 
@@ -62,9 +68,9 @@ class Aps {
 async function prepareRuntime(api:Aps,env:CloudEnv,assets:CloudAssets){
  const store=env.BUCKET!,fingerprint=await sha256(decode(env.APS_CLIENT_ID!)),key=`revit/runtime/${fingerprint}/${assets.bundleSha256}.json`,saved=await store.get(key);
  if(saved)return saved.json<{activityId:string;bucket:string}>();
- const b=await api.version('appbundles',bundleName,{engine:'Autodesk.Revit+2024',description:'LITHIC AFKC browser generation'}),form=new FormData();for(const [k,v] of Object.entries(b.uploadParameters.formData))form.append(k,String(v));form.append('file',new Blob([new Uint8Array(assets.bundle).buffer],{type:'application/zip'}),'appbundle.zip');await api.transfer(b.uploadParameters.endpointURL,{method:'POST',body:form});await api.alias('appbundles',bundleName,b.version);
- const owner=env.APS_CLIENT_ID!,a=await api.version('activities',activityName,{engine:'Autodesk.Revit+2024',appbundles:[`${owner}.${bundleName}+${alias}`],commandLine:[`"$(engine.path)\\revitcoreconsole.exe" /al "$(appbundles[${bundleName}].path)"`],parameters:{input:{verb:'get',required:true,zip:true,localName:'input'},result:{verb:'put',required:true,localName:'results.zip'}},description:'Fixed-size AFKC snapshots; native checks required, visual review pending'});await api.alias('activities',activityName,a.version);
- const bucket='lithic-afkc-browser-'+fingerprint.slice(0,20);await api.api(HOST+'/oss/v2/buckets','POST',{bucketKey:bucket,policyKey:'transient'},[409]);const runtime={activityId:`${owner}.${activityName}+${alias}`,bucket};await store.put(key,JSON.stringify(runtime));return runtime;
+ const b=await api.version('appbundles',bundleName,{engine:'Autodesk.Revit+2024',description:'LITHIC Fixed Window browser generation'}),form=new FormData();for(const [k,v] of Object.entries(b.uploadParameters.formData))form.append(k,String(v));form.append('file',new Blob([new Uint8Array(assets.bundle).buffer],{type:'application/zip'}),'appbundle.zip');await api.transfer(b.uploadParameters.endpointURL,{method:'POST',body:form});await api.alias('appbundles',bundleName,b.version);
+ const owner=env.APS_CLIENT_ID!,a=await api.version('activities',activityName,{engine:'Autodesk.Revit+2024',appbundles:[`${owner}.${bundleName}+${alias}`],commandLine:[`"$(engine.path)\\revitcoreconsole.exe" /al "$(appbundles[${bundleName}].path)"`],parameters:{input:{verb:'get',required:true,zip:true,localName:'input'},result:{verb:'put',required:true,localName:'results.zip'}},description:'Fixed-size LITHIC Fixed Window snapshots; native checks required, visual review pending'});await api.alias('activities',activityName,a.version);
+ const bucket='lithic-window-fixed-browser-'+fingerprint.slice(0,20);await api.api(HOST+'/oss/v2/buckets','POST',{bucketKey:bucket,policyKey:'transient'},[409]);const runtime={activityId:`${owner}.${activityName}+${alias}`,bucket};await store.put(key,JSON.stringify(runtime));return runtime;
 }
 async function releaseLock(store:CloudStore,j:Job){const l=await store.get(lockKey(j.scope));if(l&&(await l.json<{id:string}>()).id===j.id)await store.delete(lockKey(j.scope));}
 async function persist(store:CloudStore,j:Job){await store.put(jobKey(j.scope,j.id),JSON.stringify(j));}
@@ -77,7 +83,7 @@ async function inspectResult(api:Aps,store:CloudStore,j:Job){
  if(!j.resultFinalized){j.resultFinalized=true;await persist(store,j)}
  const bytes=new Uint8Array(await r.arrayBuffer());if(bytes.byteLength>20*1024*1024)throw new Error('Native result exceeds the supported download limit.');let total=0,entries=0;
  const files=unzipSync(bytes,{filter:file=>{entries++;total+=file.originalSize;if(entries>12||total>64*1024*1024||file.originalSize>32*1024*1024||file.name.includes('..')||/[\\/]/.test(file.name))throw new Error('Unexpected native result archive.');return true;}});
- if(!files['cloud-proof-report.json'])throw new Error('Native result lacks its report.');const report=JSON.parse(new TextDecoder().decode(files['cloud-proof-report.json'])),c=validateReport(report,j);
+ if(!files['cloud-proof-report.json'])throw new Error('Native result lacks its report.');const report=JSON.parse(new TextDecoder().decode(files['cloud-proof-report.json'])),c=validateReport(report,{...j,builderVersion:j.builderVersion??LEGACY_BUILDER});
  if(!files[c.familyFile]||!files[c.projectFile]||await sha256(files[c.familyFile])!==c.familySha256||await sha256(files[c.projectFile])!==c.projectSha256)throw new Error('Native file hashes do not match the checked report.');
  await store.put(fileKey(j,'family'),files[c.familyFile]);await store.put(fileKey(j,'report'),files['cloud-proof-report.json']);await store.put(fileKey(j,'evidence'),bytes);
  j.familyFile=c.familyFile;j.familySha256=c.familySha256;j.resultSha256=await sha256(bytes);j.status='ready';delete j.error;delete j.uploadKey;await persist(store,j);await releaseLock(store,j);
@@ -102,7 +108,7 @@ export async function revitRoute(request:Request,env:CloudEnv,assets:CloudAssets
   const reader=request.body?.getReader();if(!reader)return json({error:'Missing build request.'},400);let length=0;const chunks:Uint8Array[]=[];while(true){const {done,value}=await reader.read();if(done)break;length+=value.length;if(length>150000){await reader.cancel();return json({error:'Build request is too large.'},413)}chunks.push(value)}const raw=new Uint8Array(length);let pos=0;for(const c of chunks){raw.set(c,pos);pos+=c.length}const text=new TextDecoder().decode(raw);
   let config:Configuration;try{config=validateRequest(text)}catch(e){return json({error:(e as Error).message},400)}
   const id=await sha256(raw),previous=await store.get(jobKey(scope,id));if(previous){const old=await previous.json<Job>();if(old.status==='failed'&&!old.submissionAttempted)await store.put(`revit/history/${scope}/${id}/${Date.now()}.json`,JSON.stringify(old));else return json(publicJob(old));}
-  const j:Job={id,scope,status:'preparing',sizeMm:[config.width,config.height],configuration:config,createdAt:new Date().toISOString(),requestSha256:id};
+  const j:Job={id,scope,status:'preparing',sizeMm:[config.width,config.height],configuration:config,createdAt:new Date().toISOString(),requestSha256:id,builderVersion:NATIVE_BUILDER};
   const locked=await store.put(lockKey(scope),JSON.stringify({id,createdAt:j.createdAt}),{onlyIf:{etagDoesNotMatch:'*'}});if(!locked){const l=await store.get(lockKey(scope)),existing=l?await store.get(jobKey(scope,(await l.json<{id:string}>()).id)):null;return existing?json({error:'A build is already active. Check its progress before starting another.',job:publicJob(await existing.json<Job>())},409):json({error:'A build is being prepared. Retry the status check shortly.'},409)}
   await persist(store,j);
   try{

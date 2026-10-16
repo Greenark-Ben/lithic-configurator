@@ -7,7 +7,7 @@
     "productId": "ELITFONSTER-AFKC-PROTOTYPE-001",
     "description": "AFKC source-derived prototype with reviewed native sweeps, separate panes, beads and seals",
     "evidenceStatus": "UNAPPROVED_MANUFACTURER_SOURCE_PROTOTYPE",
-    "definitionVersion": "0.2",
+    "definitionVersion": "0.3",
     "approvedManufacturerContent": false
   },
   "sources": {
@@ -602,10 +602,10 @@
   "nativeBindings": {
     "Width": "overall outer frame width",
     "Height": "overall outer frame height",
-    "AFKC Timber Depth": "fixed formula from source section",
-    "AFKC Frame Sightline": "fixed formula from source section",
-    "AFKC Glazing Assembly Depth": "fixed formula from source section",
-    "AFKC Glazing Center Offset": "fixed formula derived from source section",
+    "LITHIC Timber Depth": "fixed formula from source section",
+    "LITHIC Frame Sightline": "fixed formula from source section",
+    "LITHIC Glazing Assembly Depth": "fixed formula from source section",
+    "LITHIC Glazing Center Offset": "fixed formula derived from source section",
     "timber": "Timber Material",
     "aluminium": "Aluminium Material",
     "glazing": "Glazing Material",
@@ -671,7 +671,7 @@
     }
   },
   "authoringRules": {
-    "version": "afkc-native-authoring/0.2.2",
+    "version": "lithic-fixed-native-authoring/0.3.0",
     "visualBaseline": {
       "widthMm": 1200,
       "heightMm": 1500,

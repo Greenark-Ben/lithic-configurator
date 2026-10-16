@@ -1,11 +1,14 @@
+import { FIXED_WINDOW } from './productCatalogue';
 import { AFKC_SOURCE } from './afkc-source';
 import type { Definition, Part, Configuration } from './engine';
 export type ProfileSweep = {pointsMm:readonly (readonly number[])[]; holesMm?:readonly (readonly (readonly number[])[])[]; originMm:[number,number,number]; inward:[number,number,number]; axis:[number,number,number]; lengthMm:number; mitred?:boolean};
-export const AFKC:Definition = {
- schemaVersion:'0.1',id:'elitfonster-afkc-profile-proof',revision:3,product:'Elitfönster AFKC · reviewed profile prototype',operation:'fixed',frameFace:53.5,frameDepth:105,glazingThickness:48,
+export const FIXED_WINDOW_DEFINITION:Definition = {
+ schemaVersion:'0.1',id:FIXED_WINDOW.constructionId,productId:FIXED_WINDOW.id,revision:4,product:FIXED_WINDOW.name,operation:'fixed',frameFace:53.5,frameDepth:105,glazingThickness:48,
  provenance:{frameFace:'Drawing 61-37-F221 rev A · sections A/B/C/D',frameDepth:'DWG measurement · 105 mm; drawing section B',glazing:'Reviewed source build-up: 4 / 18 / 4 / 18 / 4 mm'},
- profile:{id:'afkc-polygon/0.2.2',source:AFKC_SOURCE,depthTransform:'View exterior depth = negative source depth.',manufacturerApproved:false}
+ profile:{id:'lithic-fixed-profile/0.3.0',source:AFKC_SOURCE,depthTransform:'View exterior depth = negative source depth.',manufacturerApproved:false}
 };
+// Legacy source-fixture alias; product identity is supplier-independent.
+export const AFKC=FIXED_WINDOW_DEFINITION;
 export function profileParts(d:Definition,c:Configuration):Part[]{
  const source=d.profile!.source,p=source.profiles,w=c.width,h=c.height,f=d.frameFace,parts:Part[]=[];
  const add=(id:string,role:Part['role'],points:readonly (readonly number[])[],origin:[number,number,number],inward:[number,number,number],axis:[number,number,number],length:number,mitred=false,holes?:number[][][])=>{

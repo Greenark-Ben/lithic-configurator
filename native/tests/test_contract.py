@@ -10,7 +10,7 @@ from contract import BUILDER, expected_parts, validate, verification_sizes, volu
 class ContractTests(unittest.TestCase):
     def test_accepted_native_source_is_unchanged(self):
         root = Path(__file__).resolve().parents[2]
-        evidence = json.loads((root / 'docs/evidence/afkc-shared-parameters-0.2.2.json').read_text())
+        evidence = json.loads((root / 'docs/evidence/lithic-fixed-naming-0.3.0.json').read_text())
         self.assertEqual(evidence['builder'], BUILDER)
         self.assertFalse(evidence['nativeParameterFlex'])
         self.assertFalse(evidence['manufacturerApproved'])
@@ -24,8 +24,8 @@ class ContractTests(unittest.TestCase):
                                  'Native source changed: require new Revit evidence before updating the accepted baseline')
     def setUp(self):
         self.source = json.loads((Path(__file__).resolve().parents[2] / 'public/native/afkc-source.json').read_text())
-        self.request = {'kind':'lithic-build-request','schemaVersion':'0.1','units':'mm','geometryEngine':'fixed-window-profile-sweeps/0.2.2','approvedAt':'2026-10-12',
-                        'definition':{'id':'elitfonster-afkc-profile-proof','operation':'fixed','frameFace':53.5,'frameDepth':105,'glazingThickness':48,'profile':{'id':'afkc-polygon/0.2.2','manufacturerApproved':False,'source':self.source}},
+        self.request = {'kind':'lithic-build-request','schemaVersion':'0.1','units':'mm','geometryEngine':'fixed-window-profile-sweeps/0.3.0','approvedAt':'2026-10-12',
+                        'definition':{'id':'lithic.fixed.timber-aluminium/1','productId':'lithic.window.fixed','operation':'fixed','frameFace':53.5,'frameDepth':105,'glazingThickness':48,'profile':{'id':'lithic-fixed-profile/0.3.0','manufacturerApproved':False,'source':self.source}},
                         'configuration':{'width':1200,'height':1500,'interior':'timber','exterior':'graphite'},'parts':expected_parts(self.source,1200,1500)}
     def check(self, request):
         raw = json.dumps(request).encode()

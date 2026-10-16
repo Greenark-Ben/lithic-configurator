@@ -22,7 +22,7 @@ cloud_geometry_passed = result['status'] == 'passed'
 result['visualReviewStatus'] = 'not-exported-headless-awaiting-Revit-review'
 report = {
     'kind': 'lithic-cloud-proof-report', 'schemaVersion': '0.1',
-    'adapter': 'lithic-afkc-aps-browser/0.2',
+    'adapter': 'lithic-window-fixed-aps-browser/0.3.0',
     'sourceBuilder': manifest['builder'], 'requestSha256': digest,
     'createdAt': datetime.datetime.utcnow().isoformat()+'Z',
     'revitVersion': application.VersionNumber,

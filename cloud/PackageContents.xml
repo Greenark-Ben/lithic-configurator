@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ApplicationPackage><Components Description="LITHIC AFKC cloud proof">
+<ApplicationPackage><Components Description="LITHIC Fixed Window cloud proof">
 <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2024" SeriesMax="R2024" />
-<ComponentEntry AppName="LithicAfkcCloud" Version="0.1.0" ModuleName="./Contents/Lithic.Afkc.Cloud.addin" AppDescription="Isolated AFKC proof" LoadOnRevitStartup="True" LoadOnCommandInvocation="False" />
+<ComponentEntry AppName="LithicWindowFixedCloud" Version="0.3.0" ModuleName="./Contents/Lithic.WindowFixed.Cloud.addin" AppDescription="Isolated LITHIC Fixed Window proof" LoadOnRevitStartup="True" LoadOnCommandInvocation="False" />
 </Components></ApplicationPackage>

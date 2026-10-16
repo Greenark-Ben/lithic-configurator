@@ -5,7 +5,7 @@ import hashlib
 import json
 import math
 
-BUILDER = 'lithic-afkc-desktop/0.2.2'
+BUILDER = 'lithic-window-fixed-desktop/0.3.0'
 CASES = [(900, 1200), (1200, 1500), (1500, 1800)]
 
 def finite(value):
@@ -53,13 +53,13 @@ def validate(raw, manifest, source):
     request = json.loads(raw.decode('utf-8'))
     if request.get('kind') != 'lithic-build-request' or request.get('schemaVersion') != '0.1' or request.get('units') != 'mm':
         raise ValueError('Unsupported build request format.')
-    if request.get('geometryEngine') != 'fixed-window-profile-sweeps/0.2.2' or not request.get('approvedAt'):
-        raise ValueError('Only reviewed AFKC profile requests are supported by this builder.')
+    if request.get('geometryEngine') != 'fixed-window-profile-sweeps/0.3.0' or not request.get('approvedAt'):
+        raise ValueError('Only reviewed LITHIC Fixed Window profile requests are supported by this builder.')
     definition = request['definition']
-    if definition.get('id') != 'elitfonster-afkc-profile-proof' or definition.get('operation') != 'fixed':
-        raise ValueError('This builder only accepts the AFKC fixed-window proof.')
+    if definition.get('id') != 'lithic.fixed.timber-aluminium/1' or definition.get('operation') != 'fixed' or definition.get('productId') != 'lithic.window.fixed':
+        raise ValueError('This builder only accepts the LITHIC Fixed Window construction.')
     profile = definition.get('profile', {})
-    if profile.get('id') != 'afkc-polygon/0.2.2' or profile.get('manufacturerApproved') is not False or profile.get('source') != source:
+    if profile.get('id') != 'lithic-fixed-profile/0.3.0' or profile.get('manufacturerApproved') is not False or profile.get('source') != source:
         raise ValueError('The source profile bundle was changed or is unsupported.')
     if [definition.get(k) for k in ['frameFace', 'frameDepth', 'glazingThickness']] != [53.5, 105, 48]:
         raise ValueError('Fixed source section dimensions were changed.')
@@ -70,7 +70,7 @@ def validate(raw, manifest, source):
     if config.get('interior') not in ['timber', 'white'] or config.get('exterior') not in ['graphite', 'white']:
         raise ValueError('Unsupported finish selection.')
     if request.get('parts') != expected_parts(source, width, height):
-        raise ValueError('Exported geometry does not match the deterministic AFKC engine.')
+        raise ValueError('Exported geometry does not match the deterministic fixed-window engine.')
     return request, digest
 
 def verification_sizes(request):

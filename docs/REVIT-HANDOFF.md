@@ -1,4 +1,4 @@
-# AFKC desktop handoff 0.2.2
+# LITHIC Fixed Window desktop handoff 0.3.0
 
 The AFKC preview and desktop builder share a versioned reviewed construction definition. Prepare Revit handoff exports the exact browser request, SHA-256 manifest, source bundle, native authoring/drawing modules, pyRevit command and installer. The Build Revit family action now connects AFKC to APS Revit 2024 generation. The desktop handoff remains available. See [APS browser generation](APS-BROWSER.md).
 
@@ -33,9 +33,9 @@ Report import requires builder/report 0.2, the exact current request digest, all
 
 ## Run
 
-1. Review AFKC, select size/finishes and choose Prepare Revit handoff.
+1. Review LITHIC Fixed Window, select size/finishes and choose Prepare Revit handoff.
 2. Extract the ZIP and run Install.ps1; reload pyRevit.
-3. In LITHIC > Native > AFKC Handoff, choose request.json, an empty wall-hosted Window RFT and a results folder.
+3. In LITHIC > Native > Fixed Window Handoff, choose request.json, an empty wall-hosted Window RFT and a results folder.
 4. Inspect the native plan, section and corner exports, then import native-report.json into the unchanged configuration. Retain the native files and evidence together.
 
 Integration validation and native run results are recorded with the change; they must not be relabelled as native flex or manufacturer acceptance.
@@ -51,3 +51,19 @@ Plan graphics also require independent coordinate datums: orthogonal symbolic ed
 ## Schedulable materials and provenance
 
 Builder 0.2.2 adds ten shared type parameters with permanent GUIDs: the five materials and request SHA-256, source drawing, builder, evidence status and geometry mode. Five material values are editable; provenance is user-read-only. Fresh isolated schedules must contain the expected values for all five test placements, including after reopening. Existing 0.2.1 downloads remain historical snapshots; rebuild to obtain the new shared fields. See [schema and native proof](AFKC-SHARED-PARAMETERS.md).
+
+## Neutral product naming (0.3.0)
+
+New requests use product ID `lithic.window.fixed`, construction ID
+`lithic.fixed.timber-aluminium/1`, profile ID `lithic-fixed-profile/0.3.0` and
+builder `lithic-window-fixed-desktop/0.3.0`. Geometry is unchanged. Source model
+AFKC, manufacturer, drawing references and file digests remain in provenance.
+New family filenames start `LITHIC-Window-Fixed-`; type names start
+`LITHIC Fixed Window`. Immutable type fields identify product, construction,
+source manufacturer and source model separately.
+
+Generate a new handoff after this migration. Older requests/reports keep their
+original digests and are not relabelled or accepted as new-version evidence.
+The cloud service pins new jobs to their builder; previously stored jobs without
+a builder marker are validated using the original 0.2.2 contract. Historical
+packages, reports and native fixtures remain unchanged. See [product naming](PRODUCT-NAMING.md).

@@ -1,4 +1,4 @@
-LITHIC AFKC Revit handoff — desktop builder 0.2.2
+LITHIC Fixed Window Revit handoff — desktop builder 0.3.0
 
 This package builds fixed-size snapshots of the reviewed AFKC prototype in
 Revit 2024 or later. Revit and pyRevit are required. It creates fresh family
@@ -6,8 +6,8 @@ and test project documents; the active project is never edited or saved.
 
 1. Extract the ZIP into its own folder.
 2. Run Install.ps1, or copy script.py, contract.py, authoring.py, drawings.py,
-   afkc-source.json and bundle.yaml into the AFKC Handoff pushbutton folder.
-3. Reload pyRevit. Choose LITHIC > Native > AFKC Handoff.
+   afkc-source.json and bundle.yaml into the Fixed Window Handoff pushbutton folder.
+3. Reload pyRevit. Choose LITHIC > Native > Fixed Window Handoff.
 4. Select this package's request.json, an empty wall-hosted Window .rft
    template and a results folder.
 5. The builder creates the selected size plus 900x1200, 1200x1500 and
@@ -54,8 +54,13 @@ Plan coordinates are fixed with native reference planes and alignments.
 Every coarse/medium/fine line endpoint/style is checked before and after
 project reopening in all four host thicknesses.
 
-Shared parameters 0.2.2:
+Shared parameters 0.3.0:
 Five editable material fields and five user-read-only provenance fields have
 permanent shared GUIDs. All ten are available in Window schedules and checked
 across five placements before/after reopening. Existing downloads are not
 modified; rebuild with this package for shared fields.
+
+Source attribution: Elitfonster Original Alu 100, model AFKC, drawing 61-37-F221 rev A.
+Product identity: lithic.window.fixed; construction: lithic.fixed.timber-aluminium/1.
+Earlier handoffs use their original builder and report contracts; generate a fresh
+handoff for this naming revision. Historical evidence has not been renamed.

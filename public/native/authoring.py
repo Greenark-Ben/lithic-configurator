@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""AFKC native forms and drawing conventions. No FreeForm or DirectShape fallback."""
+"""LITHIC Fixed Window native forms and drawing conventions. No FreeForm or DirectShape fallback."""
 from __future__ import division
 from pyrevit import DB
 import io, os, tempfile

@@ -1,9 +1,9 @@
 {
-  "adapter": "lithic-afkc-aps-browser/0.2",
-  "sourceBuilder": "lithic-afkc-desktop/0.2.2",
+  "adapter": "lithic-window-fixed-aps-browser/0.3.0",
+  "sourceBuilder": "lithic-window-fixed-desktop/0.3.0",
   "engine": "Autodesk.Revit+2024",
   "files": {
-    "appbundle.zip": "dfef27895d36e6fe300bc18f95169f0fded1e97579948e9c8a0c5028748fcf25",
+    "appbundle.zip": "d3d4a62f494c9614ec434af6a940359f9049c2f658dde08fd955af6946b9271c",
     "window.rft": "119e6e484175948046e95bad6a1d9c1f05eb544c5a6ff20722255b7276b2952b"
   }
 }

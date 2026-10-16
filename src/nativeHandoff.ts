@@ -1,6 +1,6 @@
 import {validateSharedParameters} from './sharedParameters';
 import {createBuildRequest,PRESETS,type Approval,type Configuration} from './engine';
-export const NATIVE_BUILDER='lithic-afkc-desktop/0.2.2';
+export const NATIVE_BUILDER='lithic-window-fixed-desktop/0.3.0';
 export async function requestIdentity(a:Approval,c:Configuration){
  const text=JSON.stringify(createBuildRequest(a,c),null,2);
  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
@@ -18,7 +18,7 @@ export function zipFiles(files:{name:string;data:Uint8Array}[]):Uint8Array{
  const result=new Uint8Array(offset+size+22);let position=0;for(const chunk of chunks){result.set(chunk,position);position+=chunk.length}return result;
 }
 export async function prepareNativeHandoff(a:Approval,c:Configuration){
- if(!a.definition.profile)throw new Error('The desktop builder currently supports the AFKC source profile proof.');
+ if(!a.definition.profile)throw new Error('The desktop builder currently supports the LITHIC Fixed Window source profile proof.');
  const identity=await requestIdentity(a,c),names=['script.py','contract.py','authoring.py','drawings.py','afkc-source.json','Install.ps1','bundle.yaml','README.txt'];
  const files=await Promise.all(names.map(async name=>{const response=await fetch('/native/'+name);if(!response.ok)throw new Error('The Revit handoff files are unavailable. Please retry.');return {name,data:new Uint8Array(await response.arrayBuffer())}}));
  const encoder=new TextEncoder();files.push({name:'request.json',data:encoder.encode(identity.text)},{name:'manifest.json',data:encoder.encode(JSON.stringify({builder:NATIVE_BUILDER,requestSha256:identity.sha256,geometryMode:'fixed-size-snapshot',nativeParameterFlex:false},null,2))});
@@ -36,7 +36,7 @@ export async function readNativeReport(value:unknown,a:Approval,c:Configuration)
   if(!['passed','failed'].includes(result.status))throw new Error('A native check has no valid result.');
   if(result.status==='passed'){
    const required=['scheduleDimensionsPassed','provenancePassed','hostPassed','openingPassed','exteriorPassed','familyReopened','projectReopened','persistenceGeometryPassed','hostPersisted','openingPersisted','nativeAuthoringPassed','materialsBoundPassed','cornerChecksPassed','cavitiesEmptyPassed','planVisibilityPassed','drawingViewsPersisted','hostedGeometryStablePassed'];
-   if(required.some(k=>result[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(result[k])||result[k].length)||!Array.isArray(result.parts)||result.parts.length!==22||result.parts.some((p:any)=>p.passed!==true)||typeof result.familyFile!=='string'||!/^LITHIC-AFKC-[\d_x]+\.rfa$/.test(result.familyFile)||!/^[a-f0-9]{64}$/.test(result.familySha256))throw new Error('The claimed pass lacks its native check evidence.');
+   if(required.some(k=>result[k]!==true)||['familyWarnings','projectWarnings','reopenedWarnings'].some(k=>!Array.isArray(result[k])||result[k].length)||!Array.isArray(result.parts)||result.parts.length!==22||result.parts.some((p:any)=>p.passed!==true)||typeof result.familyFile!=='string'||!/^LITHIC-Window-Fixed-[\d_x]+\.rfa$/.test(result.familyFile)||!/^[a-f0-9]{64}$/.test(result.familySha256))throw new Error('The claimed pass lacks its native check evidence.');
    validateSharedParameters(result,identity.sha256,NATIVE_BUILDER);
    const ids=[...createBuildRequest(a,{...c,width:result.sizeMm[0],height:result.sizeMm[1]}).parts.filter(p=>p.role!=='aluminium'&&p.role!=='seal').map(p=>p.id),'aluminium-head-jamb-return','aluminium-sill','seal-perimeter'];
    const counts=result.nativeFormCounts;

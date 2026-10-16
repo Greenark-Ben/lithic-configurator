@@ -1,0 +1,35 @@
+{
+  "productId": "lithic.window.side-hung-outward",
+  "name": "LITHIC Side-Hung Outward Window",
+  "naming": {
+    "passed": true,
+    "provenance": {
+      "LITHIC Product ID": "lithic.window.side-hung-outward",
+      "LITHIC Source Model": "AFSC",
+      "LITHIC Construction ID": "lithic.side-hung-outward.timber-aluminium/1",
+      "LITHIC Source Drawing": "61-37-S221 rev A",
+      "LITHIC Source Manufacturer": "Elitfonster"
+    },
+    "familyName": "LITHIC-Window-SideHung-Outward-880x1180-HOSTED-STUDY",
+    "typeNames": [
+      "LITHIC Side-Hung Outward 880x1180 study"
+    ]
+  },
+  "nativeHostedCasesPassed": 48,
+  "familyPersistencePassed": true,
+  "projectPersistenceChecks": [
+    {
+      "passed": true,
+      "degrees": 45
+    },
+    {
+      "passed": true,
+      "degrees": 0
+    },
+    {
+      "passed": true,
+      "degrees": 90
+    }
+  ],
+  "wallCutPersisted": true
+}

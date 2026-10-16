@@ -23,6 +23,18 @@ describe('source-derived AFKC profiles',()=>{
  });
  it('blocks changed fixed sections and exports traceable sweeps without native claims',()=>{
   expect(()=>calculateParts({...AFKC,frameDepth:120},INITIAL)).toThrow('Source profiles require');
-  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-09'},INITIAL);expect(request.geometryEngine).toBe('fixed-window-profile-sweeps/0.2.2');expect(request.definition.profile?.manufacturerApproved).toBe(false);expect(request.nativeStatus).toBe('not-built');expect(request.limitations).toContain(AFKC.profile!.source.junctionAssumption);
+  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-09'},INITIAL);expect(request.geometryEngine).toBe('fixed-window-profile-sweeps/0.3.0');expect(request.definition.profile?.manufacturerApproved).toBe(false);expect(request.nativeStatus).toBe('not-built');expect(request.limitations).toContain(AFKC.profile!.source.junctionAssumption);
+ });
+});
+
+// Product naming must not erase manufacturer construction provenance.
+describe('neutral product identities',()=>{
+ it('exports a LITHIC product and separate source model',()=>{
+  const request=createBuildRequest({definition:AFKC,approvedAt:'2026-10-16T07:00:00Z'},INITIAL);
+  expect(request.definition.productId).toBe('lithic.window.fixed');
+  expect(request.definition.product).toBe('LITHIC Fixed Window');
+  expect(request.definition.id).toBe('lithic.fixed.timber-aluminium/1');
+  expect(request.definition.profile?.source.product.productCode).toBe('AFKC');
+  expect(request.definition.profile?.source.product.manufacturer).toBe('Elitfonster');
  });
 });

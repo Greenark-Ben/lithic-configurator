@@ -30,8 +30,13 @@ def build(application,active,rig_report,source,template,output,builder):
         tx=DB.Transaction(f,'LITHIC hosted opening and setback');tx.Start();handler=b.fail_closed(tx,report)
         if str(f.OwnerFamily.FamilyPlacementType)!='OneLevelBasedHosted':raise ValueError('A wall-hosted family template is required')
         fm=f.FamilyManager
-        if fm.CurrentType is None:fm.NewType('AFSC 880x1180 hosted opening study')
+        if fm.CurrentType is None:fm.NewType('LITHIC Side-Hung Outward 880x1180 study')
+        else:fm.RenameCurrentType('LITHIC Side-Hung Outward 880x1180 study')
         for bip,value in [(DB.BuiltInParameter.FAMILY_WIDTH_PARAM,width),(DB.BuiltInParameter.FAMILY_HEIGHT_PARAM,height)]:fm.SetFormula(fm.get_Parameter(bip),str(value)+' mm')
+        naming={'LITHIC Product ID':'lithic.window.side-hung-outward','LITHIC Construction ID':'lithic.side-hung-outward.timber-aluminium/1','LITHIC Source Manufacturer':'Elitfonster','LITHIC Source Model':'AFSC','LITHIC Source Drawing':source['drawing']}
+        for name,value in naming.items():
+            fp=fm.AddParameter(name,DB.GroupTypeId.IdentityData,DB.SpecTypeId.String.Text,False)
+            fm.SetFormula(fp,'"'+value.replace('"','')+'"')
         sill=next(q for q in fm.Parameters if q.Definition.Name=='Default Sill Height');z=fm.CurrentType.AsDouble(sill)/MM
         host=next(e for e in DB.FilteredElementCollector(f).OfClass(DB.Wall))
         if host.Orientation.Y<0:raise ValueError('Expected inspected +Y exterior template')
@@ -66,10 +71,14 @@ def build(application,active,rig_report,source,template,output,builder):
         if tx.Commit()!=DB.TransactionStatus.Committed:raise ValueError('Hosted family transaction rolled back')
         tx=None;report['familyWarnings']=[w.GetDescriptionText() for w in f.GetWarnings()]
         uid=inst.UniqueId;expected=b.signature(inst)
-        family=os.path.join(output,'LITHIC-AFSC-880x1180-HOSTED-OPENING-STUDY.rfa');f.SaveAs(family,DB.SaveAsOptions());f.Close(False);f=None
+        family=os.path.join(output,'LITHIC-Window-SideHung-Outward-880x1180-HOSTED-STUDY.rfa');f.SaveAs(family,DB.SaveAsOptions());f.Close(False);f=None
         write('reopen-hosted-family-and-place-in-wall')
         f=application.OpenDocumentFile(family);report['familyPersistencePassed']=matches(b.signature(f.GetElement(uid)),expected)
         report['familyPlacementType']=str(f.OwnerFamily.FamilyPlacementType)
+        saved_manager=f.FamilyManager
+        saved_parameters={q.Definition.Name:q for q in saved_manager.Parameters}
+        actual_naming={name:saved_manager.CurrentType.AsString(saved_parameters[name]) for name in naming}
+        report['naming']={'familyName':f.Title,'typeNames':[t.Name for t in saved_manager.Types],'provenance':actual_naming,'passed':actual_naming==naming and f.Title.startswith('LITHIC-Window-SideHung-Outward-') and all(t.Name.startswith('LITHIC Side-Hung Outward ') for t in saved_manager.Types)}
         report['nativeOpeningCount']=DB.FilteredElementCollector(f).OfClass(DB.Opening).GetElementCount()
         p=application.NewProjectDocument(DB.UnitSystem.Metric);loaded=f.LoadFamily(p);sym=p.GetElement(list(loaded.GetFamilySymbolIds())[0])
         tx=DB.Transaction(p,'LITHIC isolated hosted opening proof');tx.Start();handler=b.fail_closed(tx,report);sym.Activate();level=DB.Level.Create(p,0)
@@ -77,6 +86,8 @@ def build(application,active,rig_report,source,template,output,builder):
         wall=DB.Wall.Create(p,DB.Line.CreateBound(point(-2000,0,0),point(5000,0,0)),wt.Id,level.Id,3000*MM,0,False,False)
         placed=p.Create.NewFamilyInstance(point(0,0,900),sym,wall,level,DB.Structure.StructuralType.NonStructural);p.Regenerate()
         if placed.FacingOrientation.DotProduct(wall.Orientation)<0:placed.flipFacing();p.Regenerate()
+        report['loadedFamilyName']=placed.Symbol.Family.Name
+        if not report['loadedFamilyName'].startswith('LITHIC-Window-SideHung-Outward-'):raise ValueError('Loaded family name is not neutral')
         report['hostPassed']=placed.Host is not None and placed.Host.Id==wall.Id
         report['outsideFacingPassed']=placed.FacingOrientation.DotProduct(wall.Orientation)>.999
         sp=placed.LookupParameter('Window Setback');ap=placed.LookupParameter('Opening Angle');types={}
@@ -105,20 +116,20 @@ def build(application,active,rig_report,source,template,output,builder):
         report['threeOpeningVolumePassed']=abs(rvol-(7000*3000-3*width*height)*300)<max(1,rvol*1e-6)
         vtype=next(t for t in DB.FilteredElementCollector(p).OfClass(DB.ViewFamilyType) if t.ViewFamily==DB.ViewFamily.ThreeDimensional)
         for item,degrees,x in instances:
-            v=DB.View3D.CreateIsometric(p,vtype.Id);v.Name='AFSC hosted - '+str(degrees)+' degrees';v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
+            v=DB.View3D.CreateIsometric(p,vtype.Id);v.Name='LITHIC Side-Hung Outward - '+str(degrees)+' degrees';v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
             target=point(x,0,1500);eye=target+DB.XYZ(3,4,2);forward=(target-eye).Normalize();right=forward.CrossProduct(DB.XYZ.BasisZ).Normalize();up=right.CrossProduct(forward).Normalize();v.SetOrientation(DB.ViewOrientation3D(eye,up,forward))
             box=DB.BoundingBoxXYZ();box.Min=point(x-650,-500,700);box.Max=point(x+650,1100,2250);v.SetSectionBox(box);v.IsSectionBoxActive=True;v.SetCategoryHidden(DB.ElementId(DB.BuiltInCategory.OST_Levels),True)
         if tx.Commit()!=DB.TransactionStatus.Committed:raise ValueError('Hosted project transaction rolled back')
         tx=None;report['projectWarnings']=[w.GetDescriptionText() for w in p.GetWarnings()]
         persisted=[{'uid':item.UniqueId,'degrees':degrees,'signature':b.signature(item),'host':wall.UniqueId} for item,degrees,x in instances]
-        project=os.path.join(output,'LITHIC-AFSC-HOSTED-OPENING-REVIEW.rvt');p.SaveAs(project,DB.SaveAsOptions());p.Close(False);p=None
+        project=os.path.join(output,'LITHIC-Window-SideHung-Outward-HOSTED-REVIEW.rvt');p.SaveAs(project,DB.SaveAsOptions());p.Close(False);p=None
         write('reopen-project-and-verify-host-cut');p=application.OpenDocumentFile(project);report['projectPersistenceChecks']=[]
         for row in persisted:
             item=p.GetElement(row['uid']);passed=matches(b.signature(item),row['signature']) and item.Host.UniqueId==row['host'] and abs(math.degrees(item.LookupParameter('Opening Angle').AsDouble())-row['degrees'])<1e-6
             report['projectPersistenceChecks'].append({'degrees':row['degrees'],'passed':passed})
         saved_wall=p.GetElement(persisted[0]['host']);remaining=sum(s.Volume for s in b.solids(saved_wall))/MM**3;report['reopenedWallCutPassed']=abs(remaining-(7000*3000-3*width*height)*300)<max(1,remaining*1e-6)
         report['files']={'family':family,'project':project};report['nativeSillDatumMm']=z
-        passed=report['hostPassed'] and report['outsideFacingPassed'] and report['familyPersistencePassed'] and report['nativeOpeningCount']==1 and report['threeOpeningVolumePassed'] and report['reopenedWallCutPassed'] and all(c['passed'] for c in report['projectPersistenceChecks']) and not report['familyWarnings'] and not report['projectWarnings']
+        passed=report['naming']['passed'] and report['hostPassed'] and report['outsideFacingPassed'] and report['familyPersistencePassed'] and report['nativeOpeningCount']==1 and report['threeOpeningVolumePassed'] and report['reopenedWallCutPassed'] and all(c['passed'] for c in report['projectPersistenceChecks']) and not report['familyWarnings'] and not report['projectWarnings']
         report['status']='hosted-opening-cut-verified-review-required' if passed else 'technical-checks-failed'
     except Exception as error:report.update({'status':'failed','error':str(error),'traceback':traceback.format_exc()})
     finally:
