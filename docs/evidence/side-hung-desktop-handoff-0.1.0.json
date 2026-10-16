@@ -1,0 +1,22 @@
+{
+  "builder": "lithic-window-sidehung-desktop/0.1.0",
+  "requestSha256": "24b6f64be2a8af4f4c7fc3df467db8de2663b1837962b743659cddb6275ad510",
+  "configuration": {
+    "interior": "white",
+    "width": 880,
+    "openingAngleDegrees": 45,
+    "height": 1180,
+    "exterior": "white"
+  },
+  "familySha256": "015fef87eb5f59ba928f37de24549fd48aac9da07072a03ed9507c40e1f0295e",
+  "nativeReportSha256": "a5b7f66c33ac023c88133a37688f4f87452226f417e1216a4486d13a8a3ddb0a",
+  "hostedCasesPassed": 48,
+  "materialCasesPassed": 15,
+  "headCornerCheckResolved": true,
+  "openingAngleControlVerified": true,
+  "planViewsPersisted": true,
+  "activeProjectPreserved": true,
+  "manufacturerApproved": false,
+  "nativeParameterFlex": false,
+  "cloudGenerationVerified": false
+}

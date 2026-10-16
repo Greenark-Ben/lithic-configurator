@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "0.1",
+  "id": "lithic.side-hung-outward.timber-aluminium/1",
+  "productId": "lithic.window.side-hung-outward",
+  "revision": 2,
+  "product": "LITHIC Side-Hung Outward Window",
+  "operation": "side-hung-outward",
+  "frameFace": 53.5,
+  "frameDepth": 105,
+  "glazingThickness": 48,
+  "provenance": {
+    "frameFace": "Source-specific frame sections; sightlines vary by member. Drawing 61-37-S221 rev A.",
+    "frameDepth": "105 mm timber depth from drawing 61-37-S221 rev A.",
+    "glazing": "Three 4 mm panes with two 18 mm cavities; source-derived prototype."
+  },
+  "sideHung": {
+    "id": "lithic-side-hung-preview/0.1",
+    "sizeMm": [
+      880,
+      1180
+    ],
+    "handing": "left viewed from outside",
+    "source": {
+      "manufacturer": "Elitfönster",
+      "model": "AFSC",
+      "drawing": "61-37-S221 rev A"
+    },
+    "sourceFamilySha256": "ef719bdd598ffa43c62e4496097c1f6b8d857f35d90e609c21945f4e31e96bc0",
+    "manufacturerApproved": false
+  }
+}

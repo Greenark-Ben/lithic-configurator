@@ -1,0 +1,16 @@
+{
+  "drawing": "61-37-S221 rev A",
+  "sourceDwgSha256": "21adc077f5b1fdf82ebcfeb9c0319ba200e7168b12b56a1a559f3354c6f4118d",
+  "section": "main horizontal, left hinge",
+  "observation": "Two concentric circles in visible contour layer",
+  "entityHandles": ["2122", "2123"],
+  "sourceCenterDrawingMm": [95.18754173191245, 417.4591684758652],
+  "sourceRadiiMm": [8, 5],
+  "candidateAxisRelativeToFrameLeftFrontMm": [28.35353901972848, -15.7772291928652],
+  "status": "SOURCE_OBSERVED_AXIS_CANDIDATE",
+  "mechanismVerified": false,
+  "maximumOpeningVerified": false,
+  "hardwareHeightPositionsVerified": false,
+  "usedInClosedStudy": false,
+  "nextCheck": "Rotate the complete sash assembly around this candidate, inspect clearances against all fixed profiles and validate against manufacturer opening detail before claiming physical motion."
+}

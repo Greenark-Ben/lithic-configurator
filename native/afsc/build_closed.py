@@ -90,9 +90,9 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         width,height=source['frameSizeMm'];half=width/2;manager=f.FamilyManager
         selected_group=source.get('openingStudyGeometryGroup')
         if selected_group and (not assembly_only or selected_group not in ['Fixed Frame','Moving Sash']):raise ValueError('Group selection is limited to isolated opening-study assemblies')
-        tx=DB.Transaction(f,'LITHIC AFSC closed geometry study');tx.Start();failure_handler=fail_closed(tx,report)
+        tx=DB.Transaction(f,'LITHIC Side-Hung Outward closed geometry study');tx.Start();failure_handler=fail_closed(tx,report)
         if assembly_only:f.OwnerFamily.FamilyCategory=f.Settings.Categories.get_Item(DB.BuiltInCategory.OST_Windows)
-        if manager.CurrentType is None:manager.NewType('AFSC M9x12 closed prototype')
+        if manager.CurrentType is None:manager.NewType('LITHIC Side-Hung Outward 880x1180 component')
         sill_parameter=next((p for p in manager.Parameters if p.Definition.Name=='Default Sill Height'),None)
         if sill_parameter is None and not assembly_only:raise ValueError('Template lacks its Default Sill Height datum')
         sill_datum=0 if assembly_only else manager.CurrentType.AsDouble(sill_parameter)/MM
@@ -108,15 +108,15 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         for name,value in [('LITHIC Builder','lithic-afsc-closed-study/0.1'),('LITHIC Source Drawing',source['drawing']),('LITHIC Geometry Mode','fixed-size-snapshot'),('LITHIC Evidence Status','UNAPPROVED_CLOSED_GEOMETRY_STUDY'),('LITHIC Request SHA256',hashlib.sha256(json.dumps(source,sort_keys=True).encode('utf-8')).hexdigest())]:manager.Set(shared[name],value)
         params={'timber':'Timber Material','aluminium':'Aluminium Material','glazing':'Glazing Material','spacer':'Glazing Spacer Material','seal':'Glazing Seal Material'}
         for role,color in [('timber',(206,170,126)),('aluminium',(61,66,64)),('glazing',(174,205,209)),('spacer',(70,73,69)),('seal',(28,30,28))]:
-            label='LITHIC AFSC '+('Warm Edge Spacer - composition unresolved' if role=='spacer' else role.title()+' Prototype')
+            label='LITHIC Side-Hung Outward '+('Warm Edge Spacer - composition unresolved' if role=='spacer' else role.title()+' Prototype')
             mid=DB.Material.Create(f,label);material=f.GetElement(mid);material.Color=DB.Color(*color)
             if role=='glazing':material.Transparency=75
             manager.Set(shared[params[role]],mid)
         elements={};all_forms=[];groups={};expected_volumes={};form_roles={}
         def bind(e,name,role,group):
-            e.Subcategory=helpers.category(f,'LITHIC AFSC '+name)
+            e.Subcategory=helpers.category(f,'LITHIC Side-Hung Outward '+name)
             manager.AssociateElementParameterToFamilyParameter(e.get_Parameter(DB.BuiltInParameter.MATERIAL_ID_PARAM),shared[params[role]])
-            vis=e.GetVisibility();vis.IsShownInTopBottom=bool(selected_group);vis.IsShownInPlanRCPCut=bool(selected_group);e.SetVisibility(vis)
+            vis=e.GetVisibility();vis.IsShownInTopBottom=bool(selected_group) and not source.get('openingPlanSymbols',False);vis.IsShownInPlanRCPCut=vis.IsShownInTopBottom;e.SetVisibility(vis)
             all_forms.append(e);form_roles[e.UniqueId]=role;groups[name]=group;return e
         def extrusion(name,points,normal,length,role,group,holes=None):
             loops=DB.CurveArrArray();loops.Append(curves(points))
@@ -184,6 +184,10 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
             vertices=[point(inward*u,-d*exterior,0) for u,d in local_pts]
             normal=DB.XYZ.BasisZ if side in ['Left','Right'] else DB.XYZ.BasisX
             origin=point(exterior*(half+offset) if side=='Left' else -exterior*(half+offset) if side=='Right' else -half-offset,0,sill_datum+(-offset if side!='Head' else height+offset))
+            if source.get('sourceSpecificFrameCladding') and side=='Head' and key=='frameHeadClip':
+                # Cut through an extended native sweep, away from its end caps.
+                # 10 mm stays inside the local cutter's -20 mm outer boundary.
+                origin=origin-normal*10*MM;length+=20
             end=origin+normal*length*MM
             loops=DB.CurveArrArray();loops.Append(curves(vertices));profile=application.Create.NewCurveLoopsProfile(loops)
             path=DB.CurveArray();path.Append(DB.Line.CreateBound(origin,end))
@@ -256,26 +260,29 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         # Fine plan curves use source jamb profiles and individual pane boundaries.
         plane=DB.SketchPlane.Create(f,DB.Plane.CreateByNormalAndOrigin(DB.XYZ.BasisZ,family_point(0,0,height/2)))
         symbolic=[];symbolic_keys=set();plan_segments=[]
-        def create_plan_line(a,b):
-            if selected_group:return
+        def create_plan_line(a,b,coarse=False):
+            if selected_group and not source.get('openingPlanSymbols',False):return
             if a.DistanceTo(b)<.9*MM:return
-            key=tuple(sorted(tuple(round(getattr(p,axis)/MM,4) for axis in ['X','Y','Z']) for p in [a,b]))
+            key=(coarse,tuple(sorted(tuple(round(getattr(p,axis)/MM,4) for axis in ['X','Y','Z']) for p in [a,b])))
             if key in symbolic_keys:return
             symbolic_keys.add(key)
             c=f.FamilyCreate.NewSymbolicCurve(DB.Line.CreateBound(a,b),plane)
-            c.LineStyle=helpers.category(f,'LITHIC AFSC Plan').GetGraphicsStyle(DB.GraphicsStyleType.Projection)
-            v=c.GetVisibility();v.IsShownOnlyWhenCut=True;v.IsShownInCoarse=False;v.IsShownInMedium=True;v.IsShownInFine=True;c.SetVisibility(v);symbolic.append(c)
+            c.LineStyle=helpers.category(f,'LITHIC Side-Hung Outward Plan').GetGraphicsStyle(DB.GraphicsStyleType.Projection)
+            v=c.GetVisibility();v.IsShownOnlyWhenCut=True;v.IsShownInCoarse=coarse;v.IsShownInMedium=not coarse;v.IsShownInFine=not coarse;c.SetVisibility(v);symbolic.append(c)
         def plan_line(a,b):plan_segments.append((a,b))
         for side in ['Left','Right']:
             keys=['frame'+side,'sash'+side,'sashAluminium'+side]
             if source.get('completePlan',False):keys+=[frame_keys[side]]+(['frameOuterTrim'] if source.get('includePlasterTrim',True) else [])
+            if selected_group=='Moving Sash':keys=['sash'+side,'sashAluminium'+side]
+            elif selected_group=='Fixed Frame':keys=['frame'+side,frame_keys[side]]
             for key in keys:
                 pts=section_points(profiles[key]['pointsMm'],side,height/2)
                 for a,b in zip(pts,pts[1:]+pts[:1]):plan_line(a,b)
         def plan_polygon(points):
             pts=[family_point(x,d,height/2) for x,d in points]
             for a,b in zip(pts,pts[1:]+pts[:1]):plan_line(a,b)
-        if source.get('completePlan',False):
+        if selected_group=='Fixed Frame':pass
+        elif source.get('completePlan',False):
             for a,b in source['glazingDepthRangesMm']:plan_polygon([(x0,a),(x1,a),(x1,b),(x0,b)])
             for a,b in [(21,39),(43,61)]:
                 for lo,hi in [(x0+4,x0+11),(x1-11,x1-4)]:
@@ -305,6 +312,15 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
             fixed=fixed_mm*MM
             for lo,hi,z in merged:
                 create_plan_line(DB.XYZ(lo,fixed,z) if axis=='X' else DB.XYZ(fixed,lo,z),DB.XYZ(hi,fixed,z) if axis=='X' else DB.XYZ(fixed,hi,z))
+        if selected_group and source.get('openingPlanSymbols',False):
+            # Coarse views retain a readable moving sash and fixed frame.
+            for side in ['Left','Right']:
+                key=('frame' if selected_group=='Fixed Frame' else 'sash')+side
+                points=profiles[key]['pointsMm'];umin=min(u for u,d in points);umax=max(u for u,d in points);dmin=min(d for u,d in points);dmax=max(d for u,d in points)
+                outline=section_points([[umin,dmin],[umax,dmin],[umax,dmax],[umin,dmax]],side,height/2)
+                for a,b in zip(outline,outline[1:]+outline[:1]):create_plan_line(a,b,True)
+            if selected_group=='Moving Sash':
+                for depth in [17,65]:create_plan_line(family_point(x0,depth,height/2),family_point(x1,depth,height/2),True)
         checkpoint('validate-before-constraints')
         report['beforeConstraintSignatures']={name:signature(e) for name,e in elements.items()}
         if any(not s for s in report['beforeConstraintSignatures'].values()):raise ValueError('Solid disappeared before depth constraints')
@@ -337,7 +353,7 @@ def build(application,active,source_path,template,output,helpers,assembly_only=F
         if any(not s for s in report['familySignatures'].values()):raise ValueError('Missing solid after native cuts')
         ids={name:e.UniqueId for name,e in elements.items()};report['partUniqueIds']=ids;report['formRoles']=form_roles
         checkpoint('save-and-reopen-family')
-        family_path=os.path.join(output,'LITHIC-AFSC-M9x12-880x1180-CLOSED-STUDY.rfa');f.SaveAs(family_path,DB.SaveAsOptions());f.Close(False);f=None
+        family_path=os.path.join(output,'LITHIC-Window-SideHung-Outward-880x1180-COMPONENT.rfa');f.SaveAs(family_path,DB.SaveAsOptions());f.Close(False);f=None
         f=application.OpenDocumentFile(family_path)
         report['reopenedFamilySignatures']={name:signature(f.GetElement(uid)) for name,uid in ids.items()}
         report['familyPersistencePassed']=report['familySignatures']==report['reopenedFamilySignatures']

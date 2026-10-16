@@ -9,6 +9,8 @@ def export(application,active,report_path,output,builder):
     try:
      f=application.OpenDocumentFile(r['files']['family'])
      result.update({'schemaVersion':'1','units':'mm','sizeMm':[880,1180],'coordinateTransform':'native (X,Y,Z) to browser (-X,Z,Y); proper rotation; mm', 'sourceFamilySha256':hashlib.sha256(open(r['files']['family'],'rb').read()).hexdigest(),'sourceDrawing':'61-37-S221 rev A','manufacturerApproved':False,'headAnalyticVolumeCheckPassed':False,'pivotMm':[-411.6464609802715,0,15.7772291928652]})
+     head_checks=[row for row in r.get('analyticVolumeChecks',[]) if row['name']=='Fixed Frame Rail Head']
+     result['headAnalyticVolumeCheckPassed']=len(head_checks)==1 and head_checks[0]['passed'] is True
      for name in sorted(r['partUniqueIds']):
       element=f.GetElement(r['partUniqueIds'][name]);vertices=[];volume=0;solid_count=0
       for solid in b.solids(element):

@@ -6,7 +6,7 @@ with openingStudyGeometryGroup selecting each component. Does not author a
 wall-hosted production family. A native angle success does not approve frame
 corner geometry or the manufacturer's hinge mechanism.
 """
-import os,io,json,math,traceback
+import os,io,json,math,traceback,imp
 from pyrevit import DB
 from System.Collections.Generic import List
 
@@ -33,13 +33,15 @@ def build(application,active,component_base,hinge_path,template,output,builder):
      write('prepare-native-workplane-sash')
      child=doc.Application.OpenDocumentFile(sr['files']['family']);start(child,'Prepare native sash reference-line attachment')
      ids=List[DB.ElementId]();[ids.Add(e.Id) for e in DB.FilteredElementCollector(child).OfClass(DB.GenericForm)]
+     for curve in DB.FilteredElementCollector(child).OfClass(DB.CurveElement):
+      if isinstance(curve,DB.SymbolicCurve):ids.Add(curve.Id)
      DB.ElementTransformUtils.MoveElements(child,ids,-axis)
      DB.ElementTransformUtils.RotateElements(child,ids,DB.Line.CreateBound(DB.XYZ.Zero,DB.XYZ.BasisX),-math.pi/2)
      child.OwnerFamily.get_Parameter(DB.BuiltInParameter.FAMILY_WORK_PLANE_BASED).Set(1)
      child.OwnerFamily.get_Parameter(DB.BuiltInParameter.FAMILY_ALWAYS_VERTICAL).Set(0)
      child.Regenerate();commit()
      r['sashPlacementType']=str(child.OwnerFamily.FamilyPlacementType)
-     sash_path=os.path.join(out,'LITHIC-AFSC-NATIVE-MOVING-SASH.rfa');child.SaveAs(sash_path,DB.SaveAsOptions());child.Close(False);child=None
+     sash_path=os.path.join(out,'LITHIC-Window-SideHung-Outward-Moving-Sash.rfa');child.SaveAs(sash_path,DB.SaveAsOptions());child.Close(False);child=None
      f=doc.Application.NewFamilyDocument(template)
      child=doc.Application.OpenDocumentFile(sash_path);loaded=child.LoadFamily(f);child.Close(False);child=None
      sash_symbol=f.GetElement(list(loaded.GetFamilySymbolIds())[0])
@@ -48,7 +50,7 @@ def build(application,active,component_base,hinge_path,template,output,builder):
      write('create-native-reference-line-control');start(f,'LITHIC native rotating sash study')
      f.OwnerFamily.FamilyCategory=f.Settings.Categories.get_Item(DB.BuiltInCategory.OST_Windows)
      view=next(v for v in DB.FilteredElementCollector(f).OfClass(DB.ViewPlan) if not v.IsTemplate)
-     fm=f.FamilyManager;fm.NewType('AFSC 880x1180 opening study')
+     fm=f.FamilyManager;fm.NewType('LITHIC Side-Hung Outward 880x1180 mechanism')
      a=math.pi/6;sp=DB.SketchPlane.Create(f,DB.Plane.CreateByNormalAndOrigin(DB.XYZ.BasisZ,DB.XYZ.Zero))
      direction=DB.XYZ(math.cos(a),-math.sin(a),0)
      line=f.FamilyCreate.NewModelCurve(DB.Line.CreateBound(axis,axis+direction),sp);line.ChangeToReferenceLine();f.Regenerate()
@@ -72,6 +74,8 @@ def build(application,active,component_base,hinge_path,template,output,builder):
      ref=DB.Reference.ParseFromStableRepresentation(f,line.UniqueId+':1:7:SURFACE')
      sash=f.FamilyCreate.NewFamilyInstance(ref,axis,direction,sash_symbol)
      fixed=f.FamilyCreate.NewFamilyInstance(DB.XYZ.Zero,frame_symbol,DB.Structure.StructuralType.NonStructural)
+     material_controls=imp.load_source('sidehung_material_controls',os.path.join(os.path.dirname(__file__),'material_controls.py'))
+     r['materialAssociations']=material_controls.promote(f,[sash,fixed],sr['source'],True)
      f.Regenerate();r['initialSashTransform']=transform_rows(sash.GetTransform());commit()
      original=sorted(row for rows in sr['familySignatures'].values() for row in rows)
      def check(deg):
@@ -88,8 +92,9 @@ def build(application,active,component_base,hinge_path,template,output,builder):
      r['nativeOpeningParameterVerified']=True
      r['nativeRightHandControlVerified']=False
      r['continuousTravelVerified']=False
-     r['status']='native-opening-rig-passed-frame-review-required'
-     family=os.path.join(out,'LITHIC-AFSC-880x1180-NATIVE-OPENING-STUDY.rfa');f.SaveAs(family,DB.SaveAsOptions())
+     r['headCornerCheckResolved']=fr.get('familyPersistencePassed') is True and all(c['passed'] for c in fr['analyticVolumeChecks'])
+     r['status']='native-opening-rig-passed' if r['headCornerCheckResolved'] else 'native-opening-rig-passed-frame-review-required'
+     family=os.path.join(out,'LITHIC-Window-SideHung-Outward-880x1180-MECHANISM.rfa');f.SaveAs(family,DB.SaveAsOptions())
      r['files']={'family':family,'movingSash':sash_path};r['sashUid']=sash.UniqueId;r['frameUid']=fixed.UniqueId
     except Exception as e:r.update({'status':'failed','error':str(e),'traceback':traceback.format_exc()})
     finally:

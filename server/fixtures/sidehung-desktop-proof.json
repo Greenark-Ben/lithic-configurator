@@ -1,0 +1,807 @@
+{
+  "request": {
+    "kind": "lithic-build-request",
+    "schemaVersion": "0.1",
+    "definition": {
+      "schemaVersion": "0.1",
+      "id": "lithic.side-hung-outward.timber-aluminium/1",
+      "productId": "lithic.window.side-hung-outward",
+      "revision": 2,
+      "product": "LITHIC Side-Hung Outward Window",
+      "operation": "side-hung-outward",
+      "frameFace": 53.5,
+      "frameDepth": 105,
+      "glazingThickness": 48,
+      "provenance": {
+        "frameFace": "Source-specific frame sections; sightlines vary by member. Drawing 61-37-S221 rev A.",
+        "frameDepth": "105 mm timber depth from drawing 61-37-S221 rev A.",
+        "glazing": "Three 4 mm panes with two 18 mm cavities; source-derived prototype."
+      },
+      "sideHung": {
+        "id": "lithic-side-hung-preview/0.1",
+        "sizeMm": [
+          880,
+          1180
+        ],
+        "handing": "left viewed from outside",
+        "source": {
+          "manufacturer": "Elitf\u00f6nster",
+          "model": "AFSC",
+          "drawing": "61-37-S221 rev A"
+        },
+        "sourceFamilySha256": "ef719bdd598ffa43c62e4496097c1f6b8d857f35d90e609c21945f4e31e96bc0",
+        "manufacturerApproved": false
+      }
+    },
+    "approvedAt": "2026-10-16T08:52:54.185Z",
+    "configuration": {
+      "width": 880,
+      "height": 1180,
+      "interior": "white",
+      "exterior": "white",
+      "openingAngleDegrees": 45
+    },
+    "geometryEngine": "side-hung-native-snapshot/0.1",
+    "units": "mm",
+    "parts": [],
+    "nativeStatus": "not-built",
+    "limitations": [
+      "880 \u00d7 1180 mm fixed-size snapshot; left viewed from outside",
+      "Opening travel 0\u201390 degrees is diagnostic; manufacturer mechanism and maximum unverified",
+      "Not manufacturer-approved; native width and height flex is not implemented"
+    ]
+  },
+  "report": {
+    "schemaVersion": "0.1",
+    "geometryMode": "fixed-size-snapshot",
+    "materialCases": [
+      {
+        "parameter": "Timber Material",
+        "expectedSolids": 8,
+        "degrees": 0,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Aluminium Material",
+        "expectedSolids": 8,
+        "degrees": 0,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Glazing Material",
+        "expectedSolids": 3,
+        "degrees": 0,
+        "actualSolids": 3,
+        "passed": true,
+        "affectedSolids": 3
+      },
+      {
+        "parameter": "Glazing Spacer Material",
+        "expectedSolids": 8,
+        "degrees": 0,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Glazing Seal Material",
+        "expectedSolids": 2,
+        "degrees": 0,
+        "actualSolids": 2,
+        "passed": true,
+        "affectedSolids": 2
+      },
+      {
+        "parameter": "Timber Material",
+        "expectedSolids": 8,
+        "degrees": 45,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Aluminium Material",
+        "expectedSolids": 8,
+        "degrees": 45,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Glazing Material",
+        "expectedSolids": 3,
+        "degrees": 45,
+        "actualSolids": 3,
+        "passed": true,
+        "affectedSolids": 3
+      },
+      {
+        "parameter": "Glazing Spacer Material",
+        "expectedSolids": 8,
+        "degrees": 45,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Glazing Seal Material",
+        "expectedSolids": 2,
+        "degrees": 45,
+        "actualSolids": 2,
+        "passed": true,
+        "affectedSolids": 2
+      },
+      {
+        "parameter": "Timber Material",
+        "expectedSolids": 8,
+        "degrees": 90,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Aluminium Material",
+        "expectedSolids": 8,
+        "degrees": 90,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Glazing Material",
+        "expectedSolids": 3,
+        "degrees": 90,
+        "actualSolids": 3,
+        "passed": true,
+        "affectedSolids": 3
+      },
+      {
+        "parameter": "Glazing Spacer Material",
+        "expectedSolids": 8,
+        "degrees": 90,
+        "actualSolids": 8,
+        "passed": true,
+        "affectedSolids": 8
+      },
+      {
+        "parameter": "Glazing Seal Material",
+        "expectedSolids": 2,
+        "degrees": 90,
+        "actualSolids": 2,
+        "passed": true,
+        "affectedSolids": 2
+      }
+    ],
+    "manufacturerApproved": false,
+    "projectPersistenceChecks": [
+      {
+        "passed": true,
+        "degrees": 45
+      },
+      {
+        "passed": true,
+        "degrees": 0
+      },
+      {
+        "passed": true,
+        "degrees": 90
+      }
+    ],
+    "requestIdentityPersisted": true,
+    "builder": "lithic-window-sidehung-desktop/0.1.0",
+    "manufacturerMechanismVerified": false,
+    "familyWarnings": [],
+    "familySha256": "015fef87eb5f59ba928f37de24549fd48aac9da07072a03ed9507c40e1f0295e",
+    "revitVersion": "2024",
+    "activeProjectPreserved": true,
+    "stage": "reopen-final-family",
+    "openingAngleControlVerified": true,
+    "requestSha256": "24b6f64be2a8af4f4c7fc3df467db8de2663b1837962b743659cddb6275ad510",
+    "maximumOpeningVerified": false,
+    "hostedCases": [
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 103840000.0,
+        "expectedRemovedWallMm3": 103840000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 100
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 207680000.00000095,
+        "expectedRemovedWallMm3": 207680000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 200
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 311520000.0,
+        "expectedRemovedWallMm3": 311520000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 300
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 0,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 50,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 0,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 15,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 45,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      },
+      {
+        "hostPassed": true,
+        "setbackMm": 100,
+        "passed": true,
+        "degrees": 90,
+        "removedWallMm3": 519200000.0,
+        "expectedRemovedWallMm3": 519200000,
+        "openingPassed": true,
+        "geometryPassed": true,
+        "sillPassed": true,
+        "wallMm": 500
+      }
+    ],
+    "materialValues": {
+      "Timber Material": "LITHIC Timber Material White",
+      "Aluminium Material": "LITHIC Aluminium Material White",
+      "Glazing Spacer Material": "LITHIC Side-Hung Outward Warm Edge Spacer - composition unresolved",
+      "Glazing Material": "LITHIC Side-Hung Outward Glazing Prototype",
+      "Glazing Seal Material": "LITHIC Side-Hung Outward Seal Prototype"
+    },
+    "kind": "lithic-sidehung-native-report",
+    "requestedAnglePersisted": true,
+    "familyFile": "LITHIC-Window-SideHung-Outward-880x1180.rfa",
+    "planViewsPersisted": true,
+    "headCornerCheckResolved": true,
+    "familyPersistencePassed": true,
+    "status": "passed",
+    "nativeParameterFlex": false,
+    "configuration": {
+      "interior": "white",
+      "width": 880,
+      "openingAngleDegrees": 45,
+      "height": 1180,
+      "exterior": "white"
+    },
+    "wallCutPersisted": true
+  }
+}

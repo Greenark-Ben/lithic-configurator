@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Wall-hosted AFSC study wrapper; keeps the proven native opening mechanism."""
-import os,io,json,math,traceback
+import os,io,json,math,traceback,imp
 from pyrevit import DB
 from System.Collections.Generic import List
 
@@ -9,6 +9,7 @@ def build(application,active,rig_report,source,template,output,builder):
     os.makedirs(output);f=None;p=None;child=None;tx=None
     b=builder;MM=b.MM;point=b.point;width,height=source['frameSizeMm'];half=width/2
     report={'status':'running','activeBefore':b.snapshot(active),'fixedSizeSnapshot':True,'manufacturerMechanismVerified':False,'maximumOpeningVerified':False,'headCornerCheckResolved':False,'nativeRightHandControlVerified':False,'sourceRig':rig_report['files']['family'],'familyChecks':[],'placementChecks':[]}
+    report['headCornerCheckResolved']=rig_report.get('headCornerCheckResolved') is True
     def write(stage=None):
         if stage:report['stage']=stage
         with io.open(os.path.join(output,'proof.json'),'w',encoding='utf-8') as stream:stream.write(json.dumps(report,indent=2))
@@ -47,6 +48,8 @@ def build(application,active,rig_report,source,template,output,builder):
         linked=fm.GetAssociatedFamilyParameter(inst.LookupParameter('Opening Angle'))
         report['angleAssociationPassed']=linked is not None and linked.Id==angle.Id
         if not report['angleAssociationPassed']:raise ValueError('Opening Angle was not associated')
+        material_controls=imp.load_source('sidehung_material_controls',os.path.join(os.path.dirname(__file__),'material_controls.py'))
+        report['materialAssociations']=material_controls.promote(f,[inst],source,False)
         for opening in list(DB.FilteredElementCollector(f).OfClass(DB.Opening)):f.Delete(opening.Id)
         opening=f.FamilyCreate.NewOpening(host,b.curves([point(-half,0,z),point(half,0,z),point(half,0,z+height),point(-half,0,z+height)]))
         report['nativeOpeningUniqueId']=opening.UniqueId
@@ -119,6 +122,15 @@ def build(application,active,rig_report,source,template,output,builder):
             v=DB.View3D.CreateIsometric(p,vtype.Id);v.Name='LITHIC Side-Hung Outward - '+str(degrees)+' degrees';v.DetailLevel=DB.ViewDetailLevel.Fine;v.DisplayStyle=DB.DisplayStyle.ShadingWithEdges
             target=point(x,0,1500);eye=target+DB.XYZ(3,4,2);forward=(target-eye).Normalize();right=forward.CrossProduct(DB.XYZ.BasisZ).Normalize();up=right.CrossProduct(forward).Normalize();v.SetOrientation(DB.ViewOrientation3D(eye,up,forward))
             box=DB.BoundingBoxXYZ();box.Min=point(x-650,-500,700);box.Max=point(x+650,1100,2250);v.SetSectionBox(box);v.IsSectionBoxActive=True;v.SetCategoryHidden(DB.ElementId(DB.BuiltInCategory.OST_Levels),True)
+        report['planReviewViews']=[]
+        plan_type=next(t for t in DB.FilteredElementCollector(p).OfClass(DB.ViewFamilyType) if t.ViewFamily==DB.ViewFamily.FloorPlan)
+        for item,degrees,x in instances:
+            for detail,scale in [('coarse',100),('medium',50),('fine',10)]:
+                v=DB.ViewPlan.Create(p,plan_type.Id,level.Id);v.Name='LITHIC Side-Hung Outward '+str(degrees)+' degrees '+detail+' plan';v.Scale=scale
+                v.DetailLevel={'coarse':DB.ViewDetailLevel.Coarse,'medium':DB.ViewDetailLevel.Medium,'fine':DB.ViewDetailLevel.Fine}[detail]
+                vr=v.GetViewRange();vr.SetOffset(DB.PlanViewPlane.TopClipPlane,2400*MM);vr.SetOffset(DB.PlanViewPlane.CutPlane,1490*MM);vr.SetOffset(DB.PlanViewPlane.BottomClipPlane,0);vr.SetOffset(DB.PlanViewPlane.ViewDepthPlane,0);v.SetViewRange(vr)
+                crop=DB.BoundingBoxXYZ();crop.Min=point(x-650,-500,0);crop.Max=point(x+650,1100,3000);v.CropBox=crop;v.CropBoxActive=True;v.CropBoxVisible=False;v.SetCategoryHidden(DB.ElementId(DB.BuiltInCategory.OST_Levels),True)
+                report['planReviewViews'].append({'uid':v.UniqueId,'degrees':degrees,'detail':detail})
         if tx.Commit()!=DB.TransactionStatus.Committed:raise ValueError('Hosted project transaction rolled back')
         tx=None;report['projectWarnings']=[w.GetDescriptionText() for w in p.GetWarnings()]
         persisted=[{'uid':item.UniqueId,'degrees':degrees,'signature':b.signature(item),'host':wall.UniqueId} for item,degrees,x in instances]
@@ -128,6 +140,7 @@ def build(application,active,rig_report,source,template,output,builder):
             item=p.GetElement(row['uid']);passed=matches(b.signature(item),row['signature']) and item.Host.UniqueId==row['host'] and abs(math.degrees(item.LookupParameter('Opening Angle').AsDouble())-row['degrees'])<1e-6
             report['projectPersistenceChecks'].append({'degrees':row['degrees'],'passed':passed})
         saved_wall=p.GetElement(persisted[0]['host']);remaining=sum(s.Volume for s in b.solids(saved_wall))/MM**3;report['reopenedWallCutPassed']=abs(remaining-(7000*3000-3*width*height)*300)<max(1,remaining*1e-6)
+        report['planViewsPersisted']=len(report['planReviewViews'])==9 and all(p.GetElement(row['uid']) is not None for row in report['planReviewViews'])
         report['files']={'family':family,'project':project};report['nativeSillDatumMm']=z
         passed=report['naming']['passed'] and report['hostPassed'] and report['outsideFacingPassed'] and report['familyPersistencePassed'] and report['nativeOpeningCount']==1 and report['threeOpeningVolumePassed'] and report['reopenedWallCutPassed'] and all(c['passed'] for c in report['projectPersistenceChecks']) and not report['familyWarnings'] and not report['projectWarnings']
         report['status']='hosted-opening-cut-verified-review-required' if passed else 'technical-checks-failed'

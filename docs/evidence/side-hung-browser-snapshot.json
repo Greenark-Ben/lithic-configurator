@@ -1,7 +1,7 @@
 {
   "kind": "lithic-side-hung-browser-snapshot",
-  "sourceFamilySha256": "bfe7e4310a6eafef6fa5797503d1f86473c92bde385bc0f1acbc9c9492beb0f5",
-  "meshSha256": "b2827ff5d3572989ee3dfb257577b7769b998b76d9ed62cb54378a0fb9037027",
+  "sourceFamilySha256": "ef719bdd598ffa43c62e4496097c1f6b8d857f35d90e609c21945f4e31e96bc0",
+  "meshSha256": "5d88b14d2ed2e3468c3e7d7ab04bb6ed2c4bf11396cd3b45b7d94cded616be0b",
   "sizeMm": [
     880,
     1180
@@ -17,7 +17,9 @@
     "GeomCombination"
   ],
   "manufacturerApproved": false,
-  "headAnalyticVolumeCheckPassed": false,
+  "headAnalyticVolumeCheckPassed": true,
   "browserGenerationEnabled": false,
-  "paidJobSubmitted": false
+  "paidJobSubmitted": false,
+  "desktopGenerationEnabled": true,
+  "cloudGenerationEnabled": false
 }

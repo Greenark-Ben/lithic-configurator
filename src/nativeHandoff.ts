@@ -1,4 +1,5 @@
 import {validateSharedParameters} from './sharedParameters';
+import {SIDE_HUNG_BUILDER,SIDE_HUNG_FILES,validateSideHungReport} from './sideHungHandoff';
 import {createBuildRequest,PRESETS,type Approval,type Configuration} from './engine';
 export const NATIVE_BUILDER='lithic-window-fixed-desktop/0.3.0';
 export async function requestIdentity(a:Approval,c:Configuration){
@@ -18,6 +19,11 @@ export function zipFiles(files:{name:string;data:Uint8Array}[]):Uint8Array{
  const result=new Uint8Array(offset+size+22);let position=0;for(const chunk of chunks){result.set(chunk,position);position+=chunk.length}return result;
 }
 export async function prepareNativeHandoff(a:Approval,c:Configuration){
+ if(a.definition.operation==='side-hung-outward'){
+  const identity=await requestIdentity(a,c),encoder=new TextEncoder();
+  const files=await Promise.all(SIDE_HUNG_FILES.map(async name=>{const r=await fetch('/native/sidehung/'+name);if(!r.ok)throw new Error('Side-hung handoff files are unavailable. Please retry.');return {name,data:new Uint8Array(await r.arrayBuffer())}}));
+  files.push({name:'request.json',data:encoder.encode(identity.text)},{name:'manifest.json',data:encoder.encode(JSON.stringify({builder:SIDE_HUNG_BUILDER,requestSha256:identity.sha256,geometryMode:'fixed-size-snapshot',nativeParameterFlex:false},null,2))});return zipFiles(files);
+ }
  if(!a.definition.profile)throw new Error('The desktop builder currently supports the LITHIC Fixed Window source profile proof.');
  const identity=await requestIdentity(a,c),names=['script.py','contract.py','authoring.py','drawings.py','afkc-source.json','Install.ps1','bundle.yaml','README.txt'];
  const files=await Promise.all(names.map(async name=>{const response=await fetch('/native/'+name);if(!response.ok)throw new Error('The Revit handoff files are unavailable. Please retry.');return {name,data:new Uint8Array(await response.arrayBuffer())}}));
@@ -27,6 +33,7 @@ export async function prepareNativeHandoff(a:Approval,c:Configuration){
 export type NativeReport={kind:'lithic-native-report';builder:string;requestSha256:string;status:'passed'|'failed';revitVersion:string;cases:{sizeMm:[number,number];status:'passed'|'failed';familyFile?:string;error?:string}[]};
 export async function readNativeReport(value:unknown,a:Approval,c:Configuration):Promise<NativeReport>{
  const r=value as Record<string,any>,identity=await requestIdentity(a,c);
+ if(a.definition.operation==='side-hung-outward')return validateSideHungReport(r,a,c,identity.sha256);
  if(!r||r.kind!=='lithic-native-report'||r.schemaVersion!=='0.2'||r.builder!==NATIVE_BUILDER||r.requestSha256!==identity.sha256)throw new Error('This report does not match the current approved configuration. Return to the exported size and finishes, or prepare a fresh handoff.');
  if(r.nativeParameterFlex!==false||r.manufacturerApproved!==false||r.geometryMode!=='fixed-size-snapshot'||!/^20\d\d$/.test(r.revitVersion)||Number(r.revitVersion)<2024||!['passed','failed'].includes(r.status)||!Array.isArray(r.cases))throw new Error('Unsupported or incomplete native report.');
  const sizes=[[c.width,c.height],...PRESETS.filter(([w,h])=>w!==c.width||h!==c.height)];

@@ -1,20 +1,35 @@
 import {describe,it,expect} from 'vitest';
 import {SIDE_HUNG_DEFINITION as definition,SIDE_HUNG_INITIAL as config,SIDE_HUNG_PARTS as parts,SIDE_HUNG_PIVOT as pivot,rotateSashPoint,openingAngleIssues} from './sideHung';
 import {calculateParts,configurationIssues,createBuildRequest,definitionIssues} from './engine';
-import {prepareNativeHandoff} from './nativeHandoff';
+import {readNativeReport} from './nativeHandoff';
+import type {Definition,Configuration} from './engine';
+import proof from '../server/fixtures/sidehung-desktop-proof.json';
 import {partGeometry} from './profileGeometry';
 import mesh from './sidehung-mesh.json';
 import {validateRequest,revitRoute} from '../server/revit';
+import {execFileSync} from 'node:child_process';
+import {readFileSync} from 'node:fs';
 describe('side-hung browser snapshot',()=>{
  it('keeps the native source identity, parts and geometry distinct from fixed exports',async()=>{
   expect(definitionIssues(definition)).toEqual([]);expect(configurationIssues(config,definition)).toEqual([]);
   expect(definition.productId).toBe('lithic.window.side-hung-outward');expect(definition.sideHung?.source.model).toBe('AFSC');
-  expect(mesh.activeProjectPreserved).toBe(true);expect(mesh.headAnalyticVolumeCheckPassed).toBe(false);
+  expect(mesh.activeProjectPreserved).toBe(true);expect(mesh.headAnalyticVolumeCheckPassed).toBe(true);
   expect(calculateParts(definition,config)).toHaveLength(29);expect(parts.filter(p=>p.mesh?.moving)).toHaveLength(21);
   expect(parts.filter(p=>p.role==='glazing')).toHaveLength(3);expect(parts.filter(p=>p.role==='spacer')).toHaveLength(8);
-  expect(()=>createBuildRequest({definition,approvedAt:'2026-10-16'},config)).toThrow('preview only');
-  await expect(prepareNativeHandoff({definition,approvedAt:'2026-10-16'},config)).rejects.toThrow('Fixed Window');
+  const request=createBuildRequest({definition,approvedAt:'2026-10-16T10:00:00.000Z'},{...config,openingAngleDegrees:45});expect(request.geometryEngine).toBe('side-hung-native-snapshot/0.1');expect(request.parts).toEqual([]);
+  const result=execFileSync('python3',['-X','utf8','-c',"import sys,json,hashlib,importlib.util;from pathlib import Path;p=Path('native/afsc-opening/desktop_contract.py');s=importlib.util.spec_from_file_location('sh',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);raw=sys.stdin.buffer.read();definition=json.loads(Path('public/native/sidehung/definition.json').read_text(encoding='utf-8'));request,digest=m.validate(raw,{'builder':m.BUILDER,'requestSha256':hashlib.sha256(raw).hexdigest(),'geometryMode':'fixed-size-snapshot','nativeParameterFlex':False},definition);print(request['configuration']['openingAngleDegrees'])"],{input:JSON.stringify(request),encoding:'utf8'});expect(result.trim()).toBe('45');
   expect(configurationIssues({...config,width:900},definition)[0]).toContain('snapshot only');
+ });
+ it('pins the browser definition and shipped source helpers',()=>{
+  expect(JSON.parse(readFileSync('public/native/sidehung/definition.json','utf8'))).toEqual(definition);
+  for(const name of ['build_native.py','wrap_hosted.py','export_builder.py','material_controls.py'])expect(readFileSync('public/native/sidehung/'+name,'utf8')).toBe(readFileSync('native/afsc-opening/'+name,'utf8'));
+ });
+ it('imports the actual browser-to-Revit report and rejects stale or incomplete evidence',async()=>{
+  const a={definition:proof.request.definition as Definition,approvedAt:proof.request.approvedAt},c=proof.request.configuration as Configuration;
+  expect((await readNativeReport(proof.report,a,c)).status).toBe('passed');
+  await expect(readNativeReport(proof.report,a,{...c,openingAngleDegrees:30})).rejects.toThrow('does not match');
+  const incomplete=structuredClone(proof.report);incomplete.hostedCases.pop();await expect(readNativeReport(incomplete,a,c)).rejects.toThrow('hosted opening matrix');
+  const unlinked=structuredClone(proof.report);unlinked.materialCases[0].passed=false;await expect(readNativeReport(unlinked,a,c)).rejects.toThrow('nested material checks');
  });
  it('rotates every moving part rigidly outward about outside-left and returns to closed',()=>{
   for(const angle of [0,15,30,45,90]){

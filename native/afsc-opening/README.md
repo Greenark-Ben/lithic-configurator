@@ -1,5 +1,14 @@
 # AFSC opening mechanism study
 
+**Current desktop export milestone:** the earlier study limits below are historical.
+`export_builder.py` now provides the separate LITHIC Side-Hung Outward Window
+desktop handoff for Revit 2024. See `docs/SIDE-HUNG-BROWSER.md` and
+`docs/evidence/side-hung-desktop-handoff-0.1.0.json`. The head-volume check and
+top-level material propagation now pass, and plan symbols follow the sash.
+Supplier codes remain source provenance; user-facing and nested component names
+use LITHIC. Side-hung APS generation, right-hand control, manufacturer mechanism
+and maximum travel remain unverified.
+
 Research branch only. The accepted closed AFSC package remains unchanged.
 This is an 880 x 1180 mm fixed-size snapshot with a native, instance-based
 `Opening Angle` control. It is not a production handoff/export builder.
