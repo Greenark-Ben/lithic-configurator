@@ -1,8 +1,9 @@
+import { SIDE_HUNG_PARTS } from './sideHung';
 import { profileParts, type ProfileSweep } from './profiles';
 export const DIMENSION_RANGE = {min:300,max:3000,basis:'illustrative-engine'} as const;
 export const PRESETS = [[900,1200],[1200,1500],[1500,1800]] as const;
 export type Configuration = { width: number; height: number; interior: 'timber'|'white'; exterior: 'graphite'|'white' };
-export type Definition = { schemaVersion: '0.1'; id: string; productId?: string; revision: number; product: string; operation: 'fixed'; frameFace: number; frameDepth: number|null; glazingThickness: number; provenance: { frameFace:string; frameDepth:string|null; glazing:string }; dimensionRange?:typeof DIMENSION_RANGE; profile?:{id:'lithic-fixed-profile/0.3.0';source:typeof import('./afkc-source').AFKC_SOURCE;depthTransform:string;manufacturerApproved:false}; proposal?:import('./proposal').Proposal };
+export type Definition = { schemaVersion: '0.1'; id: string; productId?: string; revision: number; product: string; operation: 'fixed'|'side-hung-outward'; frameFace: number; frameDepth: number|null; glazingThickness: number; provenance: { frameFace:string; frameDepth:string|null; glazing:string }; dimensionRange?:typeof DIMENSION_RANGE; profile?:{id:'lithic-fixed-profile/0.3.0';source:typeof import('./afkc-source').AFKC_SOURCE;depthTransform:string;manufacturerApproved:false}; sideHung?:{id:'lithic-side-hung-preview/0.1';sizeMm:[880,1180];handing:'left viewed from outside';source:{manufacturer:string;model:string;drawing:string};sourceFamilySha256:string;manufacturerApproved:false}; proposal?:import('./proposal').Proposal };
 export type Approval = { definition: Definition; approvedAt: string };
 export const SAMPLE: Definition = { schemaVersion:'0.1', id:'lithic-fixed-window-demo', revision:1, product:'Fixed-frame window', operation:'fixed', frameFace:70, frameDepth:null, glazingThickness:36, provenance:{frameFace:'Illustrative fixture, not manufacturer geometry',frameDepth:null,glazing:'Illustrative fixture, not a verified glazing specification'} };
 export const INITIAL: Configuration = {width:1200,height:1500,interior:'timber',exterior:'graphite'};
@@ -17,15 +18,17 @@ export function definitionIssues(d:Definition) {
 }
 export function configurationIssues(c:Configuration,d?:Definition) {
  const issues:string[]=[];
+ if(d?.operation==='side-hung-outward'&&(c.width!==880||c.height!==1180))issues.push('The side-hung preview currently supports the reviewed 880 × 1180 mm snapshot only.');
  if(!Number.isFinite(c.width)||!Number.isFinite(c.height)||c.width<DIMENSION_RANGE.min||c.height<DIMENSION_RANGE.min||c.width>DIMENSION_RANGE.max||c.height>DIMENSION_RANGE.max)issues.push('Width and height must each be 300–3000 mm.');
  if(d&&2*d.frameFace>=Math.min(c.width,c.height))issues.push('Frame face leaves no glazing opening.');
  return issues;
 }
-export type Part = { id:string; role:'timber'|'aluminium'|'glazing'|'spacer'|'seal'; position:[number,number,number]; size:[number,number,number]; sweep?:ProfileSweep };
+export type Part = { id:string; role:'timber'|'aluminium'|'glazing'|'spacer'|'seal'; position:[number,number,number]; size:[number,number,number]; sweep?:ProfileSweep; mesh?:{verticesMm:number[];moving:boolean} };
 // Millimetres throughout the definition. Preview adapter alone converts to metres.
 export function calculateParts(d:Definition,c:Configuration):Part[] {
  const issues=[...definitionIssues(d),...configurationIssues(c,d)];
  if(issues.length) throw new Error(issues.join(' '));
+ if(d.operation==='side-hung-outward'){if(!d.sideHung)throw new Error('Missing side-hung preview definition.');return SIDE_HUNG_PARTS;}
  if(d.profile)return profileParts(d,c);
  const w=c.width,h=c.height,f=d.frameFace,depth=d.frameDepth!;
  if(2*f>=Math.min(w,h))throw new Error('Frame face leaves no glazing opening.');
@@ -36,6 +39,7 @@ export function calculateParts(d:Definition,c:Configuration):Part[] {
  return parts;
 }
 export function createBuildRequest(a:Approval,c:Configuration) {
+ if(a.definition.operation==='side-hung-outward')throw new Error('Side-hung Revit generation is not connected. This definition supports browser preview only.');
  const parts=calculateParts(a.definition,c);
  return {kind:'lithic-build-request',schemaVersion:'0.1',definition:a.definition,approvedAt:a.approvedAt,configuration:{...c},configurationBasis:{overallSize:'User-selected dimensions',profile:'Approved definition',manufacturerSizeVerified:false},dimensionRange:DIMENSION_RANGE,geometryEngine:a.definition.profile?'fixed-window-profile-sweeps/0.3.0':'fixed-window-boxes/0.1',units:'mm',parts,nativeStatus:'not-built',limitations:[...(a.definition.profile?[a.definition.profile.source.junctionAssumption,...a.definition.profile.source.simplifications,...a.definition.profile.source.unresolved,'Source-derived prototype; not manufacturer-approved']:['Illustrative rectangular profiles; not manufacturer-approved']),a.definition.profile?'Fixed-size native snapshots; native parameter flex is not implemented':'No native builder is connected for this definition','Native checks and drawing review must accompany project use']};
 }

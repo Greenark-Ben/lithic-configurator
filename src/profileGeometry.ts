@@ -2,6 +2,12 @@ import * as THREE from 'three';
 import type { Part } from './engine';
 // Sweeps and boxes share the same millimetre build request. Only this adapter converts to metres.
 export function partGeometry(part:Part):THREE.BufferGeometry{
+ if(part.mesh){
+  const vertices=part.mesh.verticesMm.map(n=>n/1000),geometry=new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));geometry.computeVertexNormals();
+  const uv=[];for(let i=0;i<vertices.length;i+=3)uv.push(vertices[i]*4,vertices[i+1]*4);
+  geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));return geometry;
+ }
  if(!part.sweep)return new THREE.BoxGeometry(...part.size.map(n=>n/1000) as [number,number,number]);
  const s=part.sweep,contour=s.pointsMm.map(([u,z])=>new THREE.Vector2(u,z));
  if(THREE.ShapeUtils.isClockWise(contour))contour.reverse();

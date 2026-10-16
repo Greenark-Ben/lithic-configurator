@@ -1,0 +1,23 @@
+{
+  "kind": "lithic-side-hung-browser-snapshot",
+  "sourceFamilySha256": "bfe7e4310a6eafef6fa5797503d1f86473c92bde385bc0f1acbc9c9492beb0f5",
+  "meshSha256": "b2827ff5d3572989ee3dfb257577b7769b998b76d9ed62cb54378a0fb9037027",
+  "sizeMm": [
+    880,
+    1180
+  ],
+  "sourceDrawing": "61-37-S221 rev A",
+  "sourceDwgSha256": "21adc077f5b1fdf82ebcfeb9c0319ba200e7168b12b56a1a559f3354c6f4118d",
+  "partCount": 29,
+  "movingPartCount": 21,
+  "triangleCount": 2172,
+  "activeProjectPreserved": true,
+  "nativeAuthoringTypes": [
+    "Extrusion",
+    "GeomCombination"
+  ],
+  "manufacturerApproved": false,
+  "headAnalyticVolumeCheckPassed": false,
+  "browserGenerationEnabled": false,
+  "paidJobSubmitted": false
+}

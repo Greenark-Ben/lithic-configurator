@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
-    "test": "vitest run src/engine.test.ts src/proposal.test.ts server/interpret.test.ts src/nativeHandoff.test.ts server/revit.test.ts",
+    "test": "vitest run src/engine.test.ts src/sideHung.test.ts src/proposal.test.ts server/interpret.test.ts src/nativeHandoff.test.ts server/revit.test.ts",
     "preview": "vite preview --host 0.0.0.0",
     "test:e2e": "playwright test",
     "build:worker": "npm run build && vite build --config vite.server.config.ts && node scripts/check-worker.mjs",
