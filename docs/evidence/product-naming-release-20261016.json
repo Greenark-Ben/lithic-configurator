@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-16",
+  "siteVersion": 21,
+  "siteUrl": "https://lithic-configurator.ben333051.chatgpt.site",
+  "siteSourceCommit": "56659f351b431c659d50f59323b9bc0fa40b6e68",
+  "sourceBranch": "feat/afsc-opening-study",
+  "implementationCommit": "104b67f",
+  "deploymentId": "appgdep_6ad1d33de8cc8191995bcafa83dd27fe",
+  "deploymentStatus": "succeeded",
+  "automatedTests": 56,
+  "pythonContractTests": 5,
+  "existingSideHungTests": 9,
+  "browserEndToEndCases": 5,
+  "liveSourceBrowserHandoffCapturePassed": true,
+  "dotnetCompilePassed": true,
+  "fixedNativeSizesMm": [
+    [
+      900,
+      1200
+    ],
+    [
+      1200,
+      1500
+    ],
+    [
+      1500,
+      1800
+    ]
+  ],
+  "sideHungNativeHostedCases": 48,
+  "actualBrowserNativeReportImportPassed": true,
+  "liveChecks": {
+    "homepageStatus": 200,
+    "neutralFixedNamePresent": true,
+    "logoPreserved": true,
+    "nativeBuilder": "lithic-window-fixed-desktop/0.3.0",
+    "nativeContractSha256": "6cecdbc63f1c8917caa93ecfd2444a62d24bd0a26aa345601985753b79f0a574",
+    "cloudConnectionAvailable": true,
+    "privateTemplateRouteStatus": 404,
+    "paidJobSubmitted": false
+  },
+  "sideHungWebGenerationEnabled": false,
+  "historicalEvidenceRelabelled": false,
+  "manufacturerApproved": false,
+  "activeRevitProjectPreserved": true,
+  "newPaidApsRunSubmitted": false,
+  "packagingNotes": "Used explicit installed npm CLI after Windows shim failure, then Git Bash with TAR_OPTIONS=--force-local for drive-letter archive handling; source helper pushed and packaged the verified source."
+}
